@@ -58,6 +58,7 @@ public class Modelo {
 		return datos.buscar(dato);
 	}
 	
+	
 	/**
 	 * Requerimiento eliminar dato
 	 * @param dato Dato a eliminar
