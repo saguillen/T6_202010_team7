@@ -39,7 +39,7 @@ public class Modelo {
 		return datos.darTamano();
 	}
 	
-	
+	public void Test() {};
 
 	/**
 	 * Requerimiento de agregar dato
