@@ -38,6 +38,8 @@ public class Modelo {
 	{
 		return datos.darTamano();
 	}
+	
+	
 
 	/**
 	 * Requerimiento de agregar dato
