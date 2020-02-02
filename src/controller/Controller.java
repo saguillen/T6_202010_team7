@@ -1,8 +1,18 @@
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-import model.logic.Modelo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+
+import model.data_structures.LinkedListImp;
+import model.data_structures.Node;
 import view.View;
 
 public class Controller {
@@ -25,6 +35,21 @@ public class Controller {
 		
 	public void run() 
 	{
+		Gson gson = new Gson();
+		
+		String path = "./data/comparendos_dei_2018_small-geojson";
+		JsonReader reader;
+		try {
+			reader = new JsonReader(new FileReader(path));
+			Type collectionType = new TypeToken<LinkedListImp<String>>(){}.getType();
+			LinkedListImp<Node> lista = gson.fromJson(reader, collectionType);
+			//System.out.println(Arrays.toString(lista.toArray()));
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
 		String dato = "";
