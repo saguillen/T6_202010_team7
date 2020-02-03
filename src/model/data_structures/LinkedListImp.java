@@ -1,6 +1,5 @@
 package model.data_structures;
 
-import java.util.Currency;
 
 public class LinkedListImp<T extends Comparable<T>> {
 	
@@ -36,7 +35,7 @@ public class LinkedListImp<T extends Comparable<T>> {
 		
 	}
 	
-	public int size()
+	public int size()//Cuando se agrega uno aumentar 1 .
 	{
 		Node<T> actual = head;
 		int contador = 0;
@@ -48,6 +47,37 @@ public class LinkedListImp<T extends Comparable<T>> {
 		
 		return contador;		
 	}
+	
+	public void agregarDatos()
+	{
+		
+	}
+	
+	public void insertarAlInicio()
+	{
+
+	
+	}
+	
+	public void insertarAlFinal() //noc
+	{
+		Node<T> actual = head;
+		Node<T> aInsertar;
+		
+		while(actual!=null)
+		{
+			if(actual.darAnterior()!=null && actual.darSiguiente()==null)
+				aInsertar = actual;
+			actual = actual.darSiguiente();
+		}
+		
+	}
+	
+	//Metodo agregar Datos.
+	//La carga de datos se sube a un objeto de JSON.
+	//Objetos multa que se meten en un nodo.
+	//Lista encadenada maneja los objetos por dentro.
+	//Apuntador a la cola. Agregar a la cola, para que se puedan agregar los datos. 
 	
 	@Override
 	//Implementation idea taken from:

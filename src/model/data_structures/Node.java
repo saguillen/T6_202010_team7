@@ -27,5 +27,6 @@ public class Node<T extends Comparable<T>> {
 	{
 		return valor;
 	}
+	
 
 }

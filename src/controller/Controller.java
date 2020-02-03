@@ -1,30 +1,15 @@
 package controller;
 
-import java.io.FileReader;
-import java.util.LinkedList;
-import java.util.Scanner;
-import com.google.gson.stream.JsonReader;
-import model.data_structures.LinkedListImp;
-import model.data_structures.Node;
 import model.logic.Modelo;
 import view.View;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
-import java.lang.reflect.Type;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
 
 public class Controller<T extends Comparable<T>> {
 
+	//Debe ser un switch grande, no va Jsonreader, va en modelo.
 	/* Instancia del Modelo*/
 	private Modelo modelo;
 
@@ -41,96 +26,54 @@ public class Controller<T extends Comparable<T>> {
 		modelo = new Modelo();
 	}
 
-	public void run() 
+	public void run() throws InputMismatchException 
 	{
-		Scanner lector = new Scanner(System.in);
-		boolean fin = false;
-		String dato = "";
-		String respuesta = "";
-		JsonReader reader;
-		String path = "./data/comparendos_dei_2018_small.geojson";
-		Gson gson = new Gson();
+		try
+		{
+			boolean fin = false;
+			Scanner reader = new Scanner(System.in);
 
-		while( !fin ){
-			view.printMenu();
+			while( !fin ){
+				view.printMenu();
+				int option = reader.nextInt();
+				switch(option){
+				case 0:
+					//Despliega Menu Opcion 0.
+					view.displayOp0Menu();
+					String info = reader.next();//Esto es input del usuario. Como tener la info del json. 
+					modelo.darNombre(info);
 
-			System.out.println("--------------------------");
-			try {
-				reader = new JsonReader(new FileReader(path));
-				Type collectionType = new TypeToken<LinkedListImp<String>>(){}.getType(); //Preguntar
-				LinkedListImp<String> lista = gson.fromJson(reader, collectionType);      //Preguntar
-				System.out.println(lista.toString(lista.toArray()));
+					view.displayOp0Data(info);
+					break;
 
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+				case 1:
+					view.displayOp1Menu();
 
+					String info2 = reader.next(); //Lo mismo ^
+					modelo.darNombre(info2);//^^^
 
-			int option = lector.nextInt();
-			switch(option){
-			case 1:
-				view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");
-				int capacidad = lector.nextInt();
-				modelo = new Modelo<String>(); 
-				view.printMessage("Arreglo Dinamico creado");
-				view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-				break;
+					view.displayOp1Data(info2);
+					break;
 
-			case 2:
-				view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-				dato = lector.next();
-				//					modelo.agregar(dato); No necesitamos agregar
-				view.printMessage("Dato agregado");
-				view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-				break;
+				case 2:
+					view.displayOp2Menu();
+					int size = reader.nextInt();
+					modelo.darTamano(size);
 
-			case 3:
-				view.printMessage("--------- \nDar cadena (simple) a buscar: ");
-				dato = lector.next();
-				respuesta = modelo.buscarPrimero().toString();  //Esto es valido?
-				if ( respuesta != null)
-				{
-					view.printMessage("Dato encontrado: "+ respuesta);
+					view.displayOp2Data(size);
+
+					break;
+
+				//Opcion No valida.
+				default: 
+					view.badOption();
+					fin = true;
+					break;
 				}
-				else
-				{
-					view.printMessage("Dato NO encontrado");
-				}
-				view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-				break;
-
-			case 4:
-				view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
-				dato = lector.next();
-				//					respuesta = modelo.eliminar(dato); No necesitamos eliminar
-				if ( respuesta != null)
-				{
-					view.printMessage("Dato eliminado "+ respuesta);
-				}
-				else
-				{
-					view.printMessage("Dato NO eliminado");							
-				}
-				view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-				break;
-
-			case 5: 
-				view.printMessage("--------- \nContenido del Arreglo: ");
-				view.printModelo(modelo);
-				view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-				break;	
-
-			case 6: 
-				view.printMessage("--------- \n Hasta pronto !! \n---------"); 
-				lector.close();
-				fin = true;
-				break;	
-
-			default: 
-				view.printMessage("--------- \n Opcion Invalida !! \n---------");
-				break;
 			}
 		}
-
-	}	
+		catch(InputMismatchException e){
+			run();
+		}
+	}
 }
