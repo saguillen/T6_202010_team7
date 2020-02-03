@@ -1,5 +1,7 @@
 package model.data_structures;
 
+import java.util.Currency;
+
 public class LinkedListImp<T extends Comparable<T>> {
 	
 	/**
@@ -32,7 +34,6 @@ public class LinkedListImp<T extends Comparable<T>> {
 		
 		return actual;
 		
-	
 	}
 	
 	public int size()
@@ -47,9 +48,28 @@ public class LinkedListImp<T extends Comparable<T>> {
 		
 		return contador;		
 	}
+	
+	@Override
+	//Implementation idea taken from:
+	//https://stackoverflow.com/questions/19283083/printing-out-a-linked-list-using-tostring
+	public String toString()
+	{
+		String result = "";
+		Node<T> actual = head;
+		while(actual.darSiguiente()!=null)
+		{
+			result += actual.darValor();
+			if(actual.darSiguiente()!=null){
+				result += ", ";
+			}
+			actual = actual.darSiguiente();
+		}
+		
+		return "List: "+result;
+		
+	}
 
-
-	public long[] toArray() {
+	public T toArray(T[] a) {
 		
 		return null;
 	}
