@@ -1,6 +1,8 @@
 package model.data_structures;
 
-public class Multa {
+import java.util.List;
+
+public class Multa<T extends Comparable<T>>implements Comparable<Multa<T>>{
 	
 	private String CLASE_VEHICULO;
 	
@@ -14,14 +16,16 @@ public class Multa {
 	
 	private String FECHA_HORA;
 	
+	private List<Double> geo;
 	
-	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora)
+	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo)
 	{
 		CLASE_VEHICULO = pClase;
 		TIPO_SERVICIO = pTipoS;
 		DES_INFRAC = pDesc;
 		LOCALIDAD = pLocalidad;
 		FECHA_HORA = pFechaHora;
+		geo = pGeo;
 	}
 	
 	public String darClase()
@@ -54,9 +58,15 @@ public class Multa {
 	
 	public String toString()
 	{
-		return FECHA_HORA + "-"+ CLASE_VEHICULO + "-" + TIPO_SERVICIO + "-" + INFRACCION + "-" + DES_INFRAC + "-" + LOCALIDAD;
+		return FECHA_HORA+"-"+CLASE_VEHICULO+"-"+TIPO_SERVICIO+"-"+INFRACCION+"-"+DES_INFRAC+"-"+LOCALIDAD;
 	}
-	
+
+	@Override
+	public int compareTo(Multa o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 	

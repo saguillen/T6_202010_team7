@@ -13,11 +13,23 @@ public class LinkedListImp<T extends Comparable<T>> {
 	
 	private int size;
 	
+	private LinkedListImp<T> multas = new LinkedListImp<>();
+	
+	public LinkedListImp<T> darMultas()
+	{
+		return multas;
+	}
+	
+	public void setMultas(LinkedListImp<T> multa)
+	{
+		this.multas = multa;
+	}
 	
 	public LinkedListImp()
 	{
 		
 	}
+	
 	
 	
 	public Node<T> darPrimero()
@@ -77,34 +89,17 @@ public class LinkedListImp<T extends Comparable<T>> {
 		size++;
 	}
 	
+	//Implementar, puede ser usado en otros talleres y proyectos.
 	public void eliminar()
 	{
-		
-	}
-	@Override
-	//Implementation idea taken from:
-	//https://stackoverflow.com/questions/19283083/printing-out-a-linked-list-using-tostring
-	public String toString()
-	{
-		String result = "";
-		Node<T> actual = head;
-		while(actual.darSiguiente()!=null)
-		{
-			result += actual.darValor();
-			if(actual.darSiguiente()!=null){
-				result += ", ";
-			}
-			actual = actual.darSiguiente();
-		}
-		
-		return "List: "+result;
-		
+		//Falta implementacion
+		size--;
 	}
 
-	public T toArray(T[] a) {
-		
+	public Object toArray() {
+		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 }

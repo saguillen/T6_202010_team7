@@ -41,7 +41,7 @@ public class Controller {
 					//Despliega Menu Opcion 0.
 					view.displayOp0Menu();
 					String info = reader.next();//Esto es input del usuario. Como tener la info del json. 
-//					modelo.darNombre(info);
+					modelo.ModeloJSON();
 
 					view.displayOp0Data(info);
 					break;
@@ -50,7 +50,7 @@ public class Controller {
 					view.displayOp1Menu();
 
 					String info2 = reader.next(); //Lo mismo ^
-					modelo.darNombre(info2);//^^^
+					modelo.darTamano();
 
 					view.displayOp1Data(info2);
 					break;
@@ -58,7 +58,7 @@ public class Controller {
 				case 2:
 					view.displayOp2Menu();
 					int size = reader.nextInt();
-					modelo.darTamano(size);
+					modelo.darTamano();
 
 					view.displayOp2Data(size);
 
