@@ -28,5 +28,14 @@ public class Node<T extends Comparable<T>> {
 		return valor;
 	}
 	
+	public void cambiarSiguiente(Node<T> pVal)
+	{
+		siguiente = pVal;
+	}
+	
+	public void cambiarAnterior(Node<T> pValor)
+	{
+		anterior = pValor;
+	}
 
 }

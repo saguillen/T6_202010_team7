@@ -83,7 +83,7 @@ public class View
 		System.out.println(LIGHTBLUE + "INFRACCION: " + RESET + pInfo.split("-")[3]);
 		System.out.println(LIGHTBLUE + "DESCRIPCION DE INFRACC.: " + RESET + pInfo.split("-")[4]);
 		System.out.println(LIGHTBLUE + "LOCALIDAD: " + RESET + pInfo.split("-")[5]);
-		System.out.println(DYELLOW + "======================\n");
+		System.out.println(DYELLOW + "===========================\n");
 
 	}
 

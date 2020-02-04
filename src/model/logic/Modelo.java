@@ -24,21 +24,25 @@ import model.data_structures.Node;
  * @param <T>
  *
  */
-public class Modelo<T extends Comparable<T>> {
+public class Modelo<T extends Comparable<T>> 
+{
 
-	JsonReader reader;
-	String path = "./data/comparendos_dei_2018_small.geojson";
-	Gson gson = new Gson();
+	public void m()
+	{
+		JsonReader reader;
+		String path = "./data/comparendos_dei_2018_small.geojson";
+		Gson gson = new Gson();
 
-	try {
-		//importar arreglo dinamico. multa1.getNombre(); Clase Multa(?)
-		reader = new JsonReader(new FileReader(path));
-		Type collectionType = new TypeToken<LinkedListImp<String>>(){}.getType(); //Preguntar
-		LinkedListImp<String> lista = gson.fromJson(reader, collectionType);      //Preguntar
-		System.out.println(lista.toString(lista.toArray()));//view.
+		try {
+			//importar arreglo dinamico. multa1.getNombre(); Clase Multa(?)
+			reader = new JsonReader(new FileReader(path));
+			Type collectionType = new TypeToken<LinkedListImp<String>>(){}.getType(); //Preguntar
+			LinkedListImp<String> lista = gson.fromJson(reader, collectionType);      //Preguntar
+//			System.out.println(lista.toString(lista.toArray()));//view.
 
-	} catch (FileNotFoundException e) {
-		e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * Atributos del modelo del mundo
@@ -93,6 +97,6 @@ public class Modelo<T extends Comparable<T>> {
 	}
 
 	//Crear Clase Multa???
-
-
 }
+
+

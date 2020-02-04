@@ -11,9 +11,12 @@ public class LinkedListImp<T extends Comparable<T>> {
 	
 	private Node<T> tail;
 	
+	private int size;
+	
 	
 	public LinkedListImp()
 	{
+		
 	}
 	
 	
@@ -35,50 +38,49 @@ public class LinkedListImp<T extends Comparable<T>> {
 		
 	}
 	
-	public int size()//Cuando se agrega uno aumentar 1 .
+	public int size()
 	{
-		Node<T> actual = head;
-		int contador = 0;
-		while(actual.darSiguiente()!=null)
+		return size;		
+	}
+	
+	public void insertarAlInicio(T nuevo)
+	{
+		if(head == null)
 		{
-			contador++;
-			actual = actual.darSiguiente();
+			head = new Node<T>(nuevo, head, null);
+			tail = head;
+		}
+		else
+		{
+			Node<T> aInsertar = new Node<T>(nuevo, head, null);
+			aInsertar.cambiarSiguiente(head);
+			head = aInsertar;
+		}
+		size++;
+	}
+	
+	public void insertarAlFinal(T nuevo) 
+	{
+		if(head == null){
+			head = new Node<T>(nuevo, null, null); 
+			tail = head;
 		}
 		
-		return contador;		
-	}
-	
-	public void agregarDatos()
-	{
-		
-	}
-	
-	public void insertarAlInicio()
-	{
-
-	
-	}
-	
-	public void insertarAlFinal() //noc
-	{
-		Node<T> actual = head;
-		Node<T> aInsertar;
-		
-		while(actual!=null)
+		else
 		{
-			if(actual.darAnterior()!=null && actual.darSiguiente()==null)
-				aInsertar = actual;
-			actual = actual.darSiguiente();
+			
+			Node<T> aInsertar = new Node<T>(nuevo, null, tail);
+			tail.cambiarSiguiente(aInsertar);
+			aInsertar.cambiarAnterior(tail);
+			tail = aInsertar;
 		}
-		
+		size++;
 	}
 	
-	//Metodo agregar Datos.
-	//La carga de datos se sube a un objeto de JSON.
-	//Objetos multa que se meten en un nodo.
-	//Lista encadenada maneja los objetos por dentro.
-	//Apuntador a la cola. Agregar a la cola, para que se puedan agregar los datos. 
-	
+	public void eliminar()
+	{
+		
+	}
 	@Override
 	//Implementation idea taken from:
 	//https://stackoverflow.com/questions/19283083/printing-out-a-linked-list-using-tostring
