@@ -62,7 +62,7 @@ public class Multa implements Comparable<Multa>
 	
 	public String toString()
 	{
-		return FECHA_HORA+"-"+CLASE_VEHICULO+"-"+TIPO_SERVICIO+"-"+INFRACCION+"-"+DES_INFRAC+"-"+LOCALIDAD+"-"+GEO;
+		return FECHA_HORA+"\t"+CLASE_VEHICULO+"\t"+TIPO_SERVICIO+"\t"+INFRACCION+"\t"+DES_INFRAC+"\t"+LOCALIDAD+"\t"+GEO;
 	}
 	
 	public String darId()
@@ -74,15 +74,7 @@ public class Multa implements Comparable<Multa>
 	{
 		return GEO;
 	}
-	public Multa darPorId(String id)
-	{
-		Multa actual = null;
-		if(this.darId().equals(id)){
-		return this;
-		}
-		return actual;
-			
-	}
+
 	
 	@Override
 	public int compareTo(Multa o) {

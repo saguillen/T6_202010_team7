@@ -9,6 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -64,8 +65,18 @@ public class Modelo
 
 	}
 
-	public Multa buscar(String id)
+	public Multa buscar(String id) 
 	{
+		for(Multa m: lista){}
+		for(Iterator<Multa> i = lista.iterator(); i.hasNext();)
+		{
+			Multa m = i.next();
+			if(m.darId() == id)
+			{
+				return m;
+			}
+		}
+		
 		return null;
 	}
 }

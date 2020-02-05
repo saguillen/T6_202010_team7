@@ -55,13 +55,13 @@ public class View
 	 */
 	public void displayOp0PrimeroData(String pInfo) {
 		System.out.println("====== Informacion Primer Comparendo ======");
-		System.out.println("FECHA: "+ pInfo.split("-")[0]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("-")[1]);
-		System.out.println("TIPO DE SERVICIO: " + pInfo.split("-")[2]);
-		System.out.println("INFRACCION: "+ pInfo.split("-")[3]);
-		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("-")[4]);
-		System.out.println("LOCALIDAD: "+pInfo.split("-")[5]);
-		System.out.println("GEOLOCALIZACION: "+pInfo.split("-")[6]);
+		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
+		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
+		System.out.println("TIPO DE SERVICIO: " + pInfo.split("\t")[2]);
+		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
+		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("\t")[4]);
+		System.out.println("LOCALIDAD: "+pInfo.split("\t")[5]);
+		System.out.println("GEOLOCALIZACION: "+pInfo.split("\t")[6]);
 		System.out.println("===========================\n");
 
 	}
@@ -75,13 +75,13 @@ public class View
 	 */
 	public void displayOp0UltimoData(String pInfo) {
 		System.out.println("====== Informacion Ultimo Comparendo  ======");
-		System.out.println("FECHA: "+ pInfo.split("-")[0]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("-")[1]);
-		System.out.println("TIPO DE SERVICIO: " + pInfo.split("-")[2]);
-		System.out.println("INFRACCION: "+ pInfo.split("-")[3]);
-		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("-")[4]);
-		System.out.println("LOCALIDAD: "+ pInfo.split("-")[5]);
-		System.out.println("GEOLOCALIZACION: "+pInfo.split("-")[6]);
+		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
+		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
+		System.out.println("TIPO DE SERVICIO: " + pInfo.split("\t")[2]);
+		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
+		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("\t")[4]);
+		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[5]);
+		System.out.println("GEOLOCALIZACION: "+pInfo.split("\t")[6]);
 		System.out.println("======================\n");
 
 	}
@@ -103,13 +103,13 @@ public class View
 	
 	public void displayInfoComparendo(String pInfo){
 		System.out.println("====== Comparendo Solicitado  ======");
-		System.out.println("FECHA: "+ pInfo.split("-")[0]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("-")[1]);
-		System.out.println("TIPO DE SERVICIO: "+ pInfo.split("-")[2]);
-		System.out.println("INFRACCION: "+ pInfo.split("-")[3]);
-		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("-")[4]);
-		System.out.println("LOCALIDAD: "+ pInfo.split("-")[5]);
-		System.out.println("GEOLOCALIZACION: "+pInfo.split("-")[6]);
+		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
+		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
+		System.out.println("TIPO DE SERVICIO: "+ pInfo.split("\t")[2]);
+		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
+		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("\t")[4]);
+		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[5]);
+		System.out.println("GEOLOCALIZACION: "+pInfo.split("\t")[6]);
 		System.out.println("====================================\n");
 
 	}
