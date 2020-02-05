@@ -2,7 +2,9 @@ package model.data_structures;
 
 import java.util.List;
 
-public class Multa<T extends Comparable<T>>implements Comparable<Multa<T>>{
+public class Multa implements Comparable<Multa>
+{
+	private String OBJECT_ID;
 	
 	private String CLASE_VEHICULO;
 	
@@ -18,7 +20,7 @@ public class Multa<T extends Comparable<T>>implements Comparable<Multa<T>>{
 	
 	private List<Double> geo;
 	
-	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo)
+	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo, String pId)
 	{
 		CLASE_VEHICULO = pClase;
 		TIPO_SERVICIO = pTipoS;
@@ -26,6 +28,7 @@ public class Multa<T extends Comparable<T>>implements Comparable<Multa<T>>{
 		LOCALIDAD = pLocalidad;
 		FECHA_HORA = pFechaHora;
 		geo = pGeo;
+		OBJECT_ID = pId;
 	}
 	
 	public String darClase()
@@ -59,6 +62,11 @@ public class Multa<T extends Comparable<T>>implements Comparable<Multa<T>>{
 	public String toString()
 	{
 		return FECHA_HORA+"-"+CLASE_VEHICULO+"-"+TIPO_SERVICIO+"-"+INFRACCION+"-"+DES_INFRAC+"-"+LOCALIDAD;
+	}
+	
+	public String darId()
+	{
+		return OBJECT_ID;
 	}
 
 	@Override

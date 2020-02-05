@@ -1,7 +1,8 @@
 package model.data_structures;
 
+import java.util.Iterator;
 
-public class LinkedListImp<T extends Comparable<T>> {
+public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 	
 	/**
 	 * Atributos de la clase Doubly Linked List. 
@@ -13,17 +14,16 @@ public class LinkedListImp<T extends Comparable<T>> {
 	
 	private int size;
 	
-	private LinkedListImp<T> multas = new LinkedListImp<>();
 	
-	public LinkedListImp<T> darMultas()
-	{
-		return multas;
-	}
-	
-	public void setMultas(LinkedListImp<T> multa)
-	{
-		this.multas = multa;
-	}
+//	public LinkedListImp<T> darMultas()
+//	{
+//		return multas;
+//	}
+//	
+//	public void setMultas(LinkedListImp<T> multa)
+//	{
+//		this.multas = multa;
+//	}
 	
 	public LinkedListImp()
 	{
@@ -98,6 +98,19 @@ public class LinkedListImp<T extends Comparable<T>> {
 
 	public Object toArray() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+//	
+	public Node<T> buscar(String id){
+		Node<T> buscado = null;
+		
+		
+		
+		return buscado;
+	}
+
+	@Override
+	public Iterator<T> iterator() {
 		return null;
 	}
 
