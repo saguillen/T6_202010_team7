@@ -1,9 +1,5 @@
 package view;
 
-import model.logic.Modelo;
-
-
-
 public class View 
 {
 
@@ -30,7 +26,7 @@ public class View
 
 		// display hint
 		this.displayHint();
-		System.out.print("Input -> \n\n");
+		System.out.print("Input -> \n");
 	}
 
 	/**
@@ -59,13 +55,13 @@ public class View
 	 */
 	public void displayOp0PrimeroData(String pInfo) {
 		System.out.println("====== Informacion Primer Comparendo ======");
-		System.out.println("GEOLOCALIZACION: "+pInfo.split("-")[0]);
-		System.out.println("FECHA: "+ pInfo.split("-")[1]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("-")[2]);
-		System.out.println("TIPO DE SERVICIO: " + pInfo.split("-")[3]);
-		System.out.println("INFRACCION: "+ pInfo.split("-")[4]);
-		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("-")[5]);
-		System.out.println("LOCALIDAD: "+pInfo.split("-")[6]);
+		System.out.println("FECHA: "+ pInfo.split("-")[0]);
+		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("-")[1]);
+		System.out.println("TIPO DE SERVICIO: " + pInfo.split("-")[2]);
+		System.out.println("INFRACCION: "+ pInfo.split("-")[3]);
+		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("-")[4]);
+		System.out.println("LOCALIDAD: "+pInfo.split("-")[5]);
+		System.out.println("GEOLOCALIZACION: "+pInfo.split("-")[6]);
 		System.out.println("===========================\n");
 
 	}
@@ -114,12 +110,14 @@ public class View
 		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("-")[4]);
 		System.out.println("LOCALIDAD: "+ pInfo.split("-")[5]);
 		System.out.println("GEOLOCALIZACION: "+pInfo.split("-")[6]);
-		System.out.println("======================\n");
+		System.out.println("====================================\n");
 
 	}
 	
 	public void displayInput()
 	{
+		System.out.println("======================\n");
 		System.out.println("DIGITE EL ID DEL COMPARENDO A BUSCAR");
+		System.out.println("======================\n");
 	}
 }

@@ -18,16 +18,17 @@ public class Multa implements Comparable<Multa>
 	
 	private String FECHA_HORA;
 	
-	private List<Double> geo;
+	private List<Double> GEO;
 	
 	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo, String pId)
 	{
 		CLASE_VEHICULO = pClase;
 		TIPO_SERVICIO = pTipoS;
+		INFRACCION = pInfra;
 		DES_INFRAC = pDesc;
 		LOCALIDAD = pLocalidad;
 		FECHA_HORA = pFechaHora;
-		geo = pGeo;
+		GEO = pGeo;
 		OBJECT_ID = pId;
 	}
 	
@@ -61,21 +62,32 @@ public class Multa implements Comparable<Multa>
 	
 	public String toString()
 	{
-		return FECHA_HORA+"-"+CLASE_VEHICULO+"-"+TIPO_SERVICIO+"-"+INFRACCION+"-"+DES_INFRAC+"-"+LOCALIDAD;
+		return FECHA_HORA+"-"+CLASE_VEHICULO+"-"+TIPO_SERVICIO+"-"+INFRACCION+"-"+DES_INFRAC+"-"+LOCALIDAD+"-"+GEO;
 	}
 	
 	public String darId()
 	{
 		return OBJECT_ID;
 	}
-
+	
+	public List<Double>darGeo()
+	{
+		return GEO;
+	}
+	public Multa darPorId(String id)
+	{
+		Multa actual = null;
+		if(this.darId().equals(id)){
+		return this;
+		}
+		return actual;
+			
+	}
+	
 	@Override
 	public int compareTo(Multa o) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	
-	
+	}	
 	
 }

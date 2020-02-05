@@ -20,6 +20,8 @@ public class Controller {
 	/* Instancia de la Vista*/
 	private View view;
 
+	private Scanner reader;
+
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 * @param capacidad tamaNo inicial del arreglo
@@ -32,48 +34,41 @@ public class Controller {
 
 	public void run() throws InputMismatchException 
 	{
+		reader = new Scanner(System.in);
 		try
 		{
 			boolean fin = false;
-			Scanner reader = new Scanner(System.in);
-
 			while( !fin ){
 				view.printMenu();
 				int option = reader.nextInt();
 				switch(option){
-				case 0:
-					//Despliega Menu Opcion 0.
-//					view.displayOp0Menu();
-//					String info = reader.next();//Esto es input del usuario. Como tener la info del json. 
+				case 0: 
 					try {
-						
-						
+
 						LinkedListImp<Multa> respuesta = modelo.ModeloJSON();
 						String info = (respuesta.darPrimero().darValor().toString());
 						view.displayOp0PrimeroData(info);
-						
+
 						info = (respuesta.darUltimo().darValor().toString());
 						view.displayOp0UltimoData(info);
-						
+
 						int pSize = respuesta.size();
 						view.displayOp0sizeData(pSize);
-						
+
 					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
+
 						e.printStackTrace();
 					}
-
 					break;
 
 				case 1:
-					
 					view.displayInput();
 					String input = reader.next();
 					Multa respuesta = modelo.buscar(input);
 					view.displayInfoComparendo(respuesta.toString());
 					break;
 
-				//Opcion No valida.
+					//Opcion No valida.
 				default: 
 					view.badOption();
 					fin = true;

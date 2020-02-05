@@ -30,8 +30,6 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		
 	}
 	
-	
-	
 	public Node<T> darPrimero()
 	{
 		return head;
@@ -100,14 +98,7 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-//	
-	public Node<T> buscar(String id){
-		Node<T> buscado = null;
-		
-		
-		
-		return buscado;
-	}
+
 
 	@Override
 	public Iterator<T> iterator() {
