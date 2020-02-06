@@ -67,16 +67,16 @@ public class Modelo
 
 	public Multa buscar(String id) 
 	{
-		for(Multa m: lista){}
-		for(Iterator<Multa> i = lista.iterator(); i.hasNext();)
-		{
-			Multa m = i.next();
-			if(m.darId() == id)
+		for(Multa m : lista){
+			if(id == null){
+				return null;
+			}
+			else if(m.darId() == id)
 			{
 				return m;
 			}
 		}
-		
+
 		return null;
 	}
 }

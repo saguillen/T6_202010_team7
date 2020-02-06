@@ -7,8 +7,7 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 	/**
 	 * Atributos de la clase Doubly Linked List. 
 	 */
-	private T[] arrayList;
-    private int currentSize;
+
 	
 	private Node<T> head;
 	
@@ -101,30 +100,14 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		return null;
 	}
 
-
 	@Override
 	public Iterator<T> iterator() {
-		Iterator<T> it = new Iterator<T>() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-            private int currentIndex = 0;
 
-            @Override
-            public boolean hasNext() {
-                return currentIndex < currentSize && arrayList[currentIndex] != null;
-            }
-
-            @Override
-            public T next() {
-                return arrayList[currentIndex++];
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
-            }
-        };
-        return it;
-    }
+    
 	
 
 
