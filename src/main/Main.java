@@ -1,4 +1,5 @@
 package main;
+
 import controller.Controller;
 
 public class Main {

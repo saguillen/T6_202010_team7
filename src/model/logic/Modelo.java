@@ -1,9 +1,12 @@
-package model.logic;
 
+
+//package model.logic;
+package model.logic;
 import java.io.FileReader;
 import com.google.gson.stream.JsonReader;
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
+import model.data_structures.Node;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -64,18 +67,17 @@ public class Modelo
 	{
 		for(Multa m: lista){}
 		for(Iterator<Multa> i = lista.iterator(); i.hasNext();)
-		{
+		{System.out.println(i);	
 			Multa m = i.next();
 			if(m.darId() == id)
 			{
 				return m;
+			
 			}
+			
 		}
 		
 		return null;
 	}
+	
 }
-
-
-
-

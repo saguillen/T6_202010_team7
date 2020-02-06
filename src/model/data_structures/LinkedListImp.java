@@ -3,58 +3,55 @@ package model.data_structures;
 import java.util.Iterator;
 
 public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
-	
+
 	/**
 	 * Atributos de la clase Doubly Linked List. 
 	 */
 	private T[] arrayList;
-    private int currentSize;
-	
+	private int currentSize;
 	private Node<T> head;
-	
 	private Node<T> tail;
-	
 	private int size;
-	
-	
-//	public LinkedListImp<T> darMultas()
-//	{
-//		return multas;
-//	}
-//	
-//	public void setMultas(LinkedListImp<T> multa)
-//	{
-//		this.multas = multa;
-//	}
-	
+
+
+	//	public LinkedListImp<T> darMultas()
+	//	{
+	//		return multas;
+	//	}
+	//	
+	//	public void setMultas(LinkedListImp<T> multa)
+	//	{
+	//		this.multas = multa;
+	//	}
+
 	public LinkedListImp()
 	{
-		
+
 	}
-	
+
 	public Node<T> darPrimero()
 	{
 		return head;
 	}
-	
+
 	public Node<T> darUltimo()
 	{
 		Node<T> actual = head;
-		
+
 		while(actual!= null && actual.darSiguiente()!=null) 
 		{
 			actual = actual.darSiguiente(); 
 		}
-		
+
 		return actual;
-		
+
 	}
-	
+
 	public int size()
 	{
 		return size;		
 	}
-	
+
 	public void insertarAlInicio(T nuevo)
 	{
 		if(head == null)
@@ -70,17 +67,18 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		}
 		size++;
 	}
-	
+
 	public void insertarAlFinal(T nuevo) 
 	{
+
 		if(head == null){
 			head = new Node<T>(nuevo, null, null); 
 			tail = head;
 		}
-		
+
 		else
 		{
-			
+
 			Node<T> aInsertar = new Node<T>(nuevo, null, tail);
 			tail.cambiarSiguiente(aInsertar);
 			aInsertar.cambiarAnterior(tail);
@@ -88,7 +86,7 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		}
 		size++;
 	}
-	
+
 	//Implementar, puede ser usado en otros talleres y proyectos.
 	public void eliminar()
 	{
@@ -106,27 +104,43 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 	public Iterator<T> iterator() {
 		Iterator<T> it = new Iterator<T>() {
 
-            private int currentIndex = 0;
+			private int currentIndex = 0;
 
-            @Override
-            public boolean hasNext() {
-                return currentIndex < currentSize && arrayList[currentIndex] != null;
-            }
+			@Override
+			public boolean hasNext() {
+				return currentIndex < currentSize && arrayList[currentIndex] != null;
+			}
 
-            @Override
-            public T next() {
-                return arrayList[currentIndex++];
-            }
+			@Override
+			public T next() {
+				return arrayList[currentIndex++];
+			}
 
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
-            }
-        };
-        return it;
-    }
-	
+			@Override
+			public void remove() {
+				throw new UnsupportedOperationException();
+			}
+		};
+		return it;
+	}
+
+	public Node<T> darPorId(String id)
+	{
+		Node<T> porId = null;
+		Node<T> actual = head;
+		
+		while(actual!=null)
+		{
+			Multa m = (Multa) actual.darValor();
+			if(m.darId().equals(id))
+			{
+				porId = actual; 
+			}
+			else{
+			actual = actual.darSiguiente();}
+		}
+		return porId;
+	}
 
 
->>>>>>> branchJ
 }

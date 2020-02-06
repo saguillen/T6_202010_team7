@@ -1,13 +1,15 @@
 package view;
 
-	/**
-	 * Metodo constructor
-	 */
-	public View()
-	{
 
-	}
-
+public class View 
+{
+	    /**
+	     * Metodo constructor
+	     */
+	    public View()
+	    {
+	    	
+	    }
 	/**
 	 * Implementacion del menu. Esta implementacion fue realizada por Ándres Ortiz. Monitor del curso, el cual
 	 * incentivo el uso de este para que el usuario tenga una mejor interaccion con el proyecto. 
@@ -95,9 +97,9 @@ package view;
 		System.out.println("====== List Size ======");
 		System.out.println("SIZE: "+ pSize);
 		System.out.println("======================\n");
-		
+
 	}
-	
+
 	public void displayInfoComparendo(String pInfo){
 		System.out.println("====== Comparendo Solicitado  ======");
 		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
@@ -110,12 +112,12 @@ package view;
 		System.out.println("====================================\n");
 
 	}
-	
+
 	public void displayInput()
 	{
 		System.out.println("======================\n");
 		System.out.println("DIGITE EL ID DEL COMPARENDO A BUSCAR");
 		System.out.println("======================\n");
 	}
->>>>>>> branchJ
+
 }

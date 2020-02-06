@@ -1,28 +1,20 @@
 package model.data_structures;
 
 public class Node<T extends Comparable<T>> {
-<<<<<<< HEAD
+
 
 	private Node<T> anterior;
 	private Node<T> siguiente;
 	private T valor;
+	private T id;
 
-
-
-
-
-
-=======
-	
-	private Node<T> anterior;
-	private Node<T> siguiente;
-	private T valor;
 	
 	public Node(T pValue, Node<T> pSiguiente, Node<T> pAnterior)
 	{
 		valor = pValue;
 		anterior = pAnterior;
 		siguiente = pSiguiente;
+		
 	}
 	
 	public Node<T> darSiguiente()
@@ -49,6 +41,13 @@ public class Node<T extends Comparable<T>> {
 	{
 		anterior = pValor;
 	}
->>>>>>> branchJ
+	
+	public T darId(String id)
+	{
+		return null;
+		
+		
+	}
+
 
 }

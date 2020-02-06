@@ -13,10 +13,10 @@ import com.google.gson.stream.JsonReader;
 
 import model.data_structures.LinkedListImp;
 import model.data_structures.Node;
-=======
+
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
->>>>>>> branchJ
+
 import model.logic.Modelo;
 import view.View;
 
@@ -46,7 +46,7 @@ public class Controller {
 		view = new View();
 		modelo = new Modelo();
 	}
-<<<<<<< HEAD
+
 		
 //	public void run() 
 //	{
@@ -140,7 +140,7 @@ public class Controller {
 //		}
 		
 //	}	
-=======
+
 
 	public void run() throws InputMismatchException 
 	{
@@ -172,23 +172,33 @@ public class Controller {
 					break;
 
 				case 1:
+					
 					view.displayInput();
-					String input = reader.next();
-					Multa respuesta = modelo.buscar(input);
-					view.displayInfoComparendo(respuesta.toString());
+				String input = reader.next();
+				System.out.println(input);
+					LinkedListImp<Multa> Respuesta = modelo.ModeloJSON();
+					
+					
+					
+					String info = Respuesta.darPorId("29042").darValor().toString();
+				System.out.println(info);
+					view.displayInfoComparendo(info.toString());
 					break;
 
 					//Opcion No valida.
 				default: 
 					view.badOption();
 					fin = true;
-					vien
+
 					break;
 				}
 			}
 		}
 		catch(InputMismatchException e){
 			run();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
