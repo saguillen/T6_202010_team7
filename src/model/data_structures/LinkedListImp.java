@@ -8,24 +8,12 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 	 * Atributos de la clase Doubly Linked List. 
 	 */
 
-	
 	private Node<T> head;
 	
 	private Node<T> tail;
 	
 	private int size;
-	
-	
-//	public LinkedListImp<T> darMultas()
-//	{
-//		return multas;
-//	}
-//	
-//	public void setMultas(LinkedListImp<T> multa)
-//	{
-//		this.multas = multa;
-//	}
-	
+
 	public LinkedListImp()
 	{
 		
@@ -91,7 +79,7 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 	//Implementar, puede ser usado en otros talleres y proyectos.
 	public void eliminar()
 	{
-		//Falta implementacion
+		//**
 		size--;
 	}
 

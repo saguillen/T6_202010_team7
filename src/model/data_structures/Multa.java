@@ -36,16 +36,13 @@ public class Multa implements Comparable<Multa>
 	{
 		return CLASE_VEHICULO;
 	}
-	
 	public String darTipoServicio()
 	{
 		return TIPO_SERVICIO;
 	}
-
 	public String darInfraccion() {
 		return INFRACCION;
 	}
-
 	public String darDescInfr()
 	{
 		return DES_INFRAC;
@@ -54,15 +51,12 @@ public class Multa implements Comparable<Multa>
 	{
 		return LOCALIDAD;
 	}
-	public String darFechaHora(){
-		return FECHA_HORA;
-	}
+	public String darFechaHora(){ return FECHA_HORA; }
 	
-	//ToString() mismo formato de view. 
-	
+	//ToString() mismo formato de view.
 	public String toString()
 	{
-		return FECHA_HORA+"\t"+CLASE_VEHICULO+"\t"+TIPO_SERVICIO+"\t"+INFRACCION+"\t"+DES_INFRAC+"\t"+LOCALIDAD+"\t"+GEO;
+		return FECHA_HORA+"\t"+CLASE_VEHICULO+"\t"+TIPO_SERVICIO+"\t"+INFRACCION+"\t"+DES_INFRAC+"\t"+LOCALIDAD+"\t"+GEO+"\t"+OBJECT_ID;
 	}
 	
 	public String darId()
@@ -75,11 +69,19 @@ public class Multa implements Comparable<Multa>
 		return GEO;
 	}
 
-	
 	@Override
-	public int compareTo(Multa o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}	
-	
+	public int compareTo(Multa pMulta)
+	{
+		int hora = Integer.parseInt(pMulta.darFechaHora().replaceAll("/",""));
+		int hora2 = Integer.parseInt(darFechaHora().replaceAll("/", ""));
+		int objId = Integer.parseInt(pMulta.darId());
+		int objId2 = Integer.parseInt(darId());
+
+		if(hora == hora2)
+			return Integer.compare(objId, objId2);
+		else if(hora > hora2)
+			return 1;
+		else
+			return -1;
+	}
 }

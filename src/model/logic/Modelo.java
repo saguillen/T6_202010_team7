@@ -13,10 +13,9 @@ import java.util.List;
 
 /**
  * Definicion del modelo del mundo
- * @param <T>
  *
  */
-public class Modelo 
+public class Modelo
 {
 	LinkedListImp<Multa> lista = new LinkedListImp<>();
 
@@ -55,8 +54,6 @@ public class Modelo
 
 				lista.insertarAlFinal(m);
 			}
-
-
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
@@ -64,6 +61,15 @@ public class Modelo
 
 	}
 
+	private Comparable<Multa>[] copiarComparendos(){
+		Multa[] multasArr = new Multa[lista.size()];
+		for(int i = 0; i < lista.size(); i++)
+		{
+			multasArr = (Multa[]) lista.toArray();
+		}
+		System.out.println(multasArr[1]);
+		return multasArr;
+	}
 	public Multa buscar(String id) 
 	{
 		for(Multa m : lista){
