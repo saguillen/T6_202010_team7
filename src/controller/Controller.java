@@ -54,7 +54,7 @@ public class Controller {
 
 						int pSize = respuesta.size();
 						view.displayOp0sizeData(pSize);
-
+						
 					} catch (FileNotFoundException e) {
 
 						e.printStackTrace();

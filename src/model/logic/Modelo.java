@@ -57,6 +57,7 @@ public class Modelo
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
+		copiarComparendos();
 		return lista;
 
 	}
@@ -65,11 +66,15 @@ public class Modelo
 		Multa[] multasArr = new Multa[lista.size()];
 		for(int i = 0; i < lista.size(); i++)
 		{
-			multasArr = (Multa[]) lista.toArray();
+			Multa multa =lista.darActual(i).darValor();
+			multasArr[i]= multa;
+//			System.out.println(multasArr.length + ": Es el tamaño del arreglo de multas");
+//			System.out.println(multasArr[i]+ "\n" + " Todas las multas");
 		}
-		System.out.println(multasArr[1]);
+
 		return multasArr;
 	}
+	
 	public Multa buscar(String id) 
 	{
 		for(Multa m : lista){
