@@ -58,6 +58,19 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		size++;
 	}
 	
+	public Node<T> darActual(int pPosicion)
+	{
+		Node<T> actual = head;
+		int posicion = 0;
+		while ( actual !=null && posicion != pPosicion)
+		{
+			actual = actual.darSiguiente();
+			posicion++;
+		}
+		return actual;
+
+	}
+	
 	public void insertarAlFinal(T nuevo) 
 	{
 		if(head == null){

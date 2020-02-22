@@ -65,9 +65,11 @@ public class Modelo
 		Multa[] multasArr = new Multa[lista.size()];
 		for(int i = 0; i < lista.size(); i++)
 		{
-			multasArr = (Multa[]) lista.toArray();
+			Multa multa =lista.darActual(i).darValor();
+			multasArr[i]= multa;
+
 		}
-		System.out.println(multasArr[1]);
+
 		return multasArr;
 	}
 	public Multa buscar(String id) 
