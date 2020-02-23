@@ -62,19 +62,17 @@ public class Modelo
 
 	}
 
-	private Comparable<Multa>[] copiarComparendos(){
+	public Comparable<Multa>[] copiarComparendos(){
 		Multa[] multasArr = new Multa[lista.size()];
 		for(int i = 0; i < lista.size(); i++)
 		{
 			Multa multa =lista.darActual(i).darValor();
 			multasArr[i]= multa;
-//			System.out.println(multasArr.length + ": Es el tamaño del arreglo de multas");
-//			System.out.println(multasArr[i]+ "\n" + " Todas las multas");
 		}
 
 		return multasArr;
 	}
-	
+
 	public Multa buscar(String id) 
 	{
 		for(Multa m : lista){
@@ -89,7 +87,42 @@ public class Modelo
 
 		return null;
 	}
+
+	public void shellSort(Comparable<Multa> datos[])
+	{
+		int N = datos.length;
+		int h = 1;
+		while(h<N/3) h = 3*h + 1;
+		while(h>=1)
+		{
+			for(int i = h; i < N ; i++)
+			{
+				for(int j = i; j>=h && datos[j].compareTo( (Multa) datos[j-h])<0; j-=h)
+				{
+					Comparable<Multa> t = datos[j];
+					datos[j] = datos[j-h];
+					datos[j-h] = t;
+				}
+				h= h/3;
+
+			}
+
+		}
+
+
+
+	}
+	public boolean isSorted(Comparable<Multa>[] datos)   {  // Test whether the array entries are in order.     
+		for (int i = 1; i < datos.length; i++)        
+			if (datos[i].compareTo((Multa) datos[i-1])<0)
+			{
+				return false;    }
+		return true;   }
 }
+
+
+
+
 
 
 

@@ -62,12 +62,34 @@ public class Controller {
 					break;
 
 				case 1:
-					view.displayInput();
-					String input = reader.next();
-					Multa respuesta = modelo.buscar(input);
-					view.displayInfoComparendo(respuesta.toString());
+//					view.displayInput();
+//					String input = reader.next();
+//					Multa respuesta = modelo.buscar(input);
+//					view.displayInfoComparendo(respuesta.toString());
+					view.displayCopyComparendos();
+					Comparable copia_Comparendos [ ] = modelo.copiarComparendos();
+					int length = copia_Comparendos.length;
+					view.displayOp1DataArraySize(length);
+					
+					
 					break;
-
+				case 2:
+					//ordenar Shellsort
+					Comparable<Multa> copiaComparendos [ ] = modelo.copiarComparendos();
+					
+					long startTime = System.currentTimeMillis();
+					//copiaComparendos = modelo.shellSort(copiaComparendos);
+					 modelo.shellSort(copiaComparendos);
+					long endTime = System.currentTimeMillis();
+					long duration = endTime - startTime; 
+					view.printMessage("Tiempo de ordenamiento: " + duration + " milisegundos");
+					for(int i = 0; i<10;i++)
+					{
+						view.displayInfoComparendo(copiaComparendos[i].toString());
+						}
+					System.out.println("ESTA ORDENADO: "+ modelo.isSorted(copiaComparendos));
+					
+					break;
 					//Opcion No valida.
 				default: 
 					view.badOption();
