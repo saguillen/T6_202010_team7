@@ -22,7 +22,8 @@ public class View
 
 		System.out.println(" || 0. Cargar los Datos .    ||");
 		System.out.println(" || 1. Copiar en un arreglo los Datos. ||"); 
-		System.out.println(" || 2.... ||"); 
+		System.out.println(" || 2. Ordenar ascendentemente por fecha ShellSort ||"); 
+		System.out.println(" || 3. Ordenar ascendentemente por fecha MergeSort ||"); 
 		System.out.println(" **==========================**\n");
 
 		// display hint
