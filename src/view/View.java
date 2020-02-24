@@ -119,4 +119,21 @@ public class View
 		System.out.println("DIGITE EL ID DEL COMPARENDO A BUSCAR");
 		System.out.println("======================\n");
 	}
+
+	public void printMessage(String mensaje)
+	{
+		System.out.println(mensaje);
+	}
+
+	public void displayCopyComparendos() {
+		System.out.println("**==========================**");
+		System.out.println("|| COPIANDO EN UN ARREGLO...||");
+		System.out.println("**==========================**\n");
+	}
+	public void displayOp1DataArraySize(int pSize) {
+		System.out.println("**====== TAMAÑO DEL ARREGLO COMPARENDOS ======**");
+		System.out.println("SIZE: "+ pSize);
+		System.out.println("**============================================**\n");
+
+	}
 }
