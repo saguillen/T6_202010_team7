@@ -25,72 +25,42 @@ public class Modelo {
 	private Multa[] multasArr;
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
-		BufferedReader br = null;
 		String path = "./data/comparendos_dei_2018_small.geojson";
-//		JsonReader reader;
+		JsonReader reader;
 
 		try {
-			FileInputStream inputStream = new FileInputStream(path);
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-			br = new BufferedReader(inputStreamReader);
-			FeatureCollection collection = new Gson().fromJson(br, FeatureCollection.class);
-			System.out.println();
-//			for(int i = 0; i < collection.featureP.length; i++){
-//				Features currFeature = collection.featureP[i];
-//				lista.insertarAlFinal(new Multa(currFeature.getProperties().);
-//
-//			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
+			reader = new JsonReader(new FileReader(path));
+			JsonElement elem = JsonParser.parseReader(reader);
+			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
+			for (JsonElement e : features) {
+				JsonElement properties = e.getAsJsonObject().get("properties");
+
+				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
+				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
+				String clase = properties.getAsJsonObject().get("CLASE_VEHI").getAsString();
+				String tipo = properties.getAsJsonObject().get("TIPO_SERVI").getAsString();
+				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
+				String descr = properties.getAsJsonObject().get("DES_INFRAC").getAsString();
+				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
+
+
+				List<Double> geo = new ArrayList<>();
+				if (e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull()) {
+					for (JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()) {
+						geo.add(geoElem.getAsDouble());
+					}
 				}
+
+				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id);
+
+				lista.insertarAlFinal(m);
+
 			}
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
 		}
 		return lista;
 	}
-
-
-//			reader = new JsonReader(new FileReader(path));
-//			JsonElement elem = JsonParser.parseReader(reader);
-//			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
-//			for(JsonElement e : features)
-//			{
-//				JsonElement properties = e.getAsJsonObject().get("properties");
-//
-//				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
-//				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
-//				String clase = properties.getAsJsonObject().get("CLASE_VEHI").getAsString();
-//				String tipo = properties.getAsJsonObject().get("TIPO_SERVI").getAsString();
-//				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
-//				String descr = properties.getAsJsonObject().get("DES_INFRAC").getAsString();
-//				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
-//
-//
-//				List<Double> geo = new ArrayList<>();
-//				if(e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull())
-//				{
-//					for(JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()){
-//						geo.add(geoElem.getAsDouble());
-//					}
-//				}
-//
-//				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id);
-//
-//				lista.insertarAlFinal(m);
-//
-//			}
-//		}catch (FileNotFoundException e){
-//			e.printStackTrace();
-//		}
-//
-//		return lista;
-//
-//	}
 
 
 	public Comparable<Multa>[] copiarComparendos() {
@@ -117,19 +87,125 @@ public class Modelo {
 	}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	private static void exch(Comparable[] a, int i, int j)
+	{  Comparable t = a[i]; a[i] = a[j]; a[j] = t;  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public void quickSort(Comparable<Multa>[] datos, int principio, int fin) {
-		if (principio >= fin) {
+		if (principio > fin) {
 			int indiceParticion = partition(datos, principio, fin);
 			quickSort(datos, principio, indiceParticion - 1);
-			quickSort(datos, indiceParticion - 1, fin);
+			quickSort(datos, indiceParticion + 1, fin);
 		}
 	}
+	public int partition(Comparable<Multa>[] datos, int principio, int fin ) {
+		Multa pivote = multasArr[fin];
+		int i = principio - 1;
+		int j = fin;
+		while (i <= j) {
+			while (i <= j && multasArr[i].compareTo(pivote) <= 0) {
+				i++;
+			}
+			while (i >= j && multasArr[j].compareTo(pivote) >= 0) {
+				j--;
+			}
+			if (i < j) {
+				multasArr[i] = multasArr[j];
+			}
+		}
+		if (j != principio) {
+			multasArr[principio] = multasArr[fin];
+			multasArr[fin] = pivote;
+		}
+		return j;
+	}
 
-	public int partition(Comparable<Multa>[] datos, int principio, int fin) {
-		Multa key = multasArr[fin];
+
+	public int partition1(Comparable<Multa>[] datos, int principio, int fin) {
+		Multa pivote = multasArr[fin];
 		int smaller = principio - 1;
 		for (int i = principio; i < fin; i++) {
-			if (multasArr[i].compareTo(key) <= 0) {
+			if (multasArr[i].compareTo(pivote) <= 0) {
 				smaller++;
 				exch(datos, smaller, i);
 			}
@@ -137,54 +213,6 @@ public class Modelo {
 		smaller++;
 		exch(datos, fin, smaller);
 		return smaller;
-	}
-
-	private static void exch(Comparable<Multa>[] a, int i, int j) {
-		Comparable<Multa> t = a[i];
-		a[i] = a[j];
-		a[j] = t;
-	}
-
-	static class FeatureCollection {
-		private String type;
-		private String name;
-		private CoordinateReferenceSystem[] crs;
-		private Features[] featureP;
-		private GeometryData geo;
-	}
-
-	static class CoordinateReferenceSystem {
-		private String type;
-		CRSProperty[] properties;
-	}
-
-	static class CRSProperty {
-		private String name;
-	}
-
-	static class FeaturesProperties {
-		private String OBJECTID;
-		private String FECHA_HORA;
-		private String MEDIO_DETE;
-		private String CLASE_VEHI;
-		private String TIPO_SERVI;
-		private String INFRACCION;
-		private String DES_INFRAC;
-		private String LOCALIDAD;
-	}
-
-	static class Features {
-		private String type;
-		FeaturesProperties[] properties;
-
-		public Object getProperties() {
-			return properties;
-		}
-	}
-
-	static class GeometryData {
-		private String type;
-		private Double[] coordinates;
 	}
 
 }

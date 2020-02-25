@@ -136,8 +136,13 @@ public class Controller {
 						{
 							view.displayInfoComparendo(copiaComparendos[i].toString());
 						}
-//						System.out.println("Esta ordendo:" +modelo.isSorted(copiaComparendos));
-
+						view.printMessage("**==========MOSTRANDO LOS 10 ULTIMOS ORDENADOS POR FECHA quickSort==========**\n");
+						int tamano = copiaComparendos.length-10;
+						for(int j = tamano; j < copiaComparendos.length; j++)
+						{
+							view.displayInfoComparendo(copiaComparendos[j].toString());
+						}
+						break;
 					//Opcion No valida.
 					default:
 						view.badOption();
