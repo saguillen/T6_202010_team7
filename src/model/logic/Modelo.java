@@ -212,24 +212,31 @@ public class Modelo {
 
 
 
-	
-	
 
 
 
 
 
-	private static int partition(Comparable<Multa>[] datos, int principio, int fin) {  // Partition into a[lo..i-1], a[i], a[i+1..hi].    
+
+
+	private static int partition(Comparable<Multa>[] datos, int principio, int fin) {  
 		int i = principio;
-		int j = fin+1;            // left and right scan indices   
-		Comparable<Multa> v = datos[principio];            // partitioning item   
-		while (true)   {  // Scan right, scan left, check for scan complete, and exchange.       
-			while (datos[++i].compareTo((Multa) v)>0) if (i == fin) break;      
-			while (v.compareTo((Multa) datos[--j])>0) if (j == principio) break;      
-			if (i >= j) break;     
-			exch(datos, i, j);   }   
-		exch(datos, principio, j);       // Put v = a[j] into position    
-		return j;             // with a[lo..j-1] <= a[j] <= a[j+1..hi]. }
+		int j = fin+1;            
+		Comparable<Multa> pivote = datos[principio];
+
+		while (true)   {        
+			while (datos[++i].compareTo((Multa) pivote)>0) 
+				if (i == fin) 
+					break;      
+			while (pivote.compareTo((Multa) datos[--j])>0) 
+				if (j == principio) 
+					break;      
+			if (i >= j) 
+				break;     
+			exch(datos, i, j);   
+		}   
+		exch(datos, principio, j);       
+		return j;          
 	}
 }
 
