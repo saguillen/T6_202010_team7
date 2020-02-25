@@ -139,6 +139,7 @@ public class Controller {
 						{
 							view.displayInfoComparendo(copiaComparendosMerge[j].toString());
 						}
+						//System.out.println("ESTA ORDENADO: "+ modelo.isSorted(copiaComparendosMerge));
 						break;
 					//Opcion No valida.
 					default:

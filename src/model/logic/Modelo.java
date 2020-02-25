@@ -1,6 +1,6 @@
 package model.logic;
 
-import java.awt.desktop.SystemSleepEvent;
+//import java.awt.desktop.SystemSleepEvent;
 import java.io.*;
 
 import com.google.gson.Gson;
@@ -25,6 +25,7 @@ public class Modelo {
 	private Multa[] multasArr;
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
+
 		String path = "./data/comparendos_dei_2018_small.geojson";
 		JsonReader reader;
 
@@ -159,65 +160,84 @@ public class Modelo {
 
 
 
-
-
-
-
-
-
-
-
-
-
 	public void sortQ(Comparable<Multa>[] datos)
 	{
 		quickSort(datos, 0, datos.length-1);
 	}
 
 	public void quickSort(Comparable<Multa>[] datos, int principio, int fin) {
-		if (principio > fin) {
-			int indiceParticion = partition1(datos, principio, fin);
+		if (principio <= fin) {
+			int indiceParticion = partition(datos, principio, fin);
 			quickSort(datos, principio, indiceParticion - 1);
 			quickSort(datos, indiceParticion + 1 , fin);
 		}
 	}
-	public int partition1(Comparable<Multa>[] datos, int principio, int fin ) {
-		Comparable<Multa> pivote = datos[fin];
-		int i = principio + 1;
-		int j = fin;
-		while (i <= j) {
-			while (i <= j && datos[i].compareTo((Multa) pivote) <= 0) {
-				i++;
-			}
-			while (i >= j && datos[j].compareTo((Multa) pivote) >= 0) {
-				j--;
-			}
-			if (i < j) {
-				datos[i] = datos[j];
-			}
-		}
-		if (j != principio) {
-			datos[principio] = datos[fin];
-			datos[fin] = pivote;
-		}
-		return j;
-	}
+	//	public int partition1(Comparable<Multa>[] datos, int principio, int fin ) {
+	//		Comparable<Multa> pivote = datos[fin];
+	//		int i = principio + 1;
+	//		int j = fin;
+	//		while (i <= j) {
+	//			while (i <= j && datos[i].compareTo((Multa) pivote) <= 0) {
+	//				i++;
+	//			}
+	//			while (i >= j && datos[j].compareTo((Multa) pivote) >= 0) {
+	//				j--;
+	//			}
+	//			if (i < j) {
+	//				datos[i] = datos[j];
+	//			}
+	//		}
+	//		if (j != principio) {
+	//			datos[principio] = datos[fin];
+	//			datos[fin] = pivote;
+	//		}
+	//		return j;
+	//	}
 
 
-	public int partition(Comparable<Multa>[] datos, int principio, int fin) {
+	//	public int partition(Comparable<Multa>[] datos, int principio, int fin) {
+	//		Comparable<Multa> pivote = datos[principio];
+	//		int smaller = principio;
+	//		for (int i = principio+1; i <= fin; i++) {
+	//			int comp = datos[i].compareTo((Multa) pivote);
+	//			if (comp < 0) {
+	//				datos[smaller] = null;
+	//			}
+	//		}
+	//		smaller++;
+	//		exch(datos, fin, smaller);
+	//		return smaller;
+	//	}
+
+
+
+
+
+
+
+
+
+
+	private static int partition(Comparable<Multa>[] datos, int principio, int fin) {  
+		int i = principio;
+		int j = fin+1;            
 		Comparable<Multa> pivote = datos[principio];
-		int smaller = principio;
-		for (int i = principio+1; i <= fin; i++) {
-			int comp = datos[i].compareTo((Multa) pivote);
-			if (comp < 0) {
-				datos[smaller] = null;
-			}
-		}
-		smaller++;
-		exch(datos, fin, smaller);
-		return smaller;
-	}
 
+		while (true)   {        
+			while (datos[++i].compareTo((Multa) pivote)>0) 
+				if (i == fin) 
+					break;      
+			while (pivote.compareTo((Multa) datos[--j])>0) 
+				if (j == principio) 
+					break;      
+			if (i >= j) 
+				break;     
+			exch(datos, i, j);   
+		}   
+		exch(datos, principio, j);       
+		return j;          
+	}
 }
+
 
 
