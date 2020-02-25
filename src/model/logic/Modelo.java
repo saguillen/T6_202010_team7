@@ -25,7 +25,7 @@ public class Modelo {
 	private Multa[] multasArr;
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
-		String path = "./data/comparendos_dei_2018.geojson";
+		String path = "./data/comparendos_dei_2018_small.geojson";
 		JsonReader reader;
 
 		try {

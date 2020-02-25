@@ -129,12 +129,12 @@ public class Controller {
 						long duracion = end - startTime;
 						view.printMessage("Tiempo de Ordenamiento :" +duracion+ " milisegundos\n");
 						view.printMessage("**==========MOSTRANDO LOS 10 PRIMEROS ORDENADOS POR FECHA quicksort==========**\n");
-						for(int i = 0; i < 4; i++)
+						for(int i = 0; i < 10; i++)
 						{
 							view.displayInfoComparendo(copiaComparendosMerge[i].toString());
 						}
 						view.printMessage("**==========MOSTRANDO LOS 10 ULTIMOS ORDENADOS POR FECHA quickSort==========**\n");
-						int tamano = copiaComparendosMerge.length-4;
+						int tamano = copiaComparendosMerge.length-10;
 						for(int j = tamano; j < copiaComparendosMerge.length; j++)
 						{
 							view.displayInfoComparendo(copiaComparendosMerge[j].toString());
