@@ -1,5 +1,9 @@
 package model.data_structures;
 
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Multa implements Comparable<Multa>
@@ -70,19 +74,27 @@ public class Multa implements Comparable<Multa>
 	}
 
 	@Override
-	public int compareTo(Multa pMulta)
-	{
-		int hora = Integer.parseInt(pMulta.darFechaHora().replaceAll("/",""));
-		int hora2 = Integer.parseInt(darFechaHora().replaceAll("/", ""));
-		int objId = Integer.parseInt(pMulta.darId());
-		int objId2 = Integer.parseInt(darId());
+	public int compareTo(Multa pMulta) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String dateP = pMulta.darFechaHora();
+		String date = darFechaHora();
+		int val = 0;
+		try {
+			Date date1 = sdf.parse(dateP);
+			Date date2 = sdf.parse(date);
+			int objId = Integer.parseInt(pMulta.darId());
+			int objId2 = Integer.parseInt(darId());
 
-		if(hora == hora2)
-			return Integer.compare(objId, objId2);
-		else if(hora > hora2)
-			return 1;
-		else
-			return -1;
+			if (date1.equals(date2)) {
+				val = Integer.compare(objId, objId2);
+			} else if (date1.before(date2)) {
+				val = 1;
+			} else
+				val = -1;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return val;
 	}
 
 }

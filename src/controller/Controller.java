@@ -122,25 +122,22 @@ public class Controller {
 							break;
 					case 4:
 						//Ordenar QuickSort()
-						Comparable<Multa>[] copiaComparendos = modelo.copiarComparendos();
-
+						Comparable copiaComparendosMerge [ ] = modelo.copiarComparendos();
 						long startTime = System.currentTimeMillis();
-						int inicioSort = 0;
-						int finSort = 10;
-						modelo.quickSort(copiaComparendos, inicioSort, finSort);
+						modelo.sortQ(copiaComparendosMerge);
 						long end = System.currentTimeMillis();
 						long duracion = end - startTime;
 						view.printMessage("Tiempo de Ordenamiento :" +duracion+ " milisegundos\n");
 						view.printMessage("**==========MOSTRANDO LOS 10 PRIMEROS ORDENADOS POR FECHA quicksort==========**\n");
-						for(int i = 0; i < 10; i++)
+						for(int i = 0; i < 4; i++)
 						{
-							view.displayInfoComparendo(copiaComparendos[i].toString());
+							view.displayInfoComparendo(copiaComparendosMerge[i].toString());
 						}
 						view.printMessage("**==========MOSTRANDO LOS 10 ULTIMOS ORDENADOS POR FECHA quickSort==========**\n");
-						int tamano = copiaComparendos.length-10;
-						for(int j = tamano; j < copiaComparendos.length; j++)
+						int tamano = copiaComparendosMerge.length-4;
+						for(int j = tamano; j < copiaComparendosMerge.length; j++)
 						{
-							view.displayInfoComparendo(copiaComparendos[j].toString());
+							view.displayInfoComparendo(copiaComparendosMerge[j].toString());
 						}
 						break;
 					//Opcion No valida.
