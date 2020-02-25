@@ -1,5 +1,6 @@
 package model.logic;
 
+import java.util.Random;
 import java.io.FileReader;
 import com.google.gson.stream.JsonReader;
 import model.data_structures.LinkedListImp;
@@ -123,14 +124,13 @@ public class Modelo
 	} 
 
 	public static  void merge(Comparable[] a, int lo, int mid, int hi)
-	{  // Merge a[lo..mid] with a[mid+1..hi].   
-		//		Comparable[] aux = null ;
+	{  
 		int i = lo, j = mid+1;
-		for (int k = lo; k <= hi; k++)  // Copy a[lo..hi] to aux[lo..hi].
+		for (int k = lo; k <= hi; k++) 
 		{
 			aux[k] = a[k];
 		}
-		for (int k = lo; k <= hi; k++)  // Merge back to a[lo..hi].      
+		for (int k = lo; k <= hi; k++) 
 		{
 			if(i > mid)              
 			{
@@ -148,15 +148,50 @@ public class Modelo
 				a[k] = aux[i++]; }
 		}
 	}
-	
 
-	private static void sort(Comparable[] a, int lo, int hi)   {  // Sort a[lo..hi].      
+	private static void sort(Comparable[] a, int lo, int hi)   {    
 		if (hi <= lo) return;      
 		int mid = lo + (hi - lo)/2;      
-		sort(a, lo, mid);       // Sort left half.      
-		sort(a, mid+1, hi);     // Sort right half.      
-		merge(a, lo, mid, hi);  // Merge results (code on page 271).   } 
+		sort(a, lo, mid);             
+		sort(a, mid+1, hi);        
+		merge(a, lo, mid, hi);  
 	}
+	
+	public void sortQ(Comparable[] datos)
+	{
+		
+	
+		
+		quickSort(datos, 0, datos.length-1);
+	}
+
+	public void quickSort(Comparable[] datos, int principio, int fin) {
+		if (principio <= fin) {
+			int indiceParticion = partition(datos, principio, fin);
+			quickSort(datos, principio, indiceParticion - 1);
+			quickSort(datos, indiceParticion + 1 , fin);
+		}
+	}private static int partition(Comparable[] datos, int principio, int fin) {  
+		int i = principio;
+		int j = fin+1;            
+		Comparable pivote = datos[principio];
+
+		while (true)   {        
+			while (datos[++i].compareTo( pivote)>0) 
+				if (i == fin) 
+					break;      
+			while (pivote.compareTo( datos[--j])>0) 
+				if (j == principio) 
+					break;      
+			if (i >= j) 
+				break;     
+			exch(datos, i, j);   
+		}   
+		exch(datos, principio, j);       
+		return j;          
+	}
+
+	
 
 
 	private static boolean   less(Comparable v, Comparable w)   

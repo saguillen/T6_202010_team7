@@ -21,6 +21,8 @@ public class Controller {
 	private View view;
 
 	private Scanner reader;
+	
+	private Comparable[] copia_ComparendosOriginal;
 
 	/**
 	 * Crear la vista y el modelo del proyecto
@@ -67,39 +69,43 @@ public class Controller {
 //					Multa respuesta = modelo.buscar(input);
 //					view.displayInfoComparendo(respuesta.toString());
 					view.displayCopyComparendos();
-					Comparable copia_Comparendos [ ] = modelo.copiarComparendos();
-					int length = copia_Comparendos.length;
+					
+					copia_ComparendosOriginal = modelo.copiarComparendos();
+					int length = copia_ComparendosOriginal.length;
 					view.displayOp1DataArraySize(length);
 					
 					
 					break;
 				case 2:
 					//ordenar Shellsort
-					Comparable copiaComparendos [ ] = modelo.copiarComparendos();
+//					Comparable copiaComparendos [ ] = modelo.copiarComparendos();
+//					Comparable[] aux; 
 					
+					 Comparable[] copiaComparendosShell = copia_ComparendosOriginal;
+
 					long startTime = System.currentTimeMillis();
 					//copiaComparendos = modelo.shellSort(copiaComparendos);
-					 modelo.Shellsort(copiaComparendos);
+					 modelo.Shellsort(copiaComparendosShell);
 					long endTime = System.currentTimeMillis();
 					long duration = endTime - startTime; 
 					view.printMessage("Tiempo de ordenamiento: " + duration + " milisegundos\n");
 					view.printMessage("**==========MOSTRANDO LOS 10 PRIMEROS ORDENADOS POR FECHA shellSort==========**\n");
 					for(int i = 0; i<10;i++)
 					{
-						view.displayInfoComparendo(copiaComparendos[i].toString());
+						view.displayInfoComparendo(copiaComparendosShell[i].toString());
 					}
 					view.printMessage("**==========MOSTRANDO LOS 10 ULTIMOS ORDENADOS POR FECHA shellSort==========**\n");
-					int tamaño= copiaComparendos.length-10;
-					for(int j = tamaño; j<copiaComparendos.length;j++)
+					int tamaño= copiaComparendosShell.length-10;
+					for(int j = tamaño; j<copiaComparendosShell.length;j++)
 					{
-						view.displayInfoComparendo(copiaComparendos[j].toString());
+						view.displayInfoComparendo(copiaComparendosShell[j].toString());
 					}
-					System.out.println("ESTA ORDENADO: "+ modelo.isSorted(copiaComparendos));
+					System.out.println("ESTA ORDENADO: "+ modelo.isSorted(copiaComparendosShell));
 					
 					break;
 				case 3:
 					//ordenar MergeSort
-					Comparable copiaComparendosMerge [ ] = modelo.copiarComparendos();
+					Comparable copiaComparendosMerge [ ] = copia_ComparendosOriginal;
 					long start = System.currentTimeMillis();
 					 modelo.sort(copiaComparendosMerge);
 					long end = System.currentTimeMillis();
@@ -120,7 +126,27 @@ public class Controller {
 					
 					
 					break;
-					
+				case 4:
+					//Ordenar QuickSort()
+					Comparable[ ] copiaComparendosQuick  = modelo.copiarComparendos();
+					long startTimeQuick = System.currentTimeMillis();
+					modelo.sortQ(copiaComparendosQuick);
+					long endquick = System.currentTimeMillis();
+					long duracion = endquick - startTimeQuick;
+					view.printMessage("Tiempo de Ordenamiento :" +duracion+ " milisegundos\n");
+					view.printMessage("**==========MOSTRANDO LOS 10 PRIMEROS ORDENADOS POR FECHA quicksort==========**\n");
+					for(int i = 0; i < 10; i++)
+					{
+						view.displayInfoComparendo(copiaComparendosQuick[i].toString());
+					}
+					view.printMessage("**==========MOSTRANDO LOS 10 ULTIMOS ORDENADOS POR FECHA quickSort==========**\n");
+					int tamano = copiaComparendosQuick.length-10;
+					for(int j = tamano; j < copiaComparendosQuick.length; j++)
+					{
+						view.displayInfoComparendo(copiaComparendosQuick[j].toString());
+					}
+					System.out.println("ESTA ORDENADO: "+ modelo.isSorted(copiaComparendosQuick));
+					break;
 					//Opcion No valida.
 				default: 
 					view.badOption();
