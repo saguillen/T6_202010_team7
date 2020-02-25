@@ -1,5 +1,6 @@
 package model.logic;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.io.*;
 
 import com.google.gson.Gson;
@@ -9,40 +10,36 @@ import model.data_structures.Multa;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import model.data_structures.Node;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Definicion del modelo del mundo
  *
  */
-public class Modelo
-{
+public class Modelo {
 	LinkedListImp<Multa> lista = new LinkedListImp<>();
 	private Multa[] multasArr;
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
-		Gson gson = new Gson();
 		BufferedReader br = null;
 		String path = "./data/comparendos_dei_2018_small.geojson";
 //		JsonReader reader;
 
 		try {
-
-			br = new BufferedReader(new FileReader(path));
-			FeatureCollection result = gson.fromJson(br, FeatureCollection.class);
-			CoordinateReferenceSystem coordRef = gson.fromJson(br, CoordinateReferenceSystem.class);
-			CRSProperty properties = gson.fromJson(br, CRSProperty.class);
-			Features feat = gson.fromJson(br, Features.class);
-			Properties propert = gson.fromJson(br, Properties.class);
-			GeometryData geo = gson.fromJson(br, GeometryData.class);
-			if (result != null) {
-				for (FeatureCollection features : result.features) {
-					Multa m = new Multa(propert.CLASE_VEHI, propert.TIPO_SERVI, propert.INFRACCION, propert.DES_INFRAC, propert.LOCALIDAD, propert.FECHA_HORA, geo.coordinates, propert.OBJECTID);
-					lista.insertarAlFinal(m);
-				}
-			}
+			FileInputStream inputStream = new FileInputStream(path);
+			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+			br = new BufferedReader(inputStreamReader);
+			FeatureCollection collection = new Gson().fromJson(br, FeatureCollection.class);
+			System.out.println();
+//			for(int i = 0; i < collection.featureP.length; i++){
+//				Features currFeature = collection.featureP[i];
+//				lista.insertarAlFinal(new Multa(currFeature.getProperties().);
+//
+//			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} finally {
@@ -96,26 +93,22 @@ public class Modelo
 //	}
 
 
-	public Comparable<Multa>[] copiarComparendos(){
+	public Comparable<Multa>[] copiarComparendos() {
 		multasArr = new Multa[lista.size()];
-		for(int i = 0; i < lista.size(); i++)
-		{
-			Multa multa =lista.darActual(i).darValor();
-			multasArr[i]= multa;
+		for (int i = 0; i < lista.size(); i++) {
+			Multa multa = lista.darActual(i).darValor();
+			multasArr[i] = multa;
 		}
 
 		return multasArr;
 	}
 
 
-	public Multa buscar(String id)
-	{
-		for(Multa m : lista){
-			if(id == null){
+	public Multa buscar(String id) {
+		for (Multa m : lista) {
+			if (id == null) {
 				return null;
-			}
-			else if(id.equals(m.darId()))
-			{
+			} else if (id.equals(m.darId())) {
 				return m;
 			}
 		}
@@ -124,141 +117,52 @@ public class Modelo
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public void quickSort(Comparable<Multa>[] datos, int principio, int fin)
-	{
-		if(principio >= fin)
-		{
+	public void quickSort(Comparable<Multa>[] datos, int principio, int fin) {
+		if (principio >= fin) {
 			int indiceParticion = partition(datos, principio, fin);
-			quickSort(datos, principio, indiceParticion-1);
-			quickSort(datos, indiceParticion-1, fin);
+			quickSort(datos, principio, indiceParticion - 1);
+			quickSort(datos, indiceParticion - 1, fin);
 		}
 	}
 
-	public int partition(Comparable<Multa>[] datos, int principio, int fin)
-	{
-		Multa key  = multasArr[fin];
+	public int partition(Comparable<Multa>[] datos, int principio, int fin) {
+		Multa key = multasArr[fin];
 		int smaller = principio - 1;
-		for(int i = principio; i < fin; i++)
-		{
-			if(multasArr[i].compareTo(key)<=0)
-			{
-				smaller ++;
+		for (int i = principio; i < fin; i++) {
+			if (multasArr[i].compareTo(key) <= 0) {
+				smaller++;
 				exch(datos, smaller, i);
 			}
 		}
-		smaller ++;
+		smaller++;
 		exch(datos, fin, smaller);
 		return smaller;
 	}
 
-	private static void exch(Comparable<Multa>[] a, int i, int j)
-	{  Comparable<Multa> t = a[i]; a[i] = a[j]; a[j] = t;  }
+	private static void exch(Comparable<Multa>[] a, int i, int j) {
+		Comparable<Multa> t = a[i];
+		a[i] = a[j];
+		a[j] = t;
+	}
 
-	//Inner Classes
-
-	static class FeatureCollection{
+	static class FeatureCollection {
 		private String type;
 		private String name;
-		private CoordinateReferenceSystem crs ;
-		private FeatureCollection[] features;
+		private CoordinateReferenceSystem[] crs;
+		private Features[] featureP;
+		private GeometryData geo;
 	}
-	static class CoordinateReferenceSystem{
+
+	static class CoordinateReferenceSystem {
 		private String type;
-		CRSProperty properties;
+		CRSProperty[] properties;
 	}
-	static class CRSProperty{
+
+	static class CRSProperty {
 		private String name;
 	}
-	static class Features{
-		private String type;
-	}
-	static class Properties{
+
+	static class FeaturesProperties {
 		private String OBJECTID;
 		private String FECHA_HORA;
 		private String MEDIO_DETE;
@@ -268,11 +172,21 @@ public class Modelo
 		private String DES_INFRAC;
 		private String LOCALIDAD;
 	}
-	static class GeometryData{
-		private String type;
-		private ArrayList<Double> coordinates;
-	}
-}
 
+	static class Features {
+		private String type;
+		FeaturesProperties[] properties;
+
+		public Object getProperties() {
+			return properties;
+		}
+	}
+
+	static class GeometryData {
+		private String type;
+		private Double[] coordinates;
+	}
+
+}
 
 

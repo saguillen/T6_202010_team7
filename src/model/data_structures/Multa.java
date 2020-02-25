@@ -18,9 +18,9 @@ public class Multa implements Comparable<Multa>
 	
 	private String FECHA_HORA;
 	
-	private List<Double> GEO;
+	private Double[] GEO;
 	
-	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo, String pId)
+	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, Double[] pGeo, String pId)
 	{
 		CLASE_VEHICULO = pClase;
 		TIPO_SERVICIO = pTipoS;
@@ -64,7 +64,7 @@ public class Multa implements Comparable<Multa>
 		return OBJECT_ID;
 	}
 	
-	public List<Double>darGeo()
+	public Double[] darGeo()
 	{
 		return GEO;
 	}
