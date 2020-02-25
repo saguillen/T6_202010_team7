@@ -24,7 +24,11 @@ public class Modelo
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException
 	{
+
 		String path = "./data/comparendos_dei_2018_small.geojson";
+	//	String path = "./data/comparendos_dei_2018.geojson";
+
+
 	//	String path = "./data/comparendos_dei_2018.geojson";
 
 		JsonReader reader;
@@ -63,8 +67,8 @@ public class Modelo
 			e.printStackTrace();
 		}
 //		copiarComparendos();
-		return lista;
 
+		return lista;
 	}
 
 	public Comparable<Multa>[] copiarComparendos(){
@@ -113,7 +117,7 @@ public class Modelo
 		assert isSorted(datos);
 	}
 
-	public static void sort(Comparable[] a)   {     
+	public static void sort(Comparable<Multa>[] a)   {
 		aux = new Comparable[a.length];    // Allocate space just once.      
 		sort(a, 0, a.length - 1);   
 	} 
@@ -121,11 +125,11 @@ public class Modelo
 	public static  void merge(Comparable[] a, int lo, int mid, int hi)
 	{  // Merge a[lo..mid] with a[mid+1..hi].   
 		//		Comparable[] aux = null ;
-		int i = lo, j = mid+1;   
-		for (int k = lo; k <= hi; k++)  // Copy a[lo..hi] to aux[lo..hi].      
+		int i = lo, j = mid+1;
+		for (int k = lo; k <= hi; k++)  // Copy a[lo..hi] to aux[lo..hi].
 		{
 			aux[k] = a[k];
-		}   
+		}
 		for (int k = lo; k <= hi; k++)  // Merge back to a[lo..hi].      
 		{
 			if(i > mid)              
