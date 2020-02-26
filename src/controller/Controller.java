@@ -22,6 +22,8 @@ public class Controller {
 
 	private Scanner reader;
 
+	private Comparable[] copia_ComparendosOriginal;
+
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 * @param capacidad tamaNo inicial del arreglo
@@ -67,8 +69,8 @@ public class Controller {
 //						Multa respuesta = modelo.buscar(input);
 //						view.displayInfoComparendo(respuesta.toString());
 						view.displayCopyComparendos();
-						Comparable<Multa>[] copia_Comparendos = modelo.copiarComparendos();
-						int length = copia_Comparendos.length;
+						copia_ComparendosOriginal = modelo.copiarComparendos();
+						int length = copia_ComparendosOriginal.length;
 						view.displayOp1DataArraySize(length);
 
 
@@ -122,22 +124,22 @@ public class Controller {
 							break;
 					case 4:
 						//Ordenar QuickSort()
-						Comparable copiaComparendosMerge [ ] = modelo.copiarComparendos();
-						long startTime = System.currentTimeMillis();
-						modelo.sortQ(copiaComparendosMerge);
-						long end = System.currentTimeMillis();
-						long duracion = end - startTime;
+						Comparable[] copiaComparendosQuick = copia_ComparendosOriginal;
+						long startTimeQuick = System.currentTimeMillis();
+						modelo.sortQ(copiaComparendosQuick);
+						long endQuick = System.currentTimeMillis();
+						long duracion = endQuick - startTimeQuick;
 						view.printMessage("Tiempo de Ordenamiento :" +duracion+ " milisegundos\n");
 						view.printMessage("**==========MOSTRANDO LOS 10 PRIMEROS ORDENADOS POR FECHA quicksort==========**\n");
 						for(int i = 0; i < 10; i++)
 						{
-							view.displayInfoComparendo(copiaComparendosMerge[i].toString());
+							view.displayInfoComparendo(copiaComparendosQuick[i].toString());
 						}
 						view.printMessage("**==========MOSTRANDO LOS 10 ULTIMOS ORDENADOS POR FECHA quickSort==========**\n");
-						int tamano = copiaComparendosMerge.length-10;
-						for(int j = tamano; j < copiaComparendosMerge.length; j++)
+						int tamano = copiaComparendosQuick.length-10;
+						for(int j = tamano; j < copiaComparendosQuick.length; j++)
 						{
-							view.displayInfoComparendo(copiaComparendosMerge[j].toString());
+							view.displayInfoComparendo(copiaComparendosQuick[j].toString());
 						}
 						//System.out.println("ESTA ORDENADO: "+ modelo.isSorted(copiaComparendosMerge));
 						break;

@@ -26,7 +26,7 @@ public class Modelo {
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
 
-		String path = "./data/comparendos_dei_2018_small.geojson";
+		String path = "./data/comparendos_dei_2018.geojson";
 		JsonReader reader;
 
 		try {
@@ -62,7 +62,6 @@ public class Modelo {
 		}
 		return lista;
 	}
-
 
 	public Comparable<Multa>[] copiarComparendos() {
 		multasArr = new Multa[lista.size()];
