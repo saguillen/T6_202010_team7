@@ -17,18 +17,25 @@ public class View
 	 */
 	public void printMenu()
 	{
-		System.out.println(" **==========================**");
-		System.out.println(" ||      ==== MENU ====      ||");
-
-		System.out.println(" || 0. Cargar los Datos .    ||");
-		System.out.println(" || 1. Consultar informacion de un comparendo. ||"); 
-		System.out.println(" **==========================**\n");
+		System.out.println(" **================================================**");
+		System.out.println(" ||      ==== MENU ====                            ||");
+		System.out.println(" || 0. Cargar los Datos .                          ||");
+		System.out.println(" || 1. Copiar en un arreglo los Datos.             ||"); 
+		System.out.println(" || 2. Ordenar ascendentemente por fecha ShellSort ||"); 
+		System.out.println(" || 3. Ordenar ascendentemente por fecha MergeSort ||"); 
+		System.out.println(" || 4. Ordenar ascendentemente por fecha QuickSort ||"); 
+		System.out.println(" **================================================**\n");
 
 		// display hint
 		this.displayHint();
 		System.out.print("Input -> \n");
 	}
 
+	public void printMessage(String mensaje) {
+
+		System.out.println(mensaje);
+	}	
+	
 	/**
 	 * Displays an error message to the user if the option selected is invalid.
 	 */
@@ -100,23 +107,48 @@ public class View
 		
 	}
 	
-	public void displayInfoComparendo(String pInfo){
-		System.out.println("====== Comparendo Solicitado  ======");
+//	public void displayInfoComparendo(String pInfo){
+//		System.out.println("====== Comparendo Solicitado  ======");
+//		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
+//		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
+//		System.out.println("TIPO DE SERVICIO: "+ pInfo.split("\t")[2]);
+//		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
+//		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("\t")[4]);
+//		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[5]);
+//		System.out.println("GEOLOCALIZACION: "+pInfo.split("\t")[6]);
+//		System.out.println("====================================\n");
+//
+//	}
+	public void displayInfoComparendo(String pInfo) {
+		System.out.println("====== Informacion Comparendo Solicitado  ======");
+		System.out.println("ID: "+ pInfo.split("\t")[7]);
 		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
-		System.out.println("TIPO DE SERVICIO: "+ pInfo.split("\t")[2]);
 		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
-		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("\t")[4]);
+		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
+		System.out.println("TIPO DE SERVICIO: " + pInfo.split("\t")[2]);
 		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[5]);
 		System.out.println("GEOLOCALIZACION: "+pInfo.split("\t")[6]);
-		System.out.println("====================================\n");
+		System.out.println("======================\n");
 
 	}
+	
 	
 	public void displayInput()
 	{
 		System.out.println("======================\n");
 		System.out.println("DIGITE EL ID DEL COMPARENDO A BUSCAR");
 		System.out.println("======================\n");
+	}
+	public void displayCopyComparendos()
+	{
+		System.out.println("**==========================**");
+		System.out.println("|| COPIANDO EN UN ARREGLO...||");
+		System.out.println("**==========================**\n");
+	}
+	public void displayOp1DataArraySize(int pSize) {
+		System.out.println("**====== TAMAÑO DEL ARREGLO COMPARENDOS ======**");
+		System.out.println("SIZE: "+ pSize);
+		System.out.println("**============================================**\n");
+		
 	}
 }
