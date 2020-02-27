@@ -15,18 +15,20 @@ import model.data_structures.Node;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.zip.CheckedOutputStream;
 
 /**
  * Definicion del modelo del mundo
  *
  */
-public class Modelo {
+public class Modelo<T extends  Comparable<T>> {
+
 	LinkedListImp<Multa> lista = new LinkedListImp<>();
 	private Multa[] multasArr;
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
 
-		String path = "./data/comparendos_dei_2018.geojson";
+		String path = "./data/comparendos_dei_2018_small.geojson";
 		JsonReader reader;
 
 		try {
@@ -57,21 +59,23 @@ public class Modelo {
 				lista.insertarAlFinal(m);
 
 			}
-		}catch(FileNotFoundException e){
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return lista;
 	}
 
 	public Comparable<Multa>[] copiarComparendos() {
+//		multasArr = new Multa[lista.size()];
+//		for (int i = 0; i < lista.size(); i++) {
+//			Multa multa = lista.darActual(i).darValor();
+//			multasArr[i] = multa;
+//		}
+//		return multasArr;
 		multasArr = new Multa[lista.size()];
-		for (int i = 0; i < lista.size(); i++) {
-			Multa multa = lista.darActual(i).darValor();
-			multasArr[i] = multa;
-		}
-
-		return multasArr;
+		return lista.toArray(multasArr);
 	}
+
 
 
 	public Multa buscar(String id) {
@@ -154,17 +158,17 @@ public class Modelo {
 
 
 
-	private static void exch(Comparable[] a, int i, int j)
+	private void exch(Comparable<T>[] a, int i, int j)
 	{  Comparable t = a[i]; a[i] = a[j]; a[j] = t;  }
 
 
 
-	public void sortQ(Comparable<Multa>[] datos)
+	public void sortQ(Comparable<T>[] datos)
 	{
 		quickSort(datos, 0, datos.length-1);
 	}
 
-	public void quickSort(Comparable<Multa>[] datos, int principio, int fin) {
+	private void quickSort(Comparable<T>[] datos, int principio, int fin) {
 		if (principio <= fin) {
 			int indiceParticion = partition(datos, principio, fin);
 			quickSort(datos, principio, indiceParticion - 1);
@@ -217,16 +221,16 @@ public class Modelo {
 
 
 
-	private static int partition(Comparable<Multa>[] datos, int principio, int fin) {  
+	private int partition(Comparable<T>[] datos, int principio, int fin) {
 		int i = principio;
 		int j = fin+1;            
-		Comparable<Multa> pivote = datos[principio];
+		Comparable<T> pivote = datos[principio];
 
 		while (true)   {        
-			while (datos[++i].compareTo((Multa) pivote)>0) 
+			while (datos[++i].compareTo((T)pivote)>0)
 				if (i == fin) 
 					break;      
-			while (pivote.compareTo((Multa) datos[--j])>0) 
+			while (pivote.compareTo((T) datos[--j])>0)
 				if (j == principio) 
 					break;      
 			if (i >= j) 

@@ -1,5 +1,7 @@
 package model.data_structures;
-
+import java.sql.ClientInfoStatus;
+import java.util.Collection;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
@@ -14,9 +16,10 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 	
 	private int size;
 
+
 	public LinkedListImp()
 	{
-		
+		size = 0;
 	}
 	
 	public Node<T> darPrimero()
@@ -96,10 +99,16 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		size--;
 	}
 
-	public Object toArray() {
-		// TODO Auto-generated method stub
-		return null;
+	public T[] toArray(T[] a) {
+		Multa[] multas = new Multa[size()];
+		if(a.length < size()){
+			return (T[]) Arrays.copyOf(multas , size());
+		}
+		if(a.length > size())
+			a[size()] = null;
+		return a;
 	}
+
 
 	@Override
 	public Iterator<T> iterator() {
