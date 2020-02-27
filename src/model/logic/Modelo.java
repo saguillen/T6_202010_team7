@@ -67,7 +67,6 @@ public class Modelo<T extends Comparable<T>>
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
-		//		copiarComparendos();
 
 		return lista;
 	}
@@ -99,23 +98,21 @@ public class Modelo<T extends Comparable<T>>
 	}
 
 
-	public void Shellsort(Comparable[] datos) {
+	public void Shellsort(Comparable<T>[] datos) {
 		int n = datos.length;
 		int h = 1;
 		while (h < n/3) h = 3*h + 1; 
 
 		while (h >= 1) {
 			for (int i = h; i < n; i++) {
-				for (int j = i; j >= h && (datos[j].compareTo(  datos[j-h])<0); j -= h) {
-					Comparable t = datos[j];
+				for (int j = i; j >= h && (datos[j].compareTo(  (T) datos[j-h])<0); j -= h) {
+					Comparable<T> t = datos[j];
 					datos[j] = datos[j-h];
 					datos[j-h] = t;
 				}
 			}
-			//	assert isHsorted(datos, h); 
 			h /= 3;
 		}
-		//assert isSorted((Comparable<Multa>[]) datos);
 	}
 
 	public static void sort(Comparable[] a)   {
@@ -157,12 +154,12 @@ public class Modelo<T extends Comparable<T>>
 		merge(a, lo, mid, hi);  
 	}
 
-	public void sortQ(Comparable[] datos)
+	public void sortQ(Comparable<T>[] datos)
 	{
 		quickSort(datos, 0, datos.length-1);
 	}
 
-	public void quickSort(Comparable[] datos, int principio, int fin) {
+	public void quickSort(Comparable<T>[] datos, int principio, int fin) {
 		if (principio <= fin) {
 			int indiceParticion = partition(datos, principio, fin);
 			quickSort(datos, principio, indiceParticion - 1);
