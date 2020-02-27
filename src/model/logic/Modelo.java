@@ -21,7 +21,7 @@ public class Modelo
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException
 	{
-		String path = "./data/comparendos_dei_2018_small.geojson";
+		String path = ".¿'k/data/comparendos_dei_2018_small.geojson";
 		JsonReader reader;
 
 		try{
