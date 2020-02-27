@@ -73,6 +73,7 @@ public class Multa implements Comparable<Multa>
 	public int compareTo(Multa pMulta)
 	{
 		int hora = Integer.parseInt(pMulta.darFechaHora().replaceAll("/",""));
+		
 		int hora2 = Integer.parseInt(darFechaHora().replaceAll("/", ""));
 		int objId = Integer.parseInt(pMulta.darId());
 		int objId2 = Integer.parseInt(darId());
@@ -80,7 +81,7 @@ public class Multa implements Comparable<Multa>
 
 		if(hora == hora2)
 			return Integer.compare(objId, objId2);
-		else if(hora < hora2)
+		else if(hora > hora2)
 			return -1;
 		else
 			return 1;

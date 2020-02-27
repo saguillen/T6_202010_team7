@@ -16,7 +16,7 @@ import java.util.List;
  * Definicion del modelo del mundo
  *
  */
-public class Modelo
+public class Modelo<T extends Comparable<T>>
 {
 	LinkedListImp<Multa> lista = new LinkedListImp<>();
 
@@ -27,10 +27,10 @@ public class Modelo
 	{
 
 		String path = "./data/comparendos_dei_2018_small.geojson";
-	//	String path = "./data/comparendos_dei_2018.geojson";
+		//	String path = "./data/comparendos_dei_2018.geojson";
 
 
-	//	String path = "./data/comparendos_dei_2018.geojson";
+		//	String path = "./data/comparendos_dei_2018.geojson";
 
 		JsonReader reader;
 
@@ -67,7 +67,7 @@ public class Modelo
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
-//		copiarComparendos();
+		//		copiarComparendos();
 
 		return lista;
 	}
@@ -106,19 +106,19 @@ public class Modelo
 
 		while (h >= 1) {
 			for (int i = h; i < n; i++) {
-				for (int j = i; j >= h && (datos[j].compareTo( datos[j-h])>0); j -= h) {
+				for (int j = i; j >= h && (datos[j].compareTo(  datos[j-h])<0); j -= h) {
 					Comparable t = datos[j];
 					datos[j] = datos[j-h];
 					datos[j-h] = t;
 				}
 			}
-			assert isHsorted(datos, h); 
+			//	assert isHsorted(datos, h); 
 			h /= 3;
 		}
-		assert isSorted(datos);
+		//assert isSorted((Comparable<Multa>[]) datos);
 	}
 
-	public static void sort(Comparable<Multa>[] a)   {
+	public static void sort(Comparable[] a)   {
 		aux = new Comparable[a.length];    // Allocate space just once.      
 		sort(a, 0, a.length - 1);   
 	} 
@@ -142,7 +142,7 @@ public class Modelo
 					a[k] = aux[i++];
 				}
 			}
-			else if ((aux[j].compareTo( aux[i])>0)){ 
+			else if ((aux[j].compareTo( aux[i])<0)){ 
 				{a[k] = aux[j++];}      }
 			else  {                         
 				a[k] = aux[i++]; }
@@ -156,12 +156,9 @@ public class Modelo
 		sort(a, mid+1, hi);        
 		merge(a, lo, mid, hi);  
 	}
-	
+
 	public void sortQ(Comparable[] datos)
 	{
-		
-	
-		
 		quickSort(datos, 0, datos.length-1);
 	}
 
@@ -177,10 +174,10 @@ public class Modelo
 		Comparable pivote = datos[principio];
 
 		while (true)   {        
-			while (datos[++i].compareTo( pivote)>0) 
+			while (datos[++i].compareTo( pivote)<0) 
 				if (i == fin) 
 					break;      
-			while (pivote.compareTo( datos[--j])>0) 
+			while (pivote.compareTo( datos[--j])<0) 
 				if (j == principio) 
 					break;      
 			if (i >= j) 
@@ -191,7 +188,6 @@ public class Modelo
 		return j;          
 	}
 
-	
 
 
 	private static boolean   less(Comparable v, Comparable w)   
@@ -201,9 +197,9 @@ public class Modelo
 	{  Comparable t = a[i]; a[i] = a[j]; a[j] = t;  } 
 
 
-	public static boolean isSorted(Comparable<Multa>[] datos)   {  // Test whether the array entries are in order.     
+	public static boolean isSorted(Comparable<Multa>[] datos)   {  
 		for (int i = 1; i < datos.length; i++)        
-			if (datos[i].compareTo((Multa) datos[i-1])>0)
+			if (datos[i].compareTo((Multa) datos[i-1])<0)
 			{
 				return false;    }
 		return true;   }
