@@ -32,8 +32,8 @@ public class TestLinkedListImp<T extends Comparable<T>> {
 	{
 		lista = new LinkedListImp<Multa>();
 
-		Multa m1 = new Multa("AUTOMÓVIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "BARRIOS UNIDOS", "2018/12/10", null, "12345");
-		Multa m2 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TUNJUELITO", "2018/01/17", null, "509329");
+		Multa m1 = new Multa("AUTOMÓVIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "BARRIOS UNIDOS", "2018/12/10", null, "12345", "");
+		Multa m2 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TUNJUELITO", "2018/01/17", null, "509329", "");
 		Node<T> n1 = new Node<T>((T) m1, null, null);
 		Node<T> n2 = new Node<T>((T) m2, null, n1);
 		lista.insertarAlInicio(m1);
@@ -51,7 +51,7 @@ public class TestLinkedListImp<T extends Comparable<T>> {
 	public void testDarPrimero() {
 		// TODO
 		setUp2();
-		Multa m1 = new Multa("AUTOMÓVIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "BARRIOS UNIDOS", "2018/12/10", null, "12345");
+		Multa m1 = new Multa("AUTOMÓVIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "BARRIOS UNIDOS", "2018/12/10", null, "12345", "");
 		String m5 = lista.darPrimero().darValor().darClase();
 		assertTrue(lista!=null);
 		assertEquals("La clase deberia ser la misma",m1.darClase(), m5);
@@ -60,7 +60,7 @@ public class TestLinkedListImp<T extends Comparable<T>> {
 	public void testDarUltimo()
 	{
 		setUp2();
-		Multa m2 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TUNJUELITO", "2018/01/17", null, "509329");
+		Multa m2 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TUNJUELITO", "2018/01/17", null, "509329", "");
 		lista.insertarAlFinal(m2);
 		String clase = lista.darUltimo().darValor().darClase();
 		
@@ -73,7 +73,7 @@ public class TestLinkedListImp<T extends Comparable<T>> {
 		//setUp1();
 		setUp2();
 		assertTrue(lista!=null);
-		Multa m2 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TUNJUELITO", "2018/01/17", null, "509329");
+		Multa m2 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TUNJUELITO", "2018/01/17", null, "509329", "");
 		lista.insertarAlFinal(m2);
 		lista.insertarAlFinal(m2);
 		assertEquals(3, lista.size());
@@ -82,7 +82,7 @@ public class TestLinkedListImp<T extends Comparable<T>> {
 	public void testInsertarAlInicio()
 	{
 		setUp2();
-		Multa m3 = new Multa("MOTOCICLETA", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "TEUSAQUILLO", "2018/09/12", null, "56789");
+		Multa m3 = new Multa("MOTOCICLETA", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "TEUSAQUILLO", "2018/09/12", null, "56789", "");
 		lista.insertarAlInicio(m3);
 		assertTrue(lista!=null);
 		assertEquals(m3, lista.darPrimero().darValor());
@@ -91,7 +91,7 @@ public class TestLinkedListImp<T extends Comparable<T>> {
 	public void testINsertarAlFinal()
 	{
 		setUp2();
-		Multa m3 = new Multa("MOTOCICLETA", "Particular", "C90", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "TEUSAQUILLO", "2018/09/12", null, "69420");
+		Multa m3 = new Multa("MOTOCICLETA", "Particular", "C90", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "TEUSAQUILLO", "2018/09/12", null, "69420", "");
 		lista.insertarAlFinal(m3);
 		assertTrue(lista!=null);
 		assertEquals(m3, lista.darUltimo().darValor());

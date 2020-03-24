@@ -2,7 +2,7 @@ package model.data_structures;
 
 import java.util.Iterator;
 
-public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
+public class LinkedListImp<T extends Comparable<T>> implements Iterable<T> {
 	
 	/**
 	 * Atributos de la clase Doubly Linked List. 
@@ -42,18 +42,7 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		return size;		
 	}
 	
-	public Node<T> darActual(int pPosicion)
-	{
-		Node<T> actual = head;
-		int posicion = 0;
-		while ( actual !=null && posicion != pPosicion)
-		{
-			actual = actual.darSiguiente();
-			posicion++;
-		}
-		return actual;
 
-	}
 	
 	public void insertarAlInicio(T nuevo)
 	{
@@ -119,10 +108,6 @@ public class LinkedListImp<T extends Comparable<T>> implements Iterable<T>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-    
-	
 
 
 }

@@ -19,8 +19,10 @@ public class Multa implements Comparable<Multa>
 	private String FECHA_HORA;
 	
 	private List<Double> GEO;
+
+	private String MEDIO_DETECCION;
 	
-	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo, String pId)
+	public Multa(String pClase, String pTipoS, String pInfra, String pDesc, String pLocalidad, String pFechaHora, List<Double> pGeo, String pId, String pMedio)
 	{
 		CLASE_VEHICULO = pClase;
 		TIPO_SERVICIO = pTipoS;
@@ -30,6 +32,7 @@ public class Multa implements Comparable<Multa>
 		FECHA_HORA = pFechaHora;
 		GEO = pGeo;
 		OBJECT_ID = pId;
+		MEDIO_DETECCION = pMedio;
 	}
 	
 	public String darClase()
@@ -52,11 +55,12 @@ public class Multa implements Comparable<Multa>
 		return LOCALIDAD;
 	}
 	public String darFechaHora(){ return FECHA_HORA; }
-	
+	public String darMedioDeteccion(){ return MEDIO_DETECCION; }
 	//ToString() mismo formato de view.
 	public String toString()
 	{
-		return FECHA_HORA+"\t"+CLASE_VEHICULO+"\t"+TIPO_SERVICIO+"\t"+INFRACCION+"\t"+DES_INFRAC+"\t"+LOCALIDAD+"\t"+GEO+"\t"+OBJECT_ID;
+		return OBJECT_ID+"\t"+FECHA_HORA+"\t"+MEDIO_DETECCION+"\t"+CLASE_VEHICULO+"\t"+TIPO_SERVICIO+"\t"+INFRACCION+"\t"+DES_INFRAC+"\t"+LOCALIDAD+"\t"+GEO;
+
 	}
 	
 	public String darId()

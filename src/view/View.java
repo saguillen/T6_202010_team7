@@ -61,15 +61,13 @@ public class View
 	 * Print option 0 data.
 	 */
 	public void displayOp0PrimeroData(String pInfo) {
-		System.out.println("====== Informacion Primer Comparendo ======");
-		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
-		System.out.println("TIPO DE SERVICIO: " + pInfo.split("\t")[2]);
-		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
-		System.out.println("DESCRIPCION DE INFRACC.: "+ pInfo.split("\t")[4]);
-		System.out.println("LOCALIDAD: "+pInfo.split("\t")[5]);
-		System.out.println("GEOLOCALIZACION: "+pInfo.split("\t")[6]);
-		System.out.println("===========================\n");
+		System.out.println("====== Informacion Ultimo Comparendo  ======");
+		System.out.println("ID: "+ pInfo.split("\t")[0]);
+		System.out.println("FECHA: "+ pInfo.split("\t")[1]);
+		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[7]);
+		System.out.println("INFRACCION: "+ pInfo.split("\t")[5]);
+		System.out.println("======================\n");
+
 
 	}
 
@@ -82,12 +80,10 @@ public class View
 	 */
 	public void displayOp0UltimoData(String pInfo) {
 		System.out.println("====== Informacion Ultimo Comparendo  ======");
-		System.out.println("ID: "+ pInfo.split("\t")[7]);
-		System.out.println("FECHA: "+ pInfo.split("\t")[0]);
-		System.out.println("INFRACCION: "+ pInfo.split("\t")[3]);
-		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[1]);
-		System.out.println("TIPO DE SERVICIO: " + pInfo.split("\t")[2]);
-		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[5]);
+		System.out.println("ID: "+ pInfo.split("\t")[0]);
+		System.out.println("FECHA: "+ pInfo.split("\t")[1]);
+		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[7]);
+		System.out.println("INFRACCION: "+ pInfo.split("\t")[5]);
 		System.out.println("======================\n");
 
 	}
@@ -145,8 +141,8 @@ public class View
 		System.out.println("|| COPIANDO EN UN ARREGLO...||");
 		System.out.println("**==========================**\n");
 	}
-	public void displayOp1DataArraySize(int pSize) {
-		System.out.println("**====== TAMAÑO DEL ARREGLO COMPARENDOS ======**");
+	public void displayOp1DataSize(int pSize) {
+		System.out.println("**====== NO. DE COMPARENDOS ======**");
 		System.out.println("SIZE: "+ pSize);
 		System.out.println("**============================================**\n");
 		

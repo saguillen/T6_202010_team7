@@ -24,7 +24,7 @@ public class TestModelo<T> {
 
 	public TestModelo()
 	{
-		modelo= new Modelo<>();
+		modelo= new Modelo();
 	}
 
 	public void setUp1() {
@@ -64,7 +64,7 @@ public class TestModelo<T> {
 		setUp1();                          
 		for (int i = 1; i < datosDRandom.length&& datosDRandom[i].compareTo(datosDRandom[i-1])<0; i++){        
 			assertFalse(datosDRandom[i].compareTo(datosDRandom[i-1])>0);  } 
-		modelo.Shellsort(datosDRandom);
+//		modelo.Shellsort(datosDRandom);
 		for (int i = 1; i < datosDRandom.length; i++)  
 			assertTrue(datosDRandom[i].compareTo( datosDRandom[i-1])>0);
 	}
@@ -74,7 +74,7 @@ public class TestModelo<T> {
 		setUp2();
 		for (int i = 1; i < datosIAscendentes.length; i++)  
 		assertTrue(datosIAscendentes[i].compareTo( datosIAscendentes[i-1])>0);
-		modelo.Shellsort(datosIAscendentes);
+//		modelo.Shellsort(datosIAscendentes);
 		for (int i = 0; i < datosIAscendentes.length; i++)  
 			assertEquals(i, datosIAscendentes[i]);
 	}
@@ -84,7 +84,7 @@ public class TestModelo<T> {
 		setUp3();
 		for (int i = 1; i < datosIDescendentes.length&& datosIDescendentes[i].compareTo(datosIDescendentes[i-1])<0; i++)  
 		assertTrue(datosIDescendentes[i].compareTo( datosIDescendentes[i-1])>0);
-		modelo.Shellsort(datosIDescendentes);
+//		modelo.Shellsort(datosIDescendentes);
 		for (int i = 1; i < datosIDescendentes.length; i++)  
 			assertTrue(datosIDescendentes[i].compareTo( datosIDescendentes[i-1])>0);
 	}
@@ -95,7 +95,7 @@ public class TestModelo<T> {
 		setUp1();                          
 		for (int i = 1; i < datosDRandom.length&& datosDRandom[i].compareTo(datosDRandom[i-1])<0; i++){        
 			assertFalse(datosDRandom[i].compareTo(datosDRandom[i-1])>0);  } 
-		modelo.sort(datosDRandom);
+//		modelo.sort(datosDRandom);
 		for (int i = 1; i < datosDRandom.length; i++)  
 			assertTrue(datosDRandom[i].compareTo( datosDRandom[i-1])>0);
 		
@@ -132,7 +132,7 @@ public class TestModelo<T> {
 		setUp1();                          
 		for (int i = 1; i < datosDRandom.length&& datosDRandom[i].compareTo(datosDRandom[i-1])<0; i++){        
 			assertFalse(datosDRandom[i].compareTo(datosDRandom[i-1])>0);  } 
-		modelo.sortQ(datosDRandom);
+//		modelo.sortQ(datosDRandom);
 		for (int i = 1; i < datosDRandom.length; i++)  
 			assertTrue(datosDRandom[i].compareTo( datosDRandom[i-1])>0);
 		
@@ -144,7 +144,7 @@ public class TestModelo<T> {
 		setUp2();
 		for (int i = 1; i < datosIAscendentes.length; i++)  
 		assertTrue(datosIAscendentes[i].compareTo( datosIAscendentes[i-1])>0);
-		modelo.quickSort(datosIAscendentes, 0, datosIAscendentes.length-2);
+//		modelo.quickSort(datosIAscendentes, 0, datosIAscendentes.length-2);
 		for (int i = 0; i < datosIAscendentes.length; i++)  
 			assertEquals(i, datosIAscendentes[i]);
 	}
@@ -154,7 +154,7 @@ public class TestModelo<T> {
 		setUp3();
 		for (int i = 1; i < datosIDescendentes.length&& datosIDescendentes[i].compareTo(datosIDescendentes[i-1])<0; i++)  
 		assertTrue(datosIDescendentes[i].compareTo( datosIDescendentes[i-1])>0);
-		modelo.quickSort(datosIDescendentes, 0, datosIDescendentes.length-2);
+//		modelo.quickSort(datosIDescendentes, 0, datosIDescendentes.length-2);
 		for (int i = 1; i < datosIDescendentes.length; i++)  
 			assertTrue(datosIDescendentes[i].compareTo( datosIDescendentes[i-1])>0);
 	}

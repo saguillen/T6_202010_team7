@@ -2,7 +2,10 @@ package model.logic;
 
 import java.util.Random;
 import java.io.FileReader;
+
+import com.google.gson.internal.$Gson$Preconditions;
 import com.google.gson.stream.JsonReader;
+import model.data_structures.HashTLinearProbing;
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
 import com.google.gson.JsonArray;
@@ -16,12 +19,20 @@ import java.util.List;
  * Definicion del modelo del mundo
  *
  */
-public class Modelo<T extends Comparable<T>>
+public class Modelo
 {
-	LinkedListImp<Multa> lista = new LinkedListImp<>();
+	LinkedListImp<Multa> lista;
+	HashTLinearProbing<String, LinkedListImp<Multa>> hashTL;
 
 	private Multa[] multasArr;
-	private static Comparable[] aux; 
+	private static Comparable[] aux;
+
+	public Modelo()
+	{
+		lista = new LinkedListImp<>();
+		hashTL = new HashTLinearProbing<>();
+	}
+
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException
 	{
@@ -49,11 +60,12 @@ public class Modelo<T extends Comparable<T>>
 
 				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
 				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
-				String clase = properties.getAsJsonObject().get("CLASE_VEHI").getAsString();
-				String tipo = properties.getAsJsonObject().get("TIPO_SERVI").getAsString();
+				String clase = properties.getAsJsonObject().get("CLASE_VEHICULO").getAsString();
+				String tipo = properties.getAsJsonObject().get("TIPO_SERVICIO").getAsString();
 				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
-				String descr = properties.getAsJsonObject().get("DES_INFRAC").getAsString();
+				String descr = properties.getAsJsonObject().get("DES_INFRACCION").getAsString();
 				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
+				String medioDet = properties.getAsJsonObject().get("MEDIO_DETECCION").getAsString();
 
 
 				List<Double> geo = new ArrayList<>();
@@ -64,7 +76,7 @@ public class Modelo<T extends Comparable<T>>
 					}
 				}
 
-				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id);
+				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
 
 				lista.insertarAlFinal(m);
 			}
@@ -73,6 +85,55 @@ public class Modelo<T extends Comparable<T>>
 		}
 
 		return lista;
+	}
+
+	public HashTLinearProbing<String, LinkedListImp<Multa>> modeloHashLinear()
+	{
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+		JsonReader reader;
+
+		try {
+
+			reader = new JsonReader(new FileReader(path));
+			JsonElement elem = JsonParser.parseReader(reader);
+			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
+			for (JsonElement e : features) {
+				JsonElement properties = e.getAsJsonObject().get("properties");
+
+				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
+				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
+				String clase = properties.getAsJsonObject().get("CLASE_VEHICULO").getAsString();
+				String tipo = properties.getAsJsonObject().get("TIPO_SERVICIO").getAsString();
+				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
+				String descr = properties.getAsJsonObject().get("DES_INFRACCION").getAsString();
+				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
+				String medioDet = properties.getAsJsonObject().get("MEDIO_DETECCION").getAsString();
+
+
+				List<Double> geo = new ArrayList<>();
+				if (e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull()) {
+					for (JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()) {
+						geo.add(geoElem.getAsDouble());
+					}
+				}
+
+				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
+
+				String llave = m.darFechaHora()+m.darClase()+m.darInfraccion();
+				LinkedListImp<Multa> valores = new LinkedListImp<>();
+				if(m.darFechaHora().contains(llave) && m.darClase().contains(llave) && m.darInfraccion().contains(llave))
+				{
+					valores.insertarAlFinal(m);
+				}
+
+				hashTL.put(llave, valores);
+			}
+		}catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+
+		return hashTL;
 	}
 
 	public Comparable<Multa>[] copiarComparendos(){
@@ -106,22 +167,22 @@ public class Modelo<T extends Comparable<T>>
 	}
 
 
-	public void Shellsort(Comparable<T>[] datos) {
-		int n = datos.length;
-		int h = 1;
-		while (h < n/3) h = 3*h + 1; 
-
-		while (h >= 1) {
-			for (int i = h; i < n; i++) {
-				for (int j = i; j >= h && (datos[j].compareTo(  (T) datos[j-h])<0); j -= h) {
-					Comparable<T> t = datos[j];
-					datos[j] = datos[j-h];
-					datos[j-h] = t;
-				}
-			}
-			h /= 3;
-		}
-	}
+//	public void Shellsort(Comparable<T>[] datos) {
+//		int n = datos.length;
+//		int h = 1;
+//		while (h < n/3) h = 3*h + 1;
+//
+//		while (h >= 1) {
+//			for (int i = h; i < n; i++) {
+//				for (int j = i; j >= h && (datos[j].compareTo(  (T) datos[j-h])<0); j -= h) {
+//					Comparable<T> t = datos[j];
+//					datos[j] = datos[j-h];
+//					datos[j-h] = t;
+//				}
+//			}
+//			h /= 3;
+//		}
+//	}
 
 	public static void sort(Comparable[] a)   {
 		aux = new Comparable[a.length];    // Allocate space just once.      
@@ -162,18 +223,19 @@ public class Modelo<T extends Comparable<T>>
 		merge(a, lo, mid, hi);  
 	}
 
-	public void sortQ(Comparable<T>[] datos)
-	{
-		quickSort(datos, 0, datos.length-1);
-	}
-
-	public void quickSort(Comparable<T>[] datos, int principio, int fin) {
-		if (principio <= fin) {
-			int indiceParticion = partition(datos, principio, fin);
-			quickSort(datos, principio, indiceParticion - 1);
-			quickSort(datos, indiceParticion + 1 , fin);
-		}
-	}private static int partition(Comparable[] datos, int principio, int fin) {  
+//	public void sortQ(Comparable<T>[] datos)
+//	{
+//		quickSort(datos, 0, datos.length-1);
+//	}
+//
+//	public void quickSort(Comparable<T>[] datos, int principio, int fin) {
+//		if (principio <= fin) {
+//			int indiceParticion = partition(datos, principio, fin);
+//			quickSort(datos, principio, indiceParticion - 1);
+//			quickSort(datos, indiceParticion + 1 , fin);
+////		}
+//	}
+	private static int partition(Comparable[] datos, int principio, int fin) {
 		int i = principio;
 		int j = fin+1;            
 		Comparable pivote = datos[principio];
