@@ -18,12 +18,13 @@ public class HashTLinearProbing<K, Value> {
      * Inicializa una tabla de simbolos vacia con una capacidad inicial.
      * @param capacity posiciones
      */
-    public HashTLinearProbing(int capacity)
+    @SuppressWarnings("unchecked")
+	public HashTLinearProbing(int capacity)
     {
         linearProbSize = capacity;
         keysSize = 0;
-        keys = (K[]) new Object[linearProbSize];
-        values = (Value[]) new Object[linearProbSize];
+        keys =   (K[]) new Comparable[linearProbSize];
+        values =  (Value[]) new Comparable[linearProbSize];
     }
 
     public Value get(K key) {
@@ -118,11 +119,15 @@ public class HashTLinearProbing<K, Value> {
         // halves size of array if it's 12.5% full or less
         if (keysSize > 0 && keysSize <= linearProbSize/8) resize(linearProbSize/2);
     }
-//
-//    public Iterable<K> keys() {
-//        Queue<K> queue = new Queue<K>();
-//        for (int i = 0; i < linearProbSize; i++)
-//            if (keys[i] != null) queue.enqueue(keys[i]);
-//        return (Iterable<K>) queue;
-//    }
+    public K[] darKeys()
+    {
+    	return keys;
+    }
+
+    public Iterable<K> keys() {
+        Queue queue = new Queue();
+        for (int i = 0; i < linearProbSize; i++)
+            if (keys[i] != null) queue.enqueue((Comparable) keys[i]);
+        return  (Iterable<K>) queue;
+    }
 }

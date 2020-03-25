@@ -31,7 +31,7 @@ public class Modelo
 	public Modelo()
 	{
 		lista = new LinkedListImp<>();
-		hashTL = new HashTLinearProbing<>();
+		hashTL = new HashTLinearProbing();
 		
 	}
 
@@ -91,9 +91,9 @@ public class Modelo
 
 	public HashTLinearProbing<String, LinkedListImp<Multa>> modeloHashLinear()
 	{
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+	//	String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 		
-	//7	String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
 
 		JsonReader reader;
 
@@ -128,6 +128,7 @@ public class Modelo
 				LinkedListImp<Multa> valores = new LinkedListImp<>();
 				if(m.darFechaHora().contains(llave) && m.darClase().contains(llave) && m.darInfraccion().contains(llave))
 				{
+				//	 valor = m.toString();
 					valores.insertarAlFinal(m);
 				}
 

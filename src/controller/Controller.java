@@ -8,6 +8,7 @@ import view.View;
 
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -49,14 +50,28 @@ public class Controller {
 					case 0:
 						HashTLinearProbing<String, LinkedListImp<Multa>> resp = modelo.modeloHashLinear();
 						view.displayOp1DataSize(resp.getKeysSize());
-						for(int i= 0; i < 1; i++)
-						{
-							view.displayOp0PrimeroData(resp.toString());
-						}
+						
+		  			//	Multa m = resp.toString();
+						//for(int i= 0; i < 1; i++)
+					//	{
+						//	view.displayOp0PrimeroData(resp.get(resp.darKeys()[0]).darPrimero().darValor().toString());
+				//		}
+						//	String[] keys = resp.darKeys();
 						for(int i = 0; i == resp.getKeysSize()-1; i++)
 						{
 							view.displayOp0UltimoData(resp.toString());
-						}
+					    }
+						String[] llave = new String[resp.getKeysSize()];
+							System.arraycopy(resp.darKeys(), 0, llave, 0, resp.getKeysSize());
+							for(int i = 0; i<2;i++)
+							{
+								System.out.println(resp.darKeys()[1]);
+
+							}
+						  
+							
+							
+
 
 
 						break;

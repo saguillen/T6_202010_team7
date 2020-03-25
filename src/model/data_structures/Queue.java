@@ -2,11 +2,11 @@ package model.data_structures;
 
 import java.util.Iterator;
 
-public class Queue<T extends Comparable<T>> implements Iterator<T> {
+public class Queue<K extends Comparable<K>> implements Iterator<K> {
 
-    private Node<T> primero;
+    private Node<K> primero;
 
-    private Node<T> ultimo;
+    private Node<K> ultimo;
 
     private int size;
 
@@ -15,14 +15,14 @@ public class Queue<T extends Comparable<T>> implements Iterator<T> {
     }
 
 
-    public Node<T> darPrimero()
+    public Node<K> darPrimero()
     {
         return primero;
     }
 
-    public Node<T> darUltimo()
+    public Node<K> darUltimo()
     {
-        Node<T> actual = primero;
+        Node<K> actual = primero;
 
         while(actual!= null && actual.darSiguiente()!=null)
         {
@@ -38,16 +38,16 @@ public class Queue<T extends Comparable<T>> implements Iterator<T> {
         return primero == null;
     }
 
-    public T enqueue(T pNuevo)
+    public K enqueue(K pNuevo)
     {
-        Node<T> nenqueue = new Node<T>(pNuevo, null, null);
+        Node<K> nenqueue = new Node<K>(pNuevo, null, null);
 
         if(isEmpty()){
 
             primero= nenqueue;
             ultimo = primero;
         }else{
-            Node<T> nuevoNodo = nenqueue;
+            Node<K> nuevoNodo = nenqueue;
             ultimo.cambiarSiguiente(nuevoNodo);
             nuevoNodo.cambiarAnterior(ultimo);
             ultimo = nuevoNodo;
@@ -64,7 +64,7 @@ public class Queue<T extends Comparable<T>> implements Iterator<T> {
 //        {
 //            return null;
 //        }
-        T valor = primero.darValor();
+        K valor = primero.darValor();
         primero = primero.darSiguiente();
         size--;
 
@@ -76,9 +76,9 @@ public class Queue<T extends Comparable<T>> implements Iterator<T> {
         return size;
     }
 
-    public Node<T> darActual(int pPosicion)
+    public Node<K> darActual(int pPosicion)
     {
-        Node<T> actual = primero;
+        Node<K> actual = primero;
         int posicion = 0;
         while (actual!=null&&posicion!=pPosicion)
         {
@@ -95,7 +95,7 @@ public class Queue<T extends Comparable<T>> implements Iterator<T> {
     }
 
     @Override
-    public T next() {
+    public K next() {
         return null;
     }
 }
