@@ -22,7 +22,7 @@ import java.util.List;
 public class Modelo
 {
 	LinkedListImp<Multa> lista;
-	HashTLinearProbing<String, LinkedListImp<Multa>> hashTL;
+	HashTLinearProbing<String, String> hashTL;
 
 	private Multa[] multasArr;
 	private static Comparable[] aux;
@@ -87,10 +87,11 @@ public class Modelo
 		return lista;
 	}
 
-	public HashTLinearProbing<String, LinkedListImp<Multa>> modeloHashLinear()
+	public HashTLinearProbing<String, String> modeloHashLinear()
 	{
 		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 		JsonReader reader;
+		String valores = null;
 
 		try {
 
@@ -120,11 +121,8 @@ public class Modelo
 				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
 
 				String llave = m.darFechaHora()+m.darClase()+m.darInfraccion();
-				LinkedListImp<Multa> valores = new LinkedListImp<>();
-				if(m.darFechaHora().contains(llave) && m.darClase().contains(llave) && m.darInfraccion().contains(llave))
-				{
-					valores.insertarAlFinal(m);
-				}
+				valores = id+fechaHora+clase+tipo+infrac+descr+localidad+medioDet;
+
 
 				hashTL.put(llave, valores);
 			}
@@ -132,6 +130,7 @@ public class Modelo
 		{
 			e.printStackTrace();
 		}
+
 
 		return hashTL;
 	}

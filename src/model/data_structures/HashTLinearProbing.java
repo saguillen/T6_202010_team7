@@ -3,7 +3,7 @@ package model.data_structures;
 import java.security.Key;
 import java.util.Iterator;
 
-public class HashTLinearProbing<K, Value> {
+public class HashTLinearProbing<K extends Comparable<K>, Value> {
 
     private int keysSize;
     private int linearProbSize;
@@ -22,8 +22,12 @@ public class HashTLinearProbing<K, Value> {
     {
         linearProbSize = capacity;
         keysSize = 0;
-        keys = (K[]) new Object[linearProbSize];
-        values = (Value[]) new Object[linearProbSize];
+        keys = (K[]) new Comparable[linearProbSize];
+        values = (Value[]) new Comparable[linearProbSize];
+    }
+    public Multa getFirst()
+    {
+        return null;
     }
 
     public Value get(K key) {
@@ -118,11 +122,11 @@ public class HashTLinearProbing<K, Value> {
         // halves size of array if it's 12.5% full or less
         if (keysSize > 0 && keysSize <= linearProbSize/8) resize(linearProbSize/2);
     }
-//
-//    public Iterable<K> keys() {
-//        Queue<K> queue = new Queue<K>();
-//        for (int i = 0; i < linearProbSize; i++)
-//            if (keys[i] != null) queue.enqueue(keys[i]);
-//        return (Iterable<K>) queue;
-//    }
+
+    public Iterator <K> keys() {
+        PriorityQueue<K> queue = new PriorityQueue<K>();
+        for (int i = 0; i < linearProbSize; i++)
+            if (keys[i] != null) queue.agregar(keys[i]);
+        return (Iterator<K>) queue;
+    }
 }
