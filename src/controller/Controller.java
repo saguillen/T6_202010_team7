@@ -3,10 +3,12 @@ package controller;
 import model.data_structures.HashTLinearProbing;
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
+import model.data_structures.Queue;
 import model.logic.Modelo;
 import view.View;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -29,7 +31,7 @@ public class Controller {
 	private Multa m;
 	/**
 	 * Crear la vista y el modelo del proyecto
-	 * @param capacidad tamaNo inicial del arreglo
+	 *
 	 */
 	public Controller ()
 	{
@@ -49,20 +51,20 @@ public class Controller {
 				switch(option){
 					case 0:
 						HashTLinearProbing<String, String> resp = modelo.modeloHashLinear();
-						Iterator<String> iter = resp.keys();
+						Iterator<String> iter = resp.keys().iterator();
 						view.displayOp1DataSize(resp.getKeysSize());
 						if(iter.hasNext())
-							view.displayOp0PrimeroData(iter.next());
-
-						while(iter.hasNext())
 						{
-							view.displayOp0UltimoData(iter.next());
+							String m = resp.get(iter.next());
+							view.displayOp0PrimeroData(m);
+//							view.displayOp0PrimeroData(m);
 						}
 
-//						for(int i = 0; i == resp.getKeysSize()-1; i++)
-//						{
-//							view.displayOp0UltimoData(resp.toString());
-//						}
+						for(int i = resp.getKeysSize()-1; i < resp.getKeysSize(); i++)
+						{
+							String m = resp.get(iter.next());
+							view.displayOp0UltimoData(m);
+						}
 
 
 						break;

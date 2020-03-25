@@ -61,15 +61,15 @@ public class View
 	 * Print option 0 data.
 	 */
 	public void displayOp0PrimeroData(String pInfo) {
-		System.out.println("====== Informacion Ultimo Comparendo  ======");
+		System.out.println("====== Informacion Primer Comparendo  ============");
 		System.out.println("ID: "+ pInfo.split("\t")[0]);
 		System.out.println("FECHA: "+ pInfo.split("\t")[1]);
-		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[7]);
+		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[6]);
 		System.out.println("INFRACCION: "+ pInfo.split("\t")[5]);
-		System.out.println("======================\n");
-
+		System.out.println("================================================\n");
 
 	}
+
 
 	// -------------------------------------------------------------
 	// Option 1
@@ -79,12 +79,12 @@ public class View
 	 * Print option 1 data.
 	 */
 	public void displayOp0UltimoData(String pInfo) {
-		System.out.println("====== Informacion Ultimo Comparendo  ======");
+		System.out.println("====== Informacion Ultimo Comparendo  ==========");
 		System.out.println("ID: "+ pInfo.split("\t")[0]);
 		System.out.println("FECHA: "+ pInfo.split("\t")[1]);
-		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[7]);
+		System.out.println("LOCALIDAD: "+ pInfo.split("\t")[6]);
 		System.out.println("INFRACCION: "+ pInfo.split("\t")[5]);
-		System.out.println("======================\n");
+		System.out.println("=================================================\n");
 
 	}
 

@@ -123,10 +123,10 @@ public class HashTLinearProbing<K extends Comparable<K>, Value> {
         if (keysSize > 0 && keysSize <= linearProbSize/8) resize(linearProbSize/2);
     }
 
-    public Iterator <K> keys() {
-        PriorityQueue<K> queue = new PriorityQueue<K>();
+    public Iterable <K> keys() {
+        Queue<K> queue = new Queue<>();
         for (int i = 0; i < linearProbSize; i++)
-            if (keys[i] != null) queue.agregar(keys[i]);
-        return (Iterator<K>) queue;
+            if (keys[i] != null) queue.enqueue(keys[i]);
+        return queue;
     }
 }

@@ -121,7 +121,7 @@ public class Modelo
 				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
 
 				String llave = m.darFechaHora()+m.darClase()+m.darInfraccion();
-				valores = m.darId()+m.darFechaHora()+m.darClase()+m.darTipoServicio()+m.darInfraccion()+m.darDescInfr()+m.darLocalidad()+m.darMedioDeteccion();
+				valores = m.darId()+"\t"+m.darFechaHora()+"\t"+m.darClase()+"\t"+m.darTipoServicio()+"\t"+m.darInfraccion()+"\t"+m.darDescInfr()+"\t"+m.darLocalidad()+"\t"+m.darMedioDeteccion();
 
 
 				hashTL.put(llave, valores);

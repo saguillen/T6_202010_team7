@@ -2,7 +2,7 @@ package model.data_structures;
 
 import java.util.Iterator;
 
-public class Queue<T extends Comparable<T>> implements Iterator<T> {
+public class Queue<T extends Comparable<T>> implements Iterable<T> {
 
     private Node<T> primero;
 
@@ -89,13 +89,25 @@ public class Queue<T extends Comparable<T>> implements Iterator<T> {
 
     }
 
-    @Override
-    public boolean hasNext() {
-        return false;
+    public Iterator<T> iterator()
+    {
+        return new LinkedIter(primero);
     }
 
-    @Override
-    public T next() {
-        return null;
+    private class LinkedIter implements Iterator<T> {
+        private Node<T> actual;
+
+        public LinkedIter(Node<T> primero) {
+            actual = primero;
+        }
+
+        public boolean hasNext()  { return actual != null;                     }
+        public void remove()      { throw new UnsupportedOperationException();  }
+
+        public T next() {
+            T valor = actual.darValor();
+            actual = actual.darSiguiente();
+            return valor;
+        }
     }
 }
