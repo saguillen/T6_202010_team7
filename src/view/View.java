@@ -147,4 +147,32 @@ public class View
 		System.out.println("**============================================**\n");
 		
 	}
+
+	public void displayInputFecha()
+	{
+		System.out.println("=========================================================\n");
+		System.out.println("DIGITE LA FECHA DEL/LOS COMPARENDOS A BUSCAR");
+	}
+
+	public void displayInputClaseVehiculo()
+	{
+		System.out.println("=========================================================\n");
+		System.out.println("DIGITE LA CLASE  DEL VEHICULO DE/LOS COMPARENDOS A BUSCAR");
+	}
+	public void displayInputInfraccion()
+	{
+		System.out.println("=========================================================\n");
+		System.out.println("DIGITE EL CODIGO DE INFRACCION DE/LOS COMPARENDOS A BUSCAR");
+	}
+	public void displayInfoComparendosReq1(String pInfo)
+	{
+		System.out.println("==================== Informacion Comparendo Solicitado  ============");
+		System.out.println("ID: "+ pInfo.split("\t")[0]);
+		System.out.println("FECHA: "+ pInfo.split("\t")[1]);
+		System.out.println("TIPO DE SERVICIO: " + pInfo.split("\t")[4]);
+		System.out.println("CLASE DE VEHICULO: "+ pInfo.split("\t")[3]);
+		System.out.println("INFRACCION: "+ pInfo.split("\t")[5]);
+		System.out.println("==================================================================\n");
+
+	}
 }

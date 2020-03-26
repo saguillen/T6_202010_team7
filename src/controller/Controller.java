@@ -4,16 +4,12 @@ import model.data_structures.HashTLinearProbing;
 import model.data_structures.HashTableSeparateChaining;
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
-import model.data_structures.Queue;
 import model.logic.Modelo;
 import view.View;
 
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 
 public class Controller {
@@ -30,6 +26,8 @@ public class Controller {
 	private Comparable[] copia_ComparendosOriginal;
 
 	private Multa m;
+
+	private HashTLinearProbing<String, String> copiaLinearProb;
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 *
@@ -51,31 +49,34 @@ public class Controller {
 				int option = reader.nextInt();
 				switch(option){
 					case 0:
-						HashTLinearProbing<String, String> resp = modelo.modeloHashLinear();
-						Iterator<String> iter = resp.keys().iterator();
-						view.displayOp1DataSize(resp.getKeysSize());
+						copiaLinearProb = modelo.modeloHashLinear();
+						Iterator<String> iter = copiaLinearProb.keys().iterator();
+						view.displayOp1DataSize(copiaLinearProb.getKeysSize());
 						if(iter.hasNext())
 						{
-							String m = resp.get(iter.next());
+							String m = copiaLinearProb.get(iter.next());
 							view.displayOp0PrimeroData(m);
-//							view.displayOp0PrimeroData(m);
 						}
 
-						for(int i = resp.getKeysSize()-1; i < resp.getKeysSize(); i++)
+						for(int i = copiaLinearProb.getKeysSize()-1; i < copiaLinearProb.getKeysSize(); i++)
 						{
-							String m = resp.get(iter.next());
+							String m = copiaLinearProb.get(iter.next());
 							view.displayOp0UltimoData(m);
 						}
+						view.printMessage("Numero de duplas SeparateChaining: "+ copiaLinearProb.getKeysSize() );
+						view.printMessage("Tamaño inicial del arreglo HTSC: "+ copiaLinearProb.tamanoInicial());
+						view.printMessage("Tamaño final del arreglo HTSC (m): "+ copiaLinearProb.tamanoFinal());
+						view.printMessage("Factor de carga final: "+ copiaLinearProb.factorDeCargaFinal() );
+						view.printMessage("Numero de rehashes:"+ copiaLinearProb.numeroRehashes());
 						
-						
+
 						HashTableSeparateChaining<String, String> hashtsc = modelo.modeloHashSeparateC();
-						Iterator<String> iter2 = resp.keys().iterator();
-						view.displayOp1DataSize(resp.getKeysSize());
-						if(iter.hasNext())
+						Iterator<String> iter2 = hashtsc.keys().iterator();
+						view.displayOp1DataSize(hashtsc.size());
+						if(iter2.hasNext())
 						{
 							String m = hashtsc.get(iter2.next());
 							view.displayOp0PrimeroData(m);
-//							view.displayOp0PrimeroData(m);
 						}
 
 						for(int i = hashtsc.size()-1; i < hashtsc.size(); i++)
@@ -83,16 +84,48 @@ public class Controller {
 							String m = hashtsc.get(iter2.next());
 							view.displayOp0UltimoData(m);
 						}
-						view.printMessage("Numero de duplas SeparateChaining: "+ hashtsc.size() );
-						view.printMessage("Tamaño inicial del arreglo HTSC: "+ hashtsc.tamañoInicial());
-						view.printMessage("Tamaño final del arreglo HTSC (m): "+ hashtsc.tamañoFinal());
+						view.printMessage("Numero de duplas LinearProbing: "+ hashtsc.size() );
+						view.printMessage("Tamaño inicial del arreglo HTLP: "+ hashtsc.tamanoInicial());
+						view.printMessage("Tamaño final del arreglo HTLP (m): "+ hashtsc.tamanoFinal());
 						view.printMessage("Factor de carga final: "+ hashtsc.factorDeCargaFinal() );
 						view.printMessage("Numero de rehashes:"+ hashtsc.numeroRehashes());
 
 						break;
 					case 1:
+						view.displayInputFecha();
+						String in = reader.next();
+						view.displayInputClaseVehiculo();
+						String in2 = reader.next();
+						view.displayInputInfraccion();
+						String in3 = reader.next();
+						for(int i = 0; i < copiaLinearProb.getKeysSize(); i++)
+						{
+							String c = copiaLinearProb.get(in+in2+in3);
+							view.displayInfoComparendosReq1(c);
+						}
 
 
+						break;
+
+					case 2:
+						view.printMessage("Ingrese una fecha/hora\n");
+						String pFecha = reader.next();
+						view.printMessage("INGRESE LA CLASE DE VEHICULO");
+						String pClaseV = reader.next();
+						view.printMessage("INGRSE UNA INFRACCION");
+						String pInfraccion = reader.next();
+						LinkedListImp<String> pInfo1 = modelo.buscarTiemposdeViajeSeparateChaining(pFecha, pClaseV, pInfraccion);
+						for(int i = 0; i<pInfo1.size();i++)
+						{
+							String m = pInfo1.darActual(i).darValor();
+							view.displayOp0PrimeroData(m);;
+						}
+						//	view.displayOp0PrimeroData(pInfo1);;
+
+
+						//2018-11-01T10:29:42.000Z
+						//CAMIONETA
+						//C02
 						break;
 
 //					//Opcion No valida.

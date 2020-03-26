@@ -24,7 +24,6 @@ public class HashTableSeparateChaining<K extends Comparable<K>, Value> {
 
         
         this.m = m;
-        System.out.println(m);
         st = (SequentialSearchST<K, Value>[]) new SequentialSearchST[m];
         for (int i = 0; i < m; i++)
             st[i] = new SequentialSearchST<K, Value>();
@@ -118,7 +117,7 @@ public class HashTableSeparateChaining<K extends Comparable<K>, Value> {
 
         // double table size if average length of list >= 10
         if (n >= 10*m) resize(2*m);
-  //      if ( n/m>=5.0) resize(2*m);
+        if ( n/m >= 5.0) resize(2*m);
 
         int i = hash(key);
         if (!st[i].contains(key)) n++;
@@ -153,17 +152,17 @@ public class HashTableSeparateChaining<K extends Comparable<K>, Value> {
         return queue;
     }
     
-    public int tamañoInicial()
+    public int tamanoInicial()
     {
     	return INIT_CAPACITY;
     }
     
-    public int tamañoFinal()
+    public int tamanoFinal()
     {
 		return m;
     	
     }
-    public double factorDeCargaFinal()
+    public float factorDeCargaFinal()
     {
     	return n/m;
     }

@@ -1,5 +1,6 @@
 package model.logic;
 
+import java.util.Iterator;
 import java.util.Random;
 import java.io.FileReader;
 
@@ -92,7 +93,7 @@ public class Modelo
 	public HashTLinearProbing<String, String> modeloHashLinear()
 	{
 		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 
 		JsonReader reader;
 		String valores = null;
@@ -144,7 +145,7 @@ public class Modelo
 	public HashTableSeparateChaining<String, String> modeloHashSeparateC()
 	{
 		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 
 		JsonReader reader;
 		String valores = null;
@@ -331,6 +332,37 @@ public class Modelo
 		for (int i = h; i < a.length; i++)
 			if (less(a[i], a[i-h])) return false;
 		return true;
+	}
+
+	public LinkedListImp<String> buscarTiemposdeViajeSeparateChaining(String pFecha, String pClaseV, String pInfraccion)
+	{
+
+		LinkedListImp<String> llaves = new LinkedListImp<>();
+		String key = pFecha+pClaseV+pInfraccion;
+		//		String m = hashTSC.get(key);
+		//		System.out.println(m);
+		//		return m;
+
+		Iterator<String> iter2 = hashTSC.keys().iterator();
+		if(iter2.hasNext())
+		{
+			String m = hashTSC.get(iter2.next());
+			//view.displayOp0PrimeroData(m);
+		}
+		while(iter2.hasNext())
+		{
+			if(iter2.next().equals(key))
+			{
+				String m = hashTSC.get(key);
+				llaves.insertarAlFinal(m);
+				//				System.out.println(m);
+			}
+		}
+
+		return llaves;
+
+
+
 	}
 }
 
