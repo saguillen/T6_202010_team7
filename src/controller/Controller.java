@@ -147,7 +147,7 @@ public class Controller {
 						long dur = end - start;
 						view.printMessage("Tiempo que tardo : " + dur + " milisegundos\n");
 						break;
-//					//Opcion No valida.
+//					//Opcion No valida.//
 					default:
 						view.badOption();
 						fin = true;
