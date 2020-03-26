@@ -1,6 +1,7 @@
 package controller;
 
 import model.data_structures.HashTLinearProbing;
+import model.data_structures.HashTableSeparateChaining;
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
 import model.data_structures.Queue;
@@ -65,7 +66,28 @@ public class Controller {
 							String m = resp.get(iter.next());
 							view.displayOp0UltimoData(m);
 						}
+						
+						
+						HashTableSeparateChaining<String, String> hashtsc = modelo.modeloHashSeparateC();
+						Iterator<String> iter2 = resp.keys().iterator();
+						view.displayOp1DataSize(resp.getKeysSize());
+						if(iter.hasNext())
+						{
+							String m = hashtsc.get(iter2.next());
+							view.displayOp0PrimeroData(m);
+//							view.displayOp0PrimeroData(m);
+						}
 
+						for(int i = hashtsc.size()-1; i < hashtsc.size(); i++)
+						{
+							String m = hashtsc.get(iter2.next());
+							view.displayOp0UltimoData(m);
+						}
+						view.printMessage("Numero de duplas SeparateChaining: "+ hashtsc.size() );
+						view.printMessage("Tamaño inicial del arreglo HTSC: "+ hashtsc.tamañoInicial());
+						view.printMessage("Tamaño final del arreglo HTSC (m): "+ hashtsc.tamañoFinal());
+						view.printMessage("Factor de carga final: "+ hashtsc.factorDeCargaFinal() );
+						view.printMessage("Numero de rehashes:"+ hashtsc.numeroRehashes());
 
 						break;
 					case 1:

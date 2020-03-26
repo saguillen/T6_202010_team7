@@ -6,6 +6,7 @@ import java.io.FileReader;
 import com.google.gson.internal.$Gson$Preconditions;
 import com.google.gson.stream.JsonReader;
 import model.data_structures.HashTLinearProbing;
+import model.data_structures.HashTableSeparateChaining;
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
 import com.google.gson.JsonArray;
@@ -23,7 +24,7 @@ public class Modelo
 {
 	LinkedListImp<Multa> lista;
 	HashTLinearProbing<String, String> hashTL;
-
+	HashTableSeparateChaining<String, String> hashTSC;
 	private Multa[] multasArr;
 	private static Comparable[] aux;
 
@@ -31,6 +32,7 @@ public class Modelo
 	{
 		lista = new LinkedListImp<>();
 		hashTL = new HashTLinearProbing<>();
+		hashTSC = new HashTableSeparateChaining<>();
 	}
 
 
@@ -89,7 +91,9 @@ public class Modelo
 
 	public HashTLinearProbing<String, String> modeloHashLinear()
 	{
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+
 		JsonReader reader;
 		String valores = null;
 
@@ -135,6 +139,59 @@ public class Modelo
 		return hashTL;
 	}
 
+	
+	
+	public HashTableSeparateChaining<String, String> modeloHashSeparateC()
+	{
+		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+
+		JsonReader reader;
+		String valores = null;
+
+		try {
+
+			reader = new JsonReader(new FileReader(path));
+			JsonElement elem = JsonParser.parseReader(reader);
+			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
+			for (JsonElement e : features) {
+				JsonElement properties = e.getAsJsonObject().get("properties");
+
+				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
+				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
+				String clase = properties.getAsJsonObject().get("CLASE_VEHICULO").getAsString();
+				String tipo = properties.getAsJsonObject().get("TIPO_SERVICIO").getAsString();
+				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
+				String descr = properties.getAsJsonObject().get("DES_INFRACCION").getAsString();
+				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
+				String medioDet = properties.getAsJsonObject().get("MEDIO_DETECCION").getAsString();
+
+
+				List<Double> geo = new ArrayList<>();
+				if (e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull()) {
+					for (JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()) {
+						geo.add(geoElem.getAsDouble());
+					}
+				}
+
+				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
+
+				String llave = m.darFechaHora()+m.darClase()+m.darInfraccion();
+				valores = m.darId()+"\t"+m.darFechaHora()+"\t"+m.darClase()+"\t"+m.darTipoServicio()+"\t"+m.darInfraccion()+"\t"+m.darDescInfr()+"\t"+m.darLocalidad()+"\t"+m.darMedioDeteccion();
+
+				hashTSC.put(llave, valores);
+			}
+		}catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+
+
+		return hashTSC;
+	}
+	
+	
+	
 	public Comparable<Multa>[] copiarComparendos(){
 		multasArr = new Multa[lista.size()];
 		for(int i = 0; i < lista.size(); i++)
