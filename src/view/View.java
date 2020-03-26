@@ -17,14 +17,14 @@ public class View
 	 */
 	public void printMenu()
 	{
-		System.out.println(" **================================================**");
-		System.out.println(" ||      ==== MENU ====                            ||");
-		System.out.println(" || 0. Cargar los Datos .                          ||");
-		System.out.println(" || 1. Copiar en un arreglo los Datos.             ||"); 
-		System.out.println(" || 2. Ordenar ascendentemente por fecha ShellSort ||"); 
-		System.out.println(" || 3. Ordenar ascendentemente por fecha MergeSort ||"); 
-		System.out.println(" || 4. Ordenar ascendentemente por fecha QuickSort ||"); 
-		System.out.println(" **================================================**\n");
+		System.out.println(" **=====================================================================================**");
+		System.out.println(" ||                                 ==== MENU ====                                     ||");
+		System.out.println(" || 0. Cargar los Datos .                                                              ||");
+		System.out.println(" || 1. Buscar Tiempos de Viaje por (Fecha/Clase/Infraccion) Linear Probing.            ||");
+		System.out.println(" || 2. Buscar Tiempos de Viaje por (Fecha/Clase/Infraccion) Separate Chaining.         ||");
+		System.out.println(" || 3. Pruebas de Desempeno Linear Probing                                             ||");
+		System.out.println(" || 4. Pruebas de Desempeno Linear Separate Chaining                                   ||");
+		System.out.println(" **=====================================================================================**\n");
 
 		// display hint
 		this.displayHint();

@@ -28,6 +28,8 @@ public class Controller {
 	private Multa m;
 
 	private HashTLinearProbing<String, String> copiaLinearProb;
+
+	private HashTableSeparateChaining<String, String> copiaSeparateC;
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 *
@@ -63,32 +65,32 @@ public class Controller {
 							String m = copiaLinearProb.get(iter.next());
 							view.displayOp0UltimoData(m);
 						}
-						view.printMessage("Numero de duplas SeparateChaining: "+ copiaLinearProb.getKeysSize() );
-						view.printMessage("Tamaño inicial del arreglo HTSC: "+ copiaLinearProb.tamanoInicial());
-						view.printMessage("Tamaño final del arreglo HTSC (m): "+ copiaLinearProb.tamanoFinal());
+						view.printMessage("Numero de duplas Linear Probing: "+ copiaLinearProb.getKeysSize() );
+						view.printMessage("Tamaño inicial del arreglo HTLP: "+ copiaLinearProb.tamanoInicial());
+						view.printMessage("Tamaño final del arreglo HTLP (m): "+ copiaLinearProb.tamanoFinal());
 						view.printMessage("Factor de carga final: "+ copiaLinearProb.factorDeCargaFinal() );
 						view.printMessage("Numero de rehashes:"+ copiaLinearProb.numeroRehashes());
 						
 
-						HashTableSeparateChaining<String, String> hashtsc = modelo.modeloHashSeparateC();
-						Iterator<String> iter2 = hashtsc.keys().iterator();
-						view.displayOp1DataSize(hashtsc.size());
+						copiaSeparateC = modelo.modeloHashSeparateC();
+						Iterator<String> iter2 = copiaSeparateC.keys().iterator();
+						view.displayOp1DataSize(copiaSeparateC.size());
 						if(iter2.hasNext())
 						{
-							String m = hashtsc.get(iter2.next());
+							String m = copiaSeparateC.get(iter2.next());
 							view.displayOp0PrimeroData(m);
 						}
 
-						for(int i = hashtsc.size()-1; i < hashtsc.size(); i++)
+						for(int i = copiaSeparateC.size()-1; i < copiaSeparateC.size(); i++)
 						{
-							String m = hashtsc.get(iter2.next());
+							String m = copiaSeparateC.get(iter2.next());
 							view.displayOp0UltimoData(m);
 						}
-						view.printMessage("Numero de duplas LinearProbing: "+ hashtsc.size() );
-						view.printMessage("Tamaño inicial del arreglo HTLP: "+ hashtsc.tamanoInicial());
-						view.printMessage("Tamaño final del arreglo HTLP (m): "+ hashtsc.tamanoFinal());
-						view.printMessage("Factor de carga final: "+ hashtsc.factorDeCargaFinal() );
-						view.printMessage("Numero de rehashes:"+ hashtsc.numeroRehashes());
+						view.printMessage("Numero de duplas SeparateChaining: "+ copiaSeparateC.size() );
+						view.printMessage("Tamaño inicial del arreglo HTSC: "+ copiaSeparateC.tamanoInicial());
+						view.printMessage("Tamaño final del arreglo HTSC (m): "+ copiaSeparateC.tamanoFinal());
+						view.printMessage("Factor de carga final: "+ copiaSeparateC.factorDeCargaFinal() );
+						view.printMessage("Numero de rehashes:"+ copiaSeparateC.numeroRehashes());
 
 						break;
 					case 1:
@@ -98,11 +100,14 @@ public class Controller {
 						String in2 = reader.next();
 						view.displayInputInfraccion();
 						String in3 = reader.next();
-						for(int i = 0; i < copiaLinearProb.getKeysSize(); i++)
-						{
-							String c = copiaLinearProb.get(in+in2+in3);
-							view.displayInfoComparendosReq1(c);
+						LinkedListImp<String> pInfo = modelo.buscarTiemposdeViajeLinearProb(in, in2, in3);
+//						LinkedListImp<String> pInfo = modelo.buscarTiemposdeViajeLinearProb(in, in2, in3);
+						for(int i = 0; i < pInfo.size(); i++) {
+							String multa = pInfo.darActual(i).darValor();
+							view.displayOp0PrimeroData(multa);
+
 						}
+
 
 
 						break;
@@ -115,10 +120,10 @@ public class Controller {
 						view.printMessage("INGRSE UNA INFRACCION");
 						String pInfraccion = reader.next();
 						LinkedListImp<String> pInfo1 = modelo.buscarTiemposdeViajeSeparateChaining(pFecha, pClaseV, pInfraccion);
-						for(int i = 0; i<pInfo1.size();i++)
+						for(int i = 0; i < pInfo1.size();i++)
 						{
 							String m = pInfo1.darActual(i).darValor();
-							view.displayOp0PrimeroData(m);;
+							view.displayOp0PrimeroData(m);
 						}
 						//	view.displayOp0PrimeroData(pInfo1);;
 
@@ -127,7 +132,21 @@ public class Controller {
 						//CAMIONETA
 						//C02
 						break;
+					case 3:
+						long startTime = System.currentTimeMillis();
+						modelo.getsAleatoriosLinearProb();
+						long endTime = System.currentTimeMillis();
+						long duration = endTime - startTime;
+						view.printMessage("Tiempo que tardo : " + duration +" milisegundos\n");
+						break;
 
+					case 4:
+						long start = System.currentTimeMillis();
+						modelo.getsAleatoriosSeparate();
+						long end = System.currentTimeMillis();
+						long dur = end - start;
+						view.printMessage("Tiempo que tardo : " + dur + " milisegundos\n");
+						break;
 //					//Opcion No valida.
 					default:
 						view.badOption();

@@ -76,9 +76,8 @@ public class HashTLinearProbing<K extends Comparable<K>, Value> {
             delete(key);
             return;
         }
-
-        // double table size if 50% full
-        if(keysSize >= linearProbSize / 2) resize((int) (2 * linearProbSize));
+//        // double table size if 50% full
+//        if (keysSize >= linearProbSize/2) resize((int) (2*linearProbSize));
         if((1.0 * keysSize)/(linearProbSize) >= 0.75) resize((int) (2 * linearProbSize));
 
         int i;
