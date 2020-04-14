@@ -6,10 +6,11 @@ import java.io.FileReader;
 
 import com.google.gson.internal.$Gson$Preconditions;
 import com.google.gson.stream.JsonReader;
-import model.data_structures.HashTLinearProbing;
-import model.data_structures.HashTableSeparateChaining;
+
 import model.data_structures.LinkedListImp;
 import model.data_structures.Multa;
+import model.data_structures.RedBlackBST;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -23,21 +24,18 @@ import java.util.List;
  */
 public class Modelo {
 	LinkedListImp<Multa> lista;
-	HashTLinearProbing<String, String> hashTL;
-	HashTableSeparateChaining<String, String> hashTSC;
 	private Multa[] multasArr;
 	private static Comparable[] aux;
-
+	RedBlackBST<String, String> redBlackBST;
 	public Modelo() {
 		lista = new LinkedListImp<>();
-		hashTL = new HashTLinearProbing<>();
-		hashTSC = new HashTableSeparateChaining<>();
+		redBlackBST = new RedBlackBST<>();
 	}
 
 
 	public LinkedListImp<Multa> ModeloJSON() throws FileNotFoundException {
 
-//		String path = "./data/comparendos_dei_2018_small.geojson";
+		//		String path = "./data/comparendos_dei_2018_small.geojson";
 		//	String path = "./data/comparendos_dei_2018.geojson";
 		String path = "./data/comparendos_dei_2018.geojson";
 
@@ -80,10 +78,107 @@ public class Modelo {
 		return lista;
 	}
 
-	public HashTLinearProbing<String, String> modeloHashLinear() {
+	//	public HashTLinearProbing<String, String> modeloHashLinear() {
+	//		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+	//		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+	//		String path1 = "./data/test.geojson";
+	//		JsonReader reader;
+	//		String valores = null;
+	//
+	//		try {
+	//
+	//			reader = new JsonReader(new FileReader(path));
+	//			JsonElement elem = JsonParser.parseReader(reader);
+	//			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
+	//			for (JsonElement e : features) {
+	//				JsonElement properties = e.getAsJsonObject().get("properties");
+	//
+	//				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
+	//				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
+	//				String clase = properties.getAsJsonObject().get("CLASE_VEHICULO").getAsString();
+	//				String tipo = properties.getAsJsonObject().get("TIPO_SERVICIO").getAsString();
+	//				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
+	//				String descr = properties.getAsJsonObject().get("DES_INFRACCION").getAsString();
+	//				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
+	//				String medioDet = properties.getAsJsonObject().get("MEDIO_DETECCION").getAsString();
+	//
+	//
+	//				List<Double> geo = new ArrayList<>();
+	//				if (e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull()) {
+	//					for (JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()) {
+	//						geo.add(geoElem.getAsDouble());
+	//					}
+	//				}
+	//
+	//				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
+	//
+	//				String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
+	//				valores = m.darId() + "\t" + m.darFechaHora() + "\t" + m.darClase() + "\t" + m.darTipoServicio() + "\t" + m.darInfraccion() + "\t" + m.darDescInfr() + "\t" + m.darLocalidad() + "\t" + m.darMedioDeteccion();
+	//
+	//
+	//				hashTL.put(llave, valores);
+	//			}
+	//		} catch (FileNotFoundException e) {
+	//			e.printStackTrace();
+	//		}
+	//
+	//
+	//		return hashTL;
+	//	}
+	//
+	//
+	//	public HashTableSeparateChaining<String, String> modeloHashSeparateC() {
+	//		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+	//		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+	////		String path = "./data/test.geojson";
+	//		JsonReader reader;
+	//		String valores = null;
+	//
+	//		try {
+	//
+	//			reader = new JsonReader(new FileReader(path));
+	//			JsonElement elem = JsonParser.parseReader(reader);
+	//			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
+	//			for (JsonElement e : features) {
+	//				JsonElement properties = e.getAsJsonObject().get("properties");
+	//
+	//				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
+	//				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
+	//				String clase = properties.getAsJsonObject().get("CLASE_VEHICULO").getAsString();
+	//				String tipo = properties.getAsJsonObject().get("TIPO_SERVICIO").getAsString();
+	//				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
+	//				String descr = properties.getAsJsonObject().get("DES_INFRACCION").getAsString();
+	//				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
+	//				String medioDet = properties.getAsJsonObject().get("MEDIO_DETECCION").getAsString();
+	//
+	//
+	//				List<Double> geo = new ArrayList<>();
+	//				if (e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull()) {
+	//					for (JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()) {
+	//						geo.add(geoElem.getAsDouble());
+	//					}
+	//				}
+	//
+	//				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
+	//
+	//				String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
+	//				valores = m.darId() + "\t" + m.darFechaHora() + "\t" + m.darClase() + "\t" + m.darTipoServicio() + "\t" + m.darInfraccion() + "\t" + m.darDescInfr() + "\t" + m.darLocalidad() + "\t" + m.darMedioDeteccion();
+	//
+	//				hashTSC.put(llave, valores);
+	//			}
+	//		} catch (FileNotFoundException e) {
+	//			e.printStackTrace();
+	//		}
+	//
+	//
+	//		return hashTSC;
+	//	}
+
+	public RedBlackBST<String, String> modeloRedBlackBST() {
 		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		String path1 = "./data/test.geojson";
+		//		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+
 		JsonReader reader;
 		String valores = null;
 
@@ -114,67 +209,19 @@ public class Modelo {
 
 				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
 
-				String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
-				valores = m.darId() + "\t" + m.darFechaHora() + "\t" + m.darClase() + "\t" + m.darTipoServicio() + "\t" + m.darInfraccion() + "\t" + m.darDescInfr() + "\t" + m.darLocalidad() + "\t" + m.darMedioDeteccion();
-
-
-				hashTL.put(llave, valores);
+				String llave = m.darId();
+				String valor = m.toString();
+				redBlackBST.put(llave, valor);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 
 
-		return hashTL;
+		return redBlackBST;
 	}
 
 
-	public HashTableSeparateChaining<String, String> modeloHashSeparateC() {
-		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-//		String path = "./data/test.geojson";
-		JsonReader reader;
-		String valores = null;
-
-		try {
-
-			reader = new JsonReader(new FileReader(path));
-			JsonElement elem = JsonParser.parseReader(reader);
-			JsonArray features = elem.getAsJsonObject().get("features").getAsJsonArray();
-			for (JsonElement e : features) {
-				JsonElement properties = e.getAsJsonObject().get("properties");
-
-				String id = properties.getAsJsonObject().get("OBJECTID").getAsString();
-				String fechaHora = properties.getAsJsonObject().get("FECHA_HORA").getAsString();
-				String clase = properties.getAsJsonObject().get("CLASE_VEHICULO").getAsString();
-				String tipo = properties.getAsJsonObject().get("TIPO_SERVICIO").getAsString();
-				String infrac = properties.getAsJsonObject().get("INFRACCION").getAsString();
-				String descr = properties.getAsJsonObject().get("DES_INFRACCION").getAsString();
-				String localidad = properties.getAsJsonObject().get("LOCALIDAD").getAsString();
-				String medioDet = properties.getAsJsonObject().get("MEDIO_DETECCION").getAsString();
-
-
-				List<Double> geo = new ArrayList<>();
-				if (e.getAsJsonObject().has("geometry") && !e.getAsJsonObject().get("geometry").isJsonNull()) {
-					for (JsonElement geoElem : e.getAsJsonObject().get("geometry").getAsJsonObject().get("coordinates").getAsJsonArray()) {
-						geo.add(geoElem.getAsDouble());
-					}
-				}
-
-				Multa m = new Multa(clase, tipo, infrac, descr, localidad, fechaHora, geo, id, medioDet);
-
-				String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
-				valores = m.darId() + "\t" + m.darFechaHora() + "\t" + m.darClase() + "\t" + m.darTipoServicio() + "\t" + m.darInfraccion() + "\t" + m.darDescInfr() + "\t" + m.darLocalidad() + "\t" + m.darMedioDeteccion();
-
-				hashTSC.put(llave, valores);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-
-
-		return hashTSC;
-	}
 
 
 	public Comparable<Multa>[] copiarComparendos() {
@@ -202,22 +249,22 @@ public class Modelo {
 	}
 
 
-//	public void Shellsort(Comparable<T>[] datos) {
-//		int n = datos.length;
-//		int h = 1;
-//		while (h < n/3) h = 3*h + 1;
-//
-//		while (h >= 1) {
-//			for (int i = h; i < n; i++) {
-//				for (int j = i; j >= h && (datos[j].compareTo(  (T) datos[j-h])<0); j -= h) {
-//					Comparable<T> t = datos[j];
-//					datos[j] = datos[j-h];
-//					datos[j-h] = t;
-//				}
-//			}
-//			h /= 3;
-//		}
-//	}
+	//	public void Shellsort(Comparable<T>[] datos) {
+	//		int n = datos.length;
+	//		int h = 1;
+	//		while (h < n/3) h = 3*h + 1;
+	//
+	//		while (h >= 1) {
+	//			for (int i = h; i < n; i++) {
+	//				for (int j = i; j >= h && (datos[j].compareTo(  (T) datos[j-h])<0); j -= h) {
+	//					Comparable<T> t = datos[j];
+	//					datos[j] = datos[j-h];
+	//					datos[j-h] = t;
+	//				}
+	//			}
+	//			h /= 3;
+	//		}
+	//	}
 
 	public static void sort(Comparable[] a) {
 		aux = new Comparable[a.length];    // Allocate space just once.      
@@ -255,17 +302,17 @@ public class Modelo {
 	}
 
 	//	public void sortQ(Comparable<T>[] datos)
-//	{
-//		quickSort(datos, 0, datos.length-1);
-//	}
-//
-//	public void quickSort(Comparable<T>[] datos, int principio, int fin) {
-//		if (principio <= fin) {
-//			int indiceParticion = partition(datos, principio, fin);
-//			quickSort(datos, principio, indiceParticion - 1);
-//			quickSort(datos, indiceParticion + 1 , fin);
-////		}
-//	}
+	//	{
+	//		quickSort(datos, 0, datos.length-1);
+	//	}
+	//
+	//	public void quickSort(Comparable<T>[] datos, int principio, int fin) {
+	//		if (principio <= fin) {
+	//			int indiceParticion = partition(datos, principio, fin);
+	//			quickSort(datos, principio, indiceParticion - 1);
+	//			quickSort(datos, indiceParticion + 1 , fin);
+	////		}
+	//	}
 	private static int partition(Comparable[] datos, int principio, int fin) {
 		int i = principio;
 		int j = fin + 1;
@@ -312,144 +359,144 @@ public class Modelo {
 		return true;
 	}
 
-	public LinkedListImp<String> buscarTiemposdeViajeSeparateChaining(String pFecha, String pClaseV, String pInfraccion) {
+	//	public LinkedListImp<String> buscarTiemposdeViajeSeparateChaining(String pFecha, String pClaseV, String pInfraccion) {
+	//
+	//		LinkedListImp<String> llaves = new LinkedListImp<>();
+	//		String key = pFecha + pClaseV + pInfraccion;
+	//		//		String m = hashTSC.get(key);
+	//		//		System.out.println(m);
+	//		//		return m;
+	//
+	//		Iterator<String> iter2 = hashTSC.keys().iterator();
+	//		if (iter2.hasNext()) {
+	//			String m = hashTSC.get(iter2.next());
+	//			//view.displayOp0PrimeroData(m);
+	//		}
+	//		while (iter2.hasNext()) {
+	//			if (iter2.next().equals(key)) {
+	//				String m = hashTSC.get(key);
+	//				llaves.insertarAlFinal(m);
+	//				//				System.out.println(m);
+	//			}
+	//		}
+	//
+	//		return llaves;
+	//	}
 
-		LinkedListImp<String> llaves = new LinkedListImp<>();
-		String key = pFecha + pClaseV + pInfraccion;
-		//		String m = hashTSC.get(key);
-		//		System.out.println(m);
-		//		return m;
+	//	public LinkedListImp<String> buscarTiemposdeViajeLinearProb(String pFecha, String pClaseV, String pInfraccion) {
+	//		LinkedListImp<String> valores = new LinkedListImp<>();
+	//		String llave = pFecha + pClaseV + pInfraccion;
+	//		Iterator<String> iter = hashTL.keys().iterator();
+	//		if (iter.hasNext()) {
+	//			String multa = hashTL.get(iter.next());
+	//		}
+	//		while (iter.hasNext()) {
+	//			if (iter.next().equalsIgnoreCase(llave)) {
+	//				String multa = hashTL.get(llave);
+	//				valores.insertarAlFinal(multa);
+	//			}
+	//		}
+	//		return valores;
 
-		Iterator<String> iter2 = hashTSC.keys().iterator();
-		if (iter2.hasNext()) {
-			String m = hashTSC.get(iter2.next());
-			//view.displayOp0PrimeroData(m);
-		}
-		while (iter2.hasNext()) {
-			if (iter2.next().equals(key)) {
-				String m = hashTSC.get(key);
-				llaves.insertarAlFinal(m);
-				//				System.out.println(m);
-			}
-		}
+	//			LinkedListImp<Multa> mult = hashTL.get(llaves);
 
-		return llaves;
-	}
-
-	public LinkedListImp<String> buscarTiemposdeViajeLinearProb(String pFecha, String pClaseV, String pInfraccion) {
-		LinkedListImp<String> valores = new LinkedListImp<>();
-		String llave = pFecha + pClaseV + pInfraccion;
-		Iterator<String> iter = hashTL.keys().iterator();
-		if (iter.hasNext()) {
-			String multa = hashTL.get(iter.next());
-		}
-		while (iter.hasNext()) {
-			if (iter.next().equalsIgnoreCase(llave)) {
-				String multa = hashTL.get(llave);
-				valores.insertarAlFinal(multa);
-			}
-		}
-		return valores;
-
-//			LinkedListImp<Multa> mult = hashTL.get(llaves);
-
-//		Comparable<String>[] llaves = new Comparable[hashTL.getKeysSize()];
-//		String key = pFecha+pClaseV+pInfraccion;
-//		//		String m = hashTSC.get(key);
-//		//		System.out.println(m);
-//		//		return m;
-//
-//		Iterator<String> iter = hashTL.keys().iterator();
-//		if(iter.hasNext())
-//		{
-//			String m = hashTSC.get(iter.next());
-//			//view.displayOp0PrimeroData(m);
-//		}
-//		while(iter.hasNext())
-//		{
-//			if(iter.next().equals(key))
-//			{
-//				String m = hashTSC.get(key);
-//				llaves
-//				//				System.out.println(m);
-//			}
-//		}
-
-
-	}
-	public void getsAleatoriosSeparate()
-	{
-		Iterator<String> iter2 = hashTSC.keys().iterator();
-		//String key = pFecha+pClaseV+pInfraccion;
-		boolean valor = true;
-		int actual = 0;
-		int numeroRandom = 0;
-		int iterable = hashTSC.size();
-		for(int i=0; i<8000;i++)
-		{
-			numeroRandom = (int) (Math.random()*hashTSC.size());
+	//		Comparable<String>[] llaves = new Comparable[hashTL.getKeysSize()];
+	//		String key = pFecha+pClaseV+pInfraccion;
+	//		//		String m = hashTSC.get(key);
+	//		//		System.out.println(m);
+	//		//		return m;
+	//
+	//		Iterator<String> iter = hashTL.keys().iterator();
+	//		if(iter.hasNext())
+	//		{
+	//			String m = hashTSC.get(iter.next());
+	//			//view.displayOp0PrimeroData(m);
+	//		}
+	//		while(iter.hasNext())
+	//		{
+	//			if(iter.next().equals(key))
+	//			{
+	//				String m = hashTSC.get(key);
+	//				llaves
+	//				//				System.out.println(m);
+	//			}
+	//		}
 
 
-			while(iter2.hasNext()&&valor)
-			{
-				actual++;
-				if(actual==numeroRandom)
-				{
-					valor=false;
-				}
-
-			}
-			if(iter2.hasNext())
-			{
-				String m = hashTSC.get(iter2.next());
-//				System.out.println(m);
-			}
-		}
-		for(int j = 0; j<2000; j++)
-		{
-			String llave = "2019-08-28T07:20:00.000ZBICICLETAH54";
-			String L = hashTSC.get(llave);
-
-		}
-	}
-	public void getsAleatoriosLinearProb() {
-		Iterator<String> iter = hashTL.keys().iterator();
-		//String key = pFecha+pClaseV+pInfraccion;
-		boolean valor = true;
-		int actual = 0;
-		int numeroRandom = 0;
-		int iterable = hashTL.getKeysSize();
-		for(int i=0; i<8000;i++)
-		{
-			numeroRandom = (int) (Math.random()*hashTL.getKeysSize());
-
-
-			while(iter.hasNext()&&valor)
-			{
-				actual++;
-				if(actual==numeroRandom)
-				{
-					valor=false;
-				}
-
-			}
-			if(iter.hasNext())
-			{
-				String m = hashTL.get(iter.next());
-//				System.out.println(m);
-			}
-		}
-		for(int j = 0; j<2000; j++)
-		{
-			String llave = "2019-08-28T07:20:00.000ZBICICLETAH54";
-			String L = hashTL.get(llave);
-
-		}
-
-	}
-
-
+	//	}
+	//	public void getsAleatoriosSeparate()
+	//	{
+	//		Iterator<String> iter2 = hashTSC.keys().iterator();
+	//		//String key = pFecha+pClaseV+pInfraccion;
+	//		boolean valor = true;
+	//		int actual = 0;
+	//		int numeroRandom = 0;
+	//		int iterable = hashTSC.size();
+	//		for(int i=0; i<8000;i++)
+	//		{
+	//			numeroRandom = (int) (Math.random()*hashTSC.size());
+	//
+	//
+	//			while(iter2.hasNext()&&valor)
+	//			{
+	//				actual++;
+	//				if(actual==numeroRandom)
+	//				{
+	//					valor=false;
+	//				}
+	//
+	//			}
+	//			if(iter2.hasNext())
+	//			{
+	//				String m = hashTSC.get(iter2.next());
+	////				System.out.println(m);
+	//			}
+	//		}
+	//		for(int j = 0; j<2000; j++)
+	//		{
+	//			String llave = "2019-08-28T07:20:00.000ZBICICLETAH54";
+	//			String L = hashTSC.get(llave);
+	//
+	//		}
+	//	}
+	//	public void getsAleatoriosLinearProb() {
+	//		Iterator<String> iter = hashTL.keys().iterator();
+	//		//String key = pFecha+pClaseV+pInfraccion;
+	//		boolean valor = true;
+	//		int actual = 0;
+	//		int numeroRandom = 0;
+	//		int iterable = hashTL.getKeysSize();
+	//		for(int i=0; i<8000;i++)
+	//		{
+	//			numeroRandom = (int) (Math.random()*hashTL.getKeysSize());
+	//
+	//
+	//			while(iter.hasNext()&&valor)
+	//			{
+	//				actual++;
+	//				if(actual==numeroRandom)
+	//				{
+	//					valor=false;
+	//				}
+	//
+	//			}
+	//			if(iter.hasNext())
+	//			{
+	//				String m = hashTL.get(iter.next());
+	////				System.out.println(m);
+	//			}
+	//		}
+	//		for(int j = 0; j<2000; j++)
+	//		{
+	//			String llave = "2019-08-28T07:20:00.000ZBICICLETAH54";
+	//			String L = hashTL.get(llave);
+	//
+	//		}
+	//}
 }
+
+
+
 
 
 
