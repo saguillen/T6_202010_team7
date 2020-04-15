@@ -176,8 +176,8 @@ public class Modelo {
 
 	public RedBlackBST<String, String> modeloRedBlackBST() {
 
-		String path1 = "./data/Comparendos_DEI_2018_Bogotá_D.C_small (1).geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 
 		JsonReader reader;
 		String valores = null;
@@ -221,7 +221,12 @@ public class Modelo {
 		return redBlackBST;
 	}
 
+	public String compPorId(String pId)
+	{
+		String m = redBlackBST.get(pId);
 
+		return m;
+	}
 
 
 	public Comparable<Multa>[] copiarComparendos() {
