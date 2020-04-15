@@ -75,6 +75,10 @@ public class Controller {
 //						for(int i = 0; i < pInfo.size(); i++) {
 //							String multa = pInfo.darActual(i).darValor();
 //							view.displayOp0PrimeroData(multa);
+						int getHeight = copiaRedBlack.getHeight("525883");
+						int heightTotal = copiaRedBlack.height();
+						System.out.println(getHeight);
+						System.out.println(heightTotal+" Altura total");
 
 //						}
 
