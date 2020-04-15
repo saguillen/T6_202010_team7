@@ -31,6 +31,7 @@
 package model.data_structures;
 
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -201,7 +202,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
         root = put(root, key, val);
         root.color = BLACK;
-        // assert check();
+        assert check();
     }
 
     // insert the key-value pair in the subtree rooted at h
@@ -239,7 +240,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
         root = deleteMin(root);
         if (!isEmpty()) root.color = BLACK;
-        // assert check();
+        assert check();
     }
 
     // delete the key-value pair with the minimum key rooted at h
@@ -268,7 +269,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
         root = deleteMax(root);
         if (!isEmpty()) root.color = BLACK;
-        // assert check();
+        assert check();
     }
 
     // delete the key-value pair with the maximum key rooted at h
@@ -304,12 +305,12 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
         root = delete(root, key);
         if (!isEmpty()) root.color = BLACK;
-        // assert check();
+        assert check();
     }
 
     // delete the key-value pair with the given key rooted at h
     private Node delete(Node h, Key key) { 
-        // assert get(h, key) != null;
+         assert get(h, key) != null;
 
         if (key.compareTo(h.key) < 0)  {
             if (!isRed(h.left) && !isRed(h.left.left))
@@ -342,7 +343,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
     // make a left-leaning link lean to the right
     private Node rotateRight(Node h) {
-        // assert (h != null) && isRed(h.left);
+        assert (h != null) && isRed(h.left);
         Node x = h.left;
         h.left = x.right;
         x.right = h;
@@ -355,7 +356,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
     // make a right-leaning link lean to the left
     private Node rotateLeft(Node h) {
-        // assert (h != null) && isRed(h.right);
+         assert (h != null) && isRed(h.right);
         Node x = h.right;
         h.right = x.left;
         x.left = h;
@@ -369,9 +370,9 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
     // flip the colors of a node and its two children
     private void flipColors(Node h) {
         // h must have opposite color of its two children
-        // assert (h != null) && (h.left != null) && (h.right != null);
-        // assert (!isRed(h) &&  isRed(h.left) &&  isRed(h.right))
-        //    || (isRed(h)  && !isRed(h.left) && !isRed(h.right));
+        assert (h != null) && (h.left != null) && (h.right != null);
+        assert (!isRed(h) &&  isRed(h.left) &&  isRed(h.right))
+            || (isRed(h)  && !isRed(h.left) && !isRed(h.right));
         h.color = !h.color;
         h.left.color = !h.left.color;
         h.right.color = !h.right.color;
@@ -380,8 +381,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
     // Assuming that h is red and both h.left and h.left.left
     // are black, make h.left or one of its children red.
     private Node moveRedLeft(Node h) {
-        // assert (h != null);
-        // assert isRed(h) && !isRed(h.left) && !isRed(h.left.left);
+        assert (h != null);
+        assert isRed(h) && !isRed(h.left) && !isRed(h.left.left);
 
         flipColors(h);
         if (isRed(h.right.left)) { 
@@ -395,8 +396,8 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
     // Assuming that h is red and both h.right and h.right.left
     // are black, make h.right or one of its children red.
     private Node moveRedRight(Node h) {
-        // assert (h != null);
-        // assert isRed(h) && !isRed(h.right) && !isRed(h.right.left);
+        assert (h != null);
+        assert isRed(h) && !isRed(h.right) && !isRed(h.right.left);
         flipColors(h);
         if (isRed(h.left.left)) { 
             h = rotateRight(h);
@@ -407,7 +408,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
     // restore red-black tree invariant
     private Node balance(Node h) {
-        // assert (h != null);
+        assert (h != null);
 
         if (isRed(h.right))                      h = rotateLeft(h);
         if (isRed(h.left) && isRed(h.left.left)) h = rotateRight(h);
@@ -434,6 +435,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
         return 1 + Math.max(height(x.left), height(x.right));
     }
 
+
    /***************************************************************************
     *  Ordered symbol table methods.
     ***************************************************************************/
@@ -450,7 +452,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
     // the smallest key in subtree rooted at x; null if no such key
     private Node min(Node x) { 
-        // assert x != null;
+         assert x != null;
         if (x.left == null) return x; 
         else                return min(x.left); 
     } 
@@ -467,7 +469,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
 
     // the largest key in the subtree rooted at x; null if no such key
     private Node max(Node x) { 
-        // assert x != null;
+        assert x != null;
         if (x.right == null) return x; 
         else                 return max(x.right); 
     } 
@@ -604,10 +606,32 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
         if (hi == null) throw new IllegalArgumentException("second argument to keys() is null");
 
         Queue<Key> queue = new Queue<Key>();
-        // if (isEmpty() || lo.compareTo(hi) > 0) return queue;
+         if (isEmpty() || lo.compareTo(hi) > 0) return queue;
         keys(root, queue, lo, hi);
         return queue;
-    } 
+    }
+
+    public Iterable<Value> values(Key lo, Key hi)
+    {
+        if (lo == null) throw new IllegalArgumentException("first argument to values() is null");
+        if (hi == null) throw new IllegalArgumentException("second argument to values() is null");
+
+        Queue<Value> queue = new Queue<>();
+        if(isEmpty() || lo.compareTo(hi) > 0) return queue;
+        values(root, queue, lo, hi);
+        return queue;
+
+    }
+
+    private void values(Node x, Queue<Value> queue, Key lo, Key hi)
+    {
+        if (x == null) return;
+        int cmplo = lo.compareTo(x.key);
+        int cmphi = hi.compareTo(x.key);
+        if (cmplo < 0) values(x.left, queue, lo, hi);
+        if (cmplo <= 0 && cmphi >= 0) queue.enqueue(x.val);
+        if (cmphi > 0) values(x.right, queue, lo, hi);
+    }
 
     // add the keys between lo and hi in the subtree rooted at x
     // to the queue
@@ -643,14 +667,14 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
    /***************************************************************************
     *  Check integrity of red-black tree data structure.
     ***************************************************************************/
-//    private boolean check() {
-//        if (!isBST())            StdOut.println("Not in symmetric order");
-//        if (!isSizeConsistent()) StdOut.println("Subtree counts not consistent");
-//        if (!isRankConsistent()) StdOut.println("Ranks not consistent");
-//        if (!is23())             StdOut.println("Not a 2-3 tree");
-//        if (!isBalanced())       StdOut.println("Not balanced");
-//        return isBST() && isSizeConsistent() && isRankConsistent() && is23() && isBalanced();
-//    }
+    private boolean check() {
+        if (!isBST())            System.out.println("Not in symmetric order");
+        if (!isSizeConsistent()) System.out.println("Subtree counts not consistent");
+        if (!isRankConsistent()) System.out.println("Ranks not consistent");
+        if (!is23())             System.out.println("Not a 2-3 tree");
+        if (!isBalanced())       System.out.println("Not balanced");
+        return isBST() && isSizeConsistent() && isRankConsistent() && is23() && isBalanced();
+    }
 
     // does this binary tree satisfy symmetric order?
     // Note: this test also ensures that data structure is a binary tree since order is strict
@@ -714,23 +738,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
         return isBalanced(x.left, black) && isBalanced(x.right, black);
     } 
 
-
-    /**
-     * Unit tests the {@code RedBlackBST} data type.
-     *
-     * @param args the command-line arguments
-     */
-//    public static void main(String[] args) { 
-//        RedBlackBST<String, Integer> st = new RedBlackBST<String, Integer>();
-//        for (int i = 0; !StdIn.isEmpty(); i++) {
-//            String key = StdIn.readString();
-//            st.put(key, i);
-//        }
-//        StdOut.println();
-//        for (String s : st.keys())
-//            StdOut.println(s + " " + st.get(s));
-//        StdOut.println();
-//    }
 }
 
 /******************************************************************************

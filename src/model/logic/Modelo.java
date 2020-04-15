@@ -175,9 +175,9 @@ public class Modelo {
 	//	}
 
 	public RedBlackBST<String, String> modeloRedBlackBST() {
-		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		//		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
+
+		String path1 = "./data/Comparendos_DEI_2018_Bogotá_D.C_small (1).geojson";
+		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 
 		JsonReader reader;
 		String valores = null;

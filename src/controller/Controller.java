@@ -56,10 +56,9 @@ public class Controller {
 						copiaRedBlack = modelo.modeloRedBlackBST();
 						Iterator<String> iter = copiaRedBlack.keys().iterator();
 						view.displayOp1DataSize(copiaRedBlack.size());
-						//view.printMessage("*================================================*" );
 						view.printMessage("VALOR MINIMO OBJECTID: "+ copiaRedBlack.min());
 						view.printMessage("VALOR MAXIMO OBJECTID: "+ copiaRedBlack.max()+"\n");
-						//view.printMessage("*================================================*\n" );
+						view.printMessage("*================================================*\n" );
 
 
 
