@@ -7,6 +7,7 @@ import model.logic.Modelo;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -75,7 +76,7 @@ public class TestRedBlackBST<T extends Comparable<T>> {
         
         assertFalse(redBlackBST.isEmpty());
         assertEquals(4, redBlackBST.size());
-
+        
     }
     @Test
     public void testSize()
@@ -161,5 +162,80 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     {
     	
     }
+    
+	@Test
+	public void testKeys()
+	{
+		setUp1();
+		testPut();
+		boolean estaDentro = false;
+		Iterator<String> iter = redBlackBST.keys().iterator();	
+		int keysSize = 0;
+		while(iter.hasNext())
+		{
+			iter.next();
+			keysSize++;
+			if(iter.equals("217406"));
+			{
+				estaDentro= true;
+			}
+		}
+		assertEquals(4, keysSize);
+		assertTrue(estaDentro);
+		
+	}
+	@Test
+	public void testCheck()
+	{
+		setUp1();
+		testPut();
+		assertTrue(redBlackBST.check());
+	}
+	@Test
+	public void testValuesInRange()
+	{
+		setUp1();
+		testPut();
+		boolean estaDentro = false;
+		String k1 = "217406";
+		String k2 = "453635";
+		Iterator<String> iter = redBlackBST.values(k1, k2).iterator();
+		int keysSize = 0;
+		while(iter.hasNext())
+		{
+			iter.next();
+			keysSize++;
+			if(iter.equals("217406	2018-05-25T15:20:00.000Z	LAPIZ	CAMIONETA	Particular	C35	NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍCULO SERÁ INMOVILIZADO.	TUNJUELITO	[-74.08784599999996, 4.615945300000021]"));
+			{
+				estaDentro= true;
+			}
+		}
+		assertEquals(3, keysSize);
+		assertTrue(estaDentro);
 
+	}
+	@Test
+	public void testKeysInRange()
+	{
+		setUp1();
+		testPut();
+		boolean estaDentro = false;
+
+		String k1 = "217406";
+		String k2 = "453635";
+		Iterator<String> iter = redBlackBST.keys(k1, k2).iterator();
+		int keysSize = 0;
+		while(iter.hasNext())
+		{
+			iter.next();
+			keysSize++;
+			if(iter.equals("387430"));
+			{
+				estaDentro= true;
+			}
+		}
+		assertEquals(3, keysSize);
+		assertTrue(estaDentro);
+
+	}
 }
