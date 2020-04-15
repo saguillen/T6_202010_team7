@@ -92,4 +92,9 @@ public class Multa implements Comparable<Multa>
 		
 		
 	}
+	public String toStringTest()
+	{
+		return OBJECT_ID+"\t"+FECHA_HORA+"\t"+CLASE_VEHICULO+"\t"+TIPO_SERVICIO+"\t"+INFRACCION+"\t"+DES_INFRAC+"\t"+LOCALIDAD+"\t"+GEO+"\t"+MEDIO_DETECCION;
+
+	}
 }
