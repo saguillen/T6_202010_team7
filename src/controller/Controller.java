@@ -27,10 +27,6 @@ public class Controller {
 
 	private Multa m;
 
-//	private HashTLinearProbing<String, String> copiaLinearProb;
-//
-//	private HashTableSeparateChaining<String, String> copiaSeparateC;
-
 	private RedBlackBST<String, String> copiaRedBlack;
 	/**
 	 * Crear la vista y el modelo del proyecto
@@ -73,6 +69,7 @@ public class Controller {
 						
 						break;
 
+<<<<<<< HEAD
 
 					case 2:
 						view.printMessage("INGRESE LA ID INFERIOR");
@@ -88,6 +85,17 @@ public class Controller {
 						}
 
 
+=======
+//						}
+						view.displayInput();
+						String pId = reader.next();
+						String pInfo = modelo.compPorId(pId);
+						if(pInfo==null)
+							view.printMessage("NO HAY COMPARENDO CON EL ID: "+pId);
+						else{
+						view.displayInfoComparendosReq1(pInfo);}
+						
+>>>>>>> 5e0c2e9d44b0373e46738bb5161dd8b84b85f7ab
 						break;
 					case 3:
 						
