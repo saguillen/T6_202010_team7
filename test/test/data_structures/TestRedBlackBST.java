@@ -103,7 +103,7 @@ public class TestRedBlackBST<T extends Comparable<T>> {
         Multa m = new Multa("AUTOMÃ“VIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
         String llave = m.darId();
         String m2 = redBlackBST.get(llave);
-        assertEquals(m.toStringTest(), m2 );
+        assertEquals(m.toString(), m2 );
     }
 
     @Test
