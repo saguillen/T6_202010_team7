@@ -610,6 +610,11 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
         keys(root, queue, lo, hi);
         return queue;
     }
+    public Iterable<Value> values()
+    {
+        if(isEmpty()) return new Queue<Value>();
+        return values(min(), max());
+    }
 
     public Iterable<Value> values(Key lo, Key hi)
     {

@@ -493,6 +493,15 @@ public class Modelo {
 	//
 	//		}
 	//}
+
+
+
+
+	public Iterator<String> compPorIdRango(String idInf, String idSup) {
+
+		return redBlackBST.values(idInf, idSup).iterator();
+	}
+
 }
 
 

@@ -83,24 +83,21 @@ public class Controller {
 						break;
 
 					case 2:
-//						view.printMessage("Ingrese una fecha/hora\n");
-//						String pFecha = reader.next();
-//						view.printMessage("INGRESE LA CLASE DE VEHICULO");
-//						String pClaseV = reader.next();
-//						view.printMessage("INGRSE UNA INFRACCION");
-//						String pInfraccion = reader.next();
-//						LinkedListImp<String> pInfo1 = modelo.buscarTiemposdeViajeSeparateChaining(pFecha, pClaseV, pInfraccion);
-//						for(int i = 0; i < pInfo1.size();i++)
-//						{
-//							String m = pInfo1.darActual(i).darValor();
-//							view.displayOp0PrimeroData(m);
-//						}
-//						//	view.displayOp0PrimeroData(pInfo1);;
-//
-//
-//						//2018-11-01T10:29:42.000Z
-//						//CAMIONETA
-//						//C02
+						view.printMessage("INGRESE LA ID INFERIOR");
+						String idInf = reader.next();
+
+						view.printMessage("INGRSE LA ID SUPERIOR");
+						String idSup = reader.next();
+						Iterator<String> iter2 = modelo.compPorIdRango(idInf, idSup);
+						while(iter2.hasNext())
+						{
+
+							String m = iter2.next();
+//						System.out.println(iter2.next());
+							view.displayInfoComparendosReq1(m);
+						}
+
+
 						break;
 //					case 3:
 //						long startTime = System.currentTimeMillis();

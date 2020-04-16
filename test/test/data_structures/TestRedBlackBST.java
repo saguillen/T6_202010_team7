@@ -109,7 +109,10 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     @Test
     public void testContains()
     {
-
+        testPut();
+        Multa m = new Multa("AUTOMﾃ天IL", "Particular", "C02", "ESTACIONAR UN VEHﾍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
+        String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
+        assertTrue(redBlackBST.contains(llave));
     }
 
     @Test
@@ -121,23 +124,51 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     @Test
     public void testMin()
     {
+        setUp1();
         List<Double> geoM1 = new ArrayList<>();
         geoM1.add(-74.03103799999997);
         geoM1.add(4.692781120000063);
         List<Double> geoM2 = new ArrayList<>();
         geoM2.add(-74.08803099999994);
         geoM2.add(4.616017200000044);
-        List<Double> geoM3 = new ArrayList<>();
-        geoM3.add(-74.08784599999996);
-        geoM3.add(4.615945300000021);
         Multa m1 = new Multa("AUTOMﾃ天IL", "Particular", "C02", "ESTACIONAR UN VEHﾍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
         Multa m2 = new Multa("AUTOMﾃ天IL", "Particular", "D04", "NO REALIZAR LA REVISIﾓN TECNICOMECﾁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHﾍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECﾁNICAS O DE EMISIONES CONTAMINANTES, AﾚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMﾁS EL VEHﾍC", "TEUSAQUILLO", "2018-11-17T02:50:00.000Z", geoM2, "387430", "");
-        Multa m3 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIﾓN TECNICOMECﾁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHﾍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECﾁNICAS O DE EMISIONES CONTAMINANTES, AﾚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMﾁS EL VEHﾍCULO SERﾁ INMOVILIZADO.", "TUNJUELITO", "2018-05-25T15:20:00.000Z", geoM3, "217406", "LAPIZ");
+        String valores1 = m1.darId()+"\t"+ m1.darFechaHora()+"\t"+ m1.darClase()+"\t"+m1.darTipoServicio()+"\t"+m1.darInfraccion()+"\t"+m1.darDescInfr()+"\t"+m1.darLocalidad()+"\t"+m1.darGeo()+"\t"+m1.darMedioDeteccion();
+        String valores2 = m2.darId()+"\t"+ m2.darFechaHora()+"\t"+ m2.darClase()+"\t"+m2.darTipoServicio()+"\t"+m2.darInfraccion()+"\t"+m2.darDescInfr()+"\t"+m2.darLocalidad()+"\t"+m2.darGeo()+"\t"+m2.darMedioDeteccion();
+
+        String llave1 = m1.darId();
+        String llave2 = m2.darId();
+
+        redBlackBST.put(llave1, valores1);
+        redBlackBST.put(llave2, valores2);
+
+        assertEquals(redBlackBST.min(), llave1);
+
+
     }
 
     @Test
     public void testMax()
     {
+        setUp1();
+        List<Double> geoM1 = new ArrayList<>();
+        geoM1.add(-74.03103799999997);
+        geoM1.add(4.692781120000063);
+        List<Double> geoM2 = new ArrayList<>();
+        geoM2.add(-74.08803099999994);
+        geoM2.add(4.616017200000044);
+        Multa m1 = new Multa("AUTOMﾃ天IL", "Particular", "C02", "ESTACIONAR UN VEHﾍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
+        Multa m2 = new Multa("AUTOMﾃ天IL", "Particular", "D04", "NO REALIZAR LA REVISIﾓN TECNICOMECﾁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHﾍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECﾁNICAS O DE EMISIONES CONTAMINANTES, AﾚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMﾁS EL VEHﾍC", "TEUSAQUILLO", "2018-11-17T02:50:00.000Z", geoM2, "387430", "");
+        String valores1 = m1.darId()+"\t"+ m1.darFechaHora()+"\t"+ m1.darClase()+"\t"+m1.darTipoServicio()+"\t"+m1.darInfraccion()+"\t"+m1.darDescInfr()+"\t"+m1.darLocalidad()+"\t"+m1.darGeo()+"\t"+m1.darMedioDeteccion();
+        String valores2 = m2.darId()+"\t"+ m2.darFechaHora()+"\t"+ m2.darClase()+"\t"+m2.darTipoServicio()+"\t"+m2.darInfraccion()+"\t"+m2.darDescInfr()+"\t"+m2.darLocalidad()+"\t"+m2.darGeo()+"\t"+m2.darMedioDeteccion();
+
+        String llave1 = m1.darId();
+        String llave2 = m2.darId();
+
+        redBlackBST.put(llave1, valores1);
+        redBlackBST.put(llave2, valores2);
+
+        assertEquals(redBlackBST.max(), llave2);
 
     }
 
