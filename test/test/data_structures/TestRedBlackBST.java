@@ -123,17 +123,11 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     @Test
     public void testContains()
     {
-<<<<<<< HEAD
-        testPut();
-        Multa m = new Multa("AUTOMÃ“VIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
-        String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
-        assertTrue(redBlackBST.contains(llave));
-=======
     	setUp1();
     	testPut();
     	assertFalse(redBlackBST.contains("6942069"));//no existe
     	assertTrue(redBlackBST.contains("217406")); // sí existe
->>>>>>> b0f57f7bb3524010497496163fb820e721f5d92d
+
     }
 
     @Test
@@ -176,7 +170,7 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     @Test
     public void testMax()
     {
-<<<<<<< HEAD
+
         setUp1();
         List<Double> geoM1 = new ArrayList<>();
         geoM1.add(-74.03103799999997);
@@ -197,9 +191,7 @@ public class TestRedBlackBST<T extends Comparable<T>> {
 
         assertEquals(redBlackBST.max(), llave2);
 
-=======
-    	
->>>>>>> b0f57f7bb3524010497496163fb820e721f5d92d
+
     }
     
 	@Test
