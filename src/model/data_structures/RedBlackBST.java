@@ -434,7 +434,28 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
         if (x == null) return -1;
         return 1 + Math.max(height(x.left), height(x.right));
     }
-
+    public int getHeight(Key x)
+    {
+        if (x == null) return -1;
+        return getHeight(root, x);
+        
+    }
+    private int getHeight(Node x,Key key)
+    {
+    	int H= 0;
+    	while (x != null) {
+            int cmp = key.compareTo(x.key);
+            if      (cmp < 0){ 
+            	x = x.left;
+            	H++;}
+            else if (cmp > 0){ 
+            	x = x.right;
+            H++;}
+            else 
+            	return H;
+        }
+        return -1;
+    }
 
    /***************************************************************************
     *  Ordered symbol table methods.
@@ -672,7 +693,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value extends Comparable<V
    /***************************************************************************
     *  Check integrity of red-black tree data structure.
     ***************************************************************************/
-    private boolean check() {
+    public boolean check() {
         if (!isBST())            System.out.println("Not in symmetric order");
         if (!isSizeConsistent()) System.out.println("Subtree counts not consistent");
         if (!isRankConsistent()) System.out.println("Ranks not consistent");

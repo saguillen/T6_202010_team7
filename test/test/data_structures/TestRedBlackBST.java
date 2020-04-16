@@ -7,6 +7,7 @@ import model.logic.Modelo;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -56,27 +57,32 @@ public class TestRedBlackBST<T extends Comparable<T>> {
         Multa m1 = new Multa("AUTOMÃ“VIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
         Multa m2 = new Multa("AUTOMÃ“VIL", "Particular", "D04", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍC", "TEUSAQUILLO", "2018-11-17T02:50:00.000Z", geoM2, "387430", "");
         Multa m3 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍCULO SERÁ INMOVILIZADO.", "TUNJUELITO", "2018-05-25T15:20:00.000Z", geoM3, "217406", "LAPIZ");
+        Multa m4 = new Multa("CAMIONETA", "Particular", "C35", "NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍCULO SERÁ INMOVILIZADO.", "TUNJUELITO", "2018-05-25T15:20:00.000Z", geoM3, "453635", "LAPIZ");
 
-        String llave1 = m1.darFechaHora() + m1.darClase() + m1.darInfraccion();
-        String llave2 = m2.darFechaHora() + m2.darClase() + m2.darInfraccion();
-        String llave3 = m3.darFechaHora() + m3.darClase() + m3.darInfraccion();
-
-        String valores1 = m1.darId()+"\t"+ m1.darFechaHora()+"\t"+ m1.darClase()+"\t"+m1.darTipoServicio()+"\t"+m1.darInfraccion()+"\t"+m1.darDescInfr()+"\t"+m1.darLocalidad()+"\t"+m1.darGeo()+"\t"+m1.darMedioDeteccion();
-        String valores2 = m2.darId()+"\t"+ m2.darFechaHora()+"\t"+ m2.darClase()+"\t"+m2.darTipoServicio()+"\t"+m2.darInfraccion()+"\t"+m2.darDescInfr()+"\t"+m2.darLocalidad()+"\t"+m2.darGeo()+"\t"+m2.darMedioDeteccion();
-        String valores3 = m3.darId()+"\t"+ m3.darFechaHora()+"\t"+ m3.darClase()+"\t"+m3.darTipoServicio()+"\t"+m3.darInfraccion()+"\t"+m3.darDescInfr()+"\t"+m3.darLocalidad()+"\t"+m3.darGeo()+"\t"+m3.darMedioDeteccion();
+        String llave1 = m1.darId();
+        String llave2 = m2.darId();
+        String llave3 = m3.darId();
+        String llave4 = m4.darId();
+        
+        String valores1 = m1.toString();
+        String valores2 = m2.toString();
+        String valores3 = m3.toString();
+        String valores4 = m4.toString();
 
         redBlackBST.put(llave1, valores1);
         redBlackBST.put(llave2, valores2);
         redBlackBST.put(llave3, valores3);
+        redBlackBST.put(llave4, valores4);
+        
         assertFalse(redBlackBST.isEmpty());
-        assertEquals(3, redBlackBST.size());
-
+        assertEquals(4, redBlackBST.size());
+        
     }
     @Test
     public void testSize()
     {
         testPut();
-        assertEquals(3, redBlackBST.size());
+        assertEquals(4, redBlackBST.size());
     }
 
     @Test
@@ -95,7 +101,7 @@ public class TestRedBlackBST<T extends Comparable<T>> {
         geoM1.add(-74.03103799999997);
         geoM1.add(4.692781120000063);
         Multa m = new Multa("AUTOMÃ“VIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
-        String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
+        String llave = m.darId();
         String m2 = redBlackBST.get(llave);
         assertEquals(m.toStringTest(), m2 );
     }
@@ -103,22 +109,42 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     @Test
     public void testGetHeight()
     {
+    	setUp1();
+    	testPut();
+    	assertEquals(-1, redBlackBST.getHeight("6942069"));//no existe entonces manda -1
+    	assertEquals(4, redBlackBST.size());
+    	int height = redBlackBST.height();
+    	assertEquals(2, height );
+    	int getheight = redBlackBST.getHeight("387430");//id de la multa m2
+    	assertEquals(2, getheight );
 
     }
 
     @Test
     public void testContains()
     {
+<<<<<<< HEAD
         testPut();
         Multa m = new Multa("AUTOMÃ“VIL", "Particular", "C02", "ESTACIONAR UN VEHÍCULO EN SITIOS PROHIBIDOS.", "USAQUEN", "2018-10-11T14:30:00.000Z", geoM1, "12345", "LAPIZ");
         String llave = m.darFechaHora() + m.darClase() + m.darInfraccion();
         assertTrue(redBlackBST.contains(llave));
+=======
+    	setUp1();
+    	testPut();
+    	assertFalse(redBlackBST.contains("6942069"));//no existe
+    	assertTrue(redBlackBST.contains("217406")); // sí existe
+>>>>>>> b0f57f7bb3524010497496163fb820e721f5d92d
     }
 
     @Test
     public void testHeight()
     {
-        redBlackBST.height();
+    	setUp1();
+    	testPut();
+    	assertEquals(-1, redBlackBST.getHeight("6942069"));//no existe entonces manda -1
+    	assertEquals(4, redBlackBST.size());
+    	int height = redBlackBST.height();
+    	assertEquals(2, height );
     }
 
     @Test
@@ -150,6 +176,7 @@ public class TestRedBlackBST<T extends Comparable<T>> {
     @Test
     public void testMax()
     {
+<<<<<<< HEAD
         setUp1();
         List<Double> geoM1 = new ArrayList<>();
         geoM1.add(-74.03103799999997);
@@ -170,6 +197,84 @@ public class TestRedBlackBST<T extends Comparable<T>> {
 
         assertEquals(redBlackBST.max(), llave2);
 
+=======
+    	
+>>>>>>> b0f57f7bb3524010497496163fb820e721f5d92d
     }
+    
+	@Test
+	public void testKeys()
+	{
+		setUp1();
+		testPut();
+		boolean estaDentro = false;
+		Iterator<String> iter = redBlackBST.keys().iterator();	
+		int keysSize = 0;
+		while(iter.hasNext())
+		{
+			iter.next();
+			keysSize++;
+			if(iter.equals("217406"));
+			{
+				estaDentro= true;
+			}
+		}
+		assertEquals(4, keysSize);
+		assertTrue(estaDentro);
+		
+	}
+	@Test
+	public void testCheck()
+	{
+		setUp1();
+		testPut();
+		assertTrue(redBlackBST.check());
+	}
+	@Test
+	public void testValuesInRange()
+	{
+		setUp1();
+		testPut();
+		boolean estaDentro = false;
+		String k1 = "217406";
+		String k2 = "453635";
+		Iterator<String> iter = redBlackBST.values(k1, k2).iterator();
+		int keysSize = 0;
+		while(iter.hasNext())
+		{
+			iter.next();
+			keysSize++;
+			if(iter.equals("217406	2018-05-25T15:20:00.000Z	LAPIZ	CAMIONETA	Particular	C35	NO REALIZAR LA REVISIÓN TECNICOMECÁNICA EN EL PLAZO LEGAL ESTABLECIDO O CUANDO EL VEHÍCULO  NO SE ENCUENTRE EN ADECUADAS CONDICIONES TECNICOMECÁNICAS O DE EMISIONES CONTAMINANTES, AÚN CUANDO PORTE LOS CERTIFICADOS CORRESPONDIENTES, ADEMÁS EL VEHÍCULO SERÁ INMOVILIZADO.	TUNJUELITO	[-74.08784599999996, 4.615945300000021]"));
+			{
+				estaDentro= true;
+			}
+		}
+		assertEquals(3, keysSize);
+		assertTrue(estaDentro);
 
+	}
+	@Test
+	public void testKeysInRange()
+	{
+		setUp1();
+		testPut();
+		boolean estaDentro = false;
+
+		String k1 = "217406";
+		String k2 = "453635";
+		Iterator<String> iter = redBlackBST.keys(k1, k2).iterator();
+		int keysSize = 0;
+		while(iter.hasNext())
+		{
+			iter.next();
+			keysSize++;
+			if(iter.equals("387430"));
+			{
+				estaDentro= true;
+			}
+		}
+		assertEquals(3, keysSize);
+		assertTrue(estaDentro);
+
+	}
 }
