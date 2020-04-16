@@ -60,65 +60,61 @@ public class Controller {
 						view.printMessage("VALOR MAXIMO OBJECTID: "+ copiaRedBlack.max()+"\n");
 						view.printMessage("*================================================*\n" );
 
-
-
 						break;
 					case 1:
-//						view.displayInputFecha();
-//						String in = reader.next();
-//						view.displayInputClaseVehiculo();
-//						String in2 = reader.next();
-//						view.displayInputInfraccion();
-//						String in3 = reader.next();
-//						LinkedListImp<String> pInfo = modelo.buscarTiemposdeViajeLinearProb(in, in2, in3);
-////						LinkedListImp<String> pInfo = modelo.buscarTiemposdeViajeLinearProb(in, in2, in3);
-//						for(int i = 0; i < pInfo.size(); i++) {
-//							String multa = pInfo.darActual(i).darValor();
-//							view.displayOp0PrimeroData(multa);
-						int getHeight = copiaRedBlack.getHeight("525883");
-						int heightTotal = copiaRedBlack.height();
-						System.out.println(getHeight);
-						System.out.println(heightTotal+" Altura total");
-
-//						}
-
-
-
+							
+						view.displayInput();
+						String pId = reader.next();
+						String pInfo = modelo.compPorId(pId);
+						if(pInfo==null)
+							view.printMessage("NO HAY COMPARENDO CON EL ID: "+pId);
+						else{
+						view.displayInfoComparendosReq1(pInfo);}
+						
 						break;
+
 
 					case 2:
 						view.printMessage("INGRESE LA ID INFERIOR");
 						String idInf = reader.next();
 
-						view.printMessage("INGRSE LA ID SUPERIOR");
+						view.printMessage("INGRESE LA ID SUPERIOR");
 						String idSup = reader.next();
 						Iterator<String> iter2 = modelo.compPorIdRango(idInf, idSup);
 						while(iter2.hasNext())
 						{
-
 							String m = iter2.next();
-//						System.out.println(iter2.next());
 							view.displayInfoComparendosReq1(m);
 						}
 
 
 						break;
-//					case 3:
-//						long startTime = System.currentTimeMillis();
-//						modelo.getsAleatoriosLinearProb();
-//						long endTime = System.currentTimeMillis();
-//						long duration = endTime - startTime;
-//						view.printMessage("Tiempo que tardo : " + duration +" milisegundos\n");
-//						break;
-//
-//					case 4:
-//						long start = System.currentTimeMillis();
-//						modelo.getsAleatoriosSeparate();
-//						long end = System.currentTimeMillis();
-//						long dur = end - start;
-//						view.printMessage("Tiempo que tardo : " + dur + " milisegundos\n");
-//						break;
-//					//Opcion No valida.//
+					case 3:
+						
+						int cantidadNodos = copiaRedBlack.size();
+						
+						view.printMessage("La cantidad de nodos es:"+cantidadNodos+"");
+				
+						break;
+
+					case 4:
+						int altura = copiaRedBlack.height();
+						
+						view.printMessage("La altura del arbol es:"+altura+"");
+				
+						break;
+
+					case 5:
+						Iterator<String> iterator = copiaRedBlack.keys().iterator();
+						float valor = 0.0f;
+						while(iterator.hasNext())
+						{
+							valor += copiaRedBlack.getHeight(iterator.next());
+							float valorT = (float) (valor/ copiaRedBlack.size());
+							view.printMessage(" es:"+valorT+"");
+						}
+						view.printMessage(""+copiaRedBlack.getHeight("99999"));
+					//Opcion No valida.//
 					default:
 						view.badOption();
 						fin = true;
