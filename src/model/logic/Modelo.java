@@ -176,13 +176,8 @@ public class Modelo {
 
 	public RedBlackBST<String, String> modeloRedBlackBST() {
 
-<<<<<<< HEAD
-//		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
-		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
-=======
+//		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
 		String path = "./data/Comparendos_DEI_2018_Bogotá_D.C_small.geojson";
-		//String path = "./data/Comparendos_DEI_2018_Bogotá_D.C.geojson";
->>>>>>> 5e0c2e9d44b0373e46738bb5161dd8b84b85f7ab
 
 		JsonReader reader;
 		String valores = null;
@@ -505,12 +500,6 @@ public class Modelo {
 	//}
 
 
-	public String compPorId(String pId)
-	{
-		String m = redBlackBST.get(pId);
-
-		return m;
-	}
 
 	public Iterator<String> compPorIdRango(String idInf, String idSup) {
 
